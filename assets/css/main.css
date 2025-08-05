@@ -1,0 +1,35 @@
+@layer layout {
+  .grid {
+    display: grid;
+    /* grid-template-columns: 4fr 1fr; */
+    gap: 20px;
+    grid-template-areas:
+      "slider slider slider slider"
+      "boxOne boxOne boxTwo boxTwo";
+
+    @media (width >= calc(768 / 16 * 1rem)) {
+      grid-template-areas:
+        "slider slider slider slider boxOne"
+        "slider slider slider slider boxTwo";
+    }
+  }
+}
+
+@layer home-section {
+  .slider {
+    grid-area: slider;
+  }
+
+  .side-card-one {
+    grid-area: boxOne;
+  }
+
+  .side-card-two {
+    grid-area: boxTwo;
+  }
+
+  img {
+    border-radius: 30px;
+    width: 100%;
+  }
+}
