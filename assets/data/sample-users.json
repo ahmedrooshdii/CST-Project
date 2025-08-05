@@ -1,0 +1,29 @@
+{
+  "users": {
+    "user_id_1": {
+      "id": "user_id_1",
+      "email": "customer@example.com",
+      "password": "hashed_password",
+      "role": "customer", // customer, seller, admin
+      "profile": {
+        "firstName": "John",
+        "lastName": "Doe",
+        "phone": "+1234567890",
+        "address": {
+          "street": "123 Main St",
+          "city": "City",
+          "state": "State",
+          "zipCode": "12345",
+          "country": "Country"
+        }
+      },
+      "preferences": {
+        "theme": "light",
+        "language": "en",
+        "notifications": true
+      },
+      "createdAt": "2025-08-05T10:00:00Z",
+      "isActive": true
+    }
+  }
+}

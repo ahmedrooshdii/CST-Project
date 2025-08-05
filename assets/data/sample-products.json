@@ -1,0 +1,36 @@
+{
+  "products": {
+    "product_id_1": {
+      "id": "product_id_1",
+      "name": "Product Name",
+      "description": "Product description",
+      "price": 99.99,
+      "category": "electronics",
+      "subcategory": "smartphones",
+      "brand": "Brand Name",
+      "images": ["image1.jpg", "image2.jpg"],
+      "specifications": {
+        "weight": "200g",
+        "dimensions": "150x75x8mm",
+        "color": "Black"
+      },
+      "inventory": {
+        "stock": 50,
+        "reserved": 5,
+        "available": 45
+      },
+      "rating": {
+        "average": 4.5,
+        "count": 123
+      },
+      "seller": {
+        "id": "seller_id_1",
+        "name": "Seller Name",
+        "rating": 4.8
+      },
+      "createdAt": "2025-08-05T10:00:00Z",
+      "isActive": true,
+      "featured": false
+    }
+  }
+}
