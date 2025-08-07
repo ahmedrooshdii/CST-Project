@@ -1,70 +1,141 @@
-@layer layout {
-  .grid {
-    display: grid;
-    /* grid-template-columns: 4fr 1fr; */
-    gap: 20px;
-  }
+@layer color {
+  :root {
+    --border-radius: 15px;
 
-  .grid--carousel {
-    grid-template-areas:
-      "slider slider slider slider"
-      "boxOne boxOne boxTwo boxTwo";
+    --color-american-silver: #cfcfcf;
+    --color-black: #000;
+    --color-charleston-green: #2c2c2c;
+    --color-cultured: #f6f6f6;
+    --color-ghost-white: #f9f9f9;
+    --color-gradient: #2e2e2e;
+    --color-gray: #909090;
+    --color-Jet: #353535;
+    --color-light-gray: #ededed;
+    --color-raisin-black: #211c24;
+    --color-red: #ff0000;
+    --color-white: #fff;
 
-    @media (width >= calc(768 / 16 * 1rem)) {
-      grid-template-areas:
-        "slider slider slider slider boxOne"
-        "slider slider slider slider boxTwo";
-    }
-  }
-
-  .grid--features {
-    min-width: 350px;
-    grid-template-columns: 60px 1fr;
-    grid-template-rows: 1fr 1fr;
-    gap: 0 10px;
-    align-items: center;
-
-    .feature__logo {
-      width: 60px;
-      grid-column: 1;
-      grid-row: 1 / -1;
-    }
-
-    .feature__title {
-      grid-column: 2;
-      grid-row: 1;
-    }
-
-    .feature__descr {
-      grid-column: 2;
-      grid-row: 2;
-    }
-  }
-
-  .feature-card {
-    border: 1px solid red;
-    margin: auto;
-    border-radius: 15px;
-    width: fit-content;
-    padding: 1rem;
+    --gradient: linear-gradient(
+      -60deg,
+      rgba(46, 46, 46, 1) 0%,
+      rgba(0, 0, 0, 1) 100%
+    );
   }
 }
 
-@layer home-section {
-  .slider {
-    grid-area: slider;
+@layer font {
+  @font-face {
+    font-display: swap;
+    font-family: "SF Pro Display";
+    font-style: normal;
+    font-weight: 400;
+    src: url("/assets/css/fonts/SFPRODISPLAYREGULAR.woff2") format("woff2");
   }
 
-  .side-card-one {
-    grid-area: boxOne;
+  @font-face {
+    font-display: swap;
+    font-family: "SF Pro Display";
+    font-style: bold;
+    font-weight: 700;
+    src: url("./fonts/SFPRODISPLAYBOLD.woff2") format("woff2");
   }
 
-  .side-card-two {
-    grid-area: boxTwo;
+  @font-face {
+    font-display: swap;
+    font-family: "SF Pro Display";
+    font-style: medium;
+    font-weight: 500;
+    src: url("./fonts/SFPRODISPLAYMEDIUM.woff2") format("woff2");
   }
 
-  img {
-    border-radius: 30px;
-    /* width: 100%; */
+  @font-face {
+    font-display: swap;
+    font-family: "SF Pro Display";
+    font-style: normal;
+    font-weight: 600;
+    src: url("./fonts/SFPRODISPLAYSEMIBOLDITALIC.woff2") format("woff2");
+  }
+
+  :root {
+    --ff-pro: "SF Pro Display", Arial, Helvetica, sans-serif;
+
+    --fs-14: 1.4rem;
+    --fs-16: 1.6rem;
+    --fs-18: 1.8rem;
+    --fs-24: 2.4rem;
+    --fs-25: 2.5rem;
+    --fs-29: 2.9rem;
+    --fs-33: 3.3rem;
+    --fs-34: 3.4rem;
+    --fs-49: 4.9rem;
+    --fs-64: 6.4rem;
+    --fs-72: 7.2rem;
+    --fs-96: 9.6rem;
+  }
+}
+
+@layer global {
+  ::selection {
+    background-color: var(--color-white);
+    color: var(--color-raisin-black);
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    font-size: 62.5%;
+  }
+
+  body {
+    color: var(--color-black);
+    font-family: var(--ff-pro);
+    font-size: var(--fs-16);
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  h1,
+  h2,
+  h3 {
+    color: var(--color-black);
+    line-height: 1.3;
+    margin: 0;
+  }
+
+  h1 {
+    font-size: var(--fs-72);
+  }
+
+  h3 {
+    font-size: var(--fs-34);
+    font-weight: 500;
+  }
+
+  p {
+    font-size: var(--fs-16);
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  @media screen and (min-width: 1024px) {
+    body {
+      font-size: var(--fs-16);
+    }
+
+    h1 {
+      font-size: var(--fs-96);
+    }
+
+    h3 {
+      font-size: var(--fs-49);
+    }
+
+    p {
+      font-size: var(--fs-14);
+    }
   }
 }
