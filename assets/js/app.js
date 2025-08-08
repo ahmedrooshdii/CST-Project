@@ -1,15 +1,15 @@
 /* -------- Categories carousel --------*/
-// const carousel = document.querySelector(".categories__carousel");
-// const nextBtn = document.getElementById("next");
-// const prevBtn = document.getElementById("prev");
+const carousel = document.querySelector(".categories__carousel");
+const nextBtn = document.getElementById("next");
+const prevBtn = document.getElementById("prev");
 
-// nextBtn.addEventListener("click", () => {
-//   carousel.scrollBy({ left: 150, behavior: "smooth" });
-// });
+nextBtn.addEventListener("click", () => {
+  //   carousel.scrollBy({ left: 150, behavior: "smooth" });
+});
 
-// prevBtn.addEventListener("click", () => {
-//   carousel.scrollBy({ left: -150, behavior: "smooth" });
-// });
+prevBtn.addEventListener("click", () => {
+  //   carousel.scrollBy({ left: -150, behavior: "smooth" });
+});
 
 /* -------- Products tabs and content --------*/
 const tabs = document.querySelectorAll(".tab__btn");

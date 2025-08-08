@@ -331,6 +331,12 @@
   .hero-sm .grid {
     gap: 0;
   }
+
+  .hero-sm-item .btn {
+    background-color: var(--color-black);
+    color: white;
+    border: none;
+  }
 }
 
 @layer categories {
@@ -693,5 +699,27 @@
     .carousel-dots button.active {
       background: #333; /* active dot color */
     }
+  }
+}
+
+@layer discount {
+  .discount {
+    padding-block: 8rem;
+  }
+
+  .discount .header {
+    margin-block-end: 3.2rem;
+  }
+
+  .discount .header .heading {
+    font-size: var(--fs-24);
+    font-weight: 500;
+  }
+
+  .discount .content {
+    display: flex;
+    gap: 1.6rem;
+    flex-wrap: wrap;
+    justify-content: center;
   }
 }
