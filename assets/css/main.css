@@ -242,7 +242,7 @@
     }
 
     .hero__tagline:first-of-type {
-      margin-block-end: 1.6rem;
+      margin-block: 8.8rem 1.6rem;
       @media screen and (min-width: calc(1024 / 16 * 1rem)) {
         font-size: var(--fs-25);
         margin-block-end: 2.4rem;
