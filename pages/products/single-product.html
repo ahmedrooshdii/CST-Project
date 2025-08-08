@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Product Details</title>
+    <!-- fontawesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
+      integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- bootstrap style -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr"
+      crossorigin="anonymous"
+    />
+    <!-- main style -->
+    <link rel="stylesheet" href="single-product-style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div
+        class="breadcrumbs pt-3 pb-3 d-flex gap-2 align-items-center flex-wrap"
+      >
+        <span>Home</span>
+        <div class="arrow-icon">
+          <img src="assets/arrow-right-icon.svg" alt="" />
+        </div>
+        <span>Cataloge</span>
+        <div class="arrow-icon">
+          <img src="assets/arrow-right-icon.svg" alt="" />
+        </div>
+        <span>Smart Phones</span>
+        <div class="arrow-icon">
+          <img src="assets/arrow-right-icon.svg" alt="" />
+        </div>
+        <span>Apple</span>
+        <div class="arrow-icon">
+          <img src="assets/arrow-right-icon.svg" alt="" />
+        </div>
+        <span class="active">iPhone 13 Pro Max</span>
+      </div>
+      <section class="main-info 100-vh">
+        <div class="row align-items-center justify-content-between">
+          <div class="col-12 col-lg-6">
+            <div
+              class="imagesWrapper d-flex flex-md-row flex-column align-items-center"
+            >
+              <!-- Side Images -->
+              <div
+                class="side-images d-flex flex-md-column flex-row justify-content-center gap-3"
+              >
+                <div class="side-image-wrapper">
+                  <img src="assets/main-image.png" alt="" />
+                </div>
+                <div class="side-image-wrapper">
+                  <img src="assets/side-image-1.png" alt="" />
+                </div>
+                <div class="side-image-wrapper">
+                  <img src="assets/side-image-2.png" alt="" />
+                </div>
+                <div class="side-image-wrapper">
+                  <img src="assets/side-image-3.png" alt="" />
+                </div>
+              </div>
+
+              <!-- Main Image -->
+              <div class="main-image flex-grow-1">
+                <img src="assets/main-image.png" alt="" />
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-lg-5 pt-4 pt-lg-0">
+            <div class="product-info">
+              <h1 class="product-title">Apple iPhone 14 Pro Max</h1>
+
+              <div class="product-price">
+                <span class="current-price">$1399</span>
+                <span class="original-price">$1499</span>
+              </div>
+
+              <div class="color-selection">
+                <label>Select color :</label>
+                <div class="color-options">
+                  <input type="radio" name="color" id="black" checked />
+                  <label for="black" class="color-option color-black"></label>
+
+                  <input type="radio" name="color" id="purple" />
+                  <label for="purple" class="color-option color-purple"></label>
+
+                  <input type="radio" name="color" id="red" />
+                  <label for="red" class="color-option color-red"></label>
+
+                  <input type="radio" name="color" id="gold" />
+                  <label for="gold" class="color-option color-gold"></label>
+
+                  <input type="radio" name="color" id="silver" />
+                  <label for="silver" class="color-option color-silver"></label>
+                </div>
+              </div>
+
+              <div class="storage-selection flex-wrap">
+                <button class="storage-option disabled">128GB</button>
+                <button class="storage-option">256GB</button>
+                <button class="storage-option">512GB</button>
+                <button class="storage-option selected">1TB</button>
+              </div>
+
+              <div class="specifications">
+                <div class="spec-item">
+                  <img src="assets/screen-size-icon.svg" alt="" />
+                  <div class="spec-text">
+                    <span class="spec-label">Screen size</span>
+                    <span class="spec-value">6.7"</span>
+                  </div>
+                </div>
+
+                <div class="spec-item">
+                  <img src="assets/cpu-icon.svg" alt="" />
+                  <div class="spec-text">
+                    <span class="spec-label">CPU</span>
+                    <span class="spec-value">Apple A16 Bionic</span>
+                  </div>
+                </div>
+
+                <div class="spec-item">
+                  <img src="assets/corse-icon.svg" alt="" />
+                  <div class="spec-text">
+                    <span class="spec-label">Number of Cores</span>
+                    <span class="spec-value">6</span>
+                  </div>
+                </div>
+
+                <div class="spec-item">
+                  <img src="assets/camera-icon.svg" alt="" />
+                  <div class="spec-text">
+                    <span class="spec-label">Main camera</span>
+                    <span class="spec-value">48-12-12 MP</span>
+                  </div>
+                </div>
+
+                <div class="spec-item">
+                  <img src="assets/front-cam-icon.svg" alt="" />
+                  <div class="spec-text">
+                    <span class="spec-label">Front-camera</span>
+                    <span class="spec-value">12 MP</span>
+                  </div>
+                </div>
+
+                <div class="spec-item">
+                  <img src="assets/battery-icon.svg" alt="" />
+                  <div class="spec-text">
+                    <span class="spec-label">Battery capacity</span>
+                    <span class="spec-value">4323 mAh</span>
+                  </div>
+                </div>
+              </div>
+
+              <p class="product-description">
+                Enhanced capabilities thanks to an enlarged display of 6.7
+                inches and work without recharging throughout the day.
+                Incredible photos as in weak, yes and in bright light using the
+                new system with two cameras
+                <a href="#" class="more-link">more...</a>
+              </p>
+
+              <div class="action-buttons">
+                <button class="btn btn-outline">Add to Wishlist</button>
+                <button class="btn btn-primary">Add to Cart</button>
+              </div>
+
+              <div class="features flex-wrap">
+                <div class="feature-item">
+                  <div class="feature-icon">
+                    <img src="assets/delivery-icon.svg" alt="" />
+                  </div>
+                  <div class="feature-text">
+                    <span class="feature-title">Free Delivery</span>
+                    <span class="feature-subtitle">1-2 day</span>
+                  </div>
+                </div>
+
+                <div class="feature-item">
+                  <div class="feature-icon">
+                    <img src="assets/stock-icon.svg" alt="" />
+                  </div>
+                  <div class="feature-text">
+                    <span class="feature-title">In Stock</span>
+                    <span class="feature-subtitle">Today</span>
+                  </div>
+                </div>
+
+                <div class="feature-item">
+                  <div class="feature-icon">
+                    <img src="assets/guaranteed-icon.svg" alt="" />
+                  </div>
+                  <div class="feature-text">
+                    <span class="feature-title">Guaranteed</span>
+                    <span class="feature-subtitle">1 year</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Product Details Section -->
+    <section class="product-details">
+      <div class="container">
+        <div class="details-card">
+          <h2>Details</h2>
+
+          <p class="details-intro">
+            Just as a book is judged by its cover, the first thing you notice
+            when you pick up a modern smartphone is the display. Nothing
+            surprising, because advanced technologies allow you to practically
+            level the display frames and cutouts for the front camera and
+            speaker, leaving no room for bold design solutions. And how good
+            that in such realities Apple everything is fine with displays. Both
+            critics and mass consumers always praise the quality of the picture
+            provided by the products of the Californian brand. And last year's
+            6.7-inch Retina panels, which had ProMotion, caused real admiration
+            for many.
+          </p>
+
+          <div class="specs-section">
+            <h3>Screen</h3>
+            <div class="specs-list">
+              <div class="spec-row">
+                <span class="spec-name">Screen diagonal</span>
+                <span class="spec-val">6.7"</span>
+              </div>
+              <div class="spec-row">
+                <span class="spec-name">The screen resolution</span>
+                <span class="spec-val">2796x1290</span>
+              </div>
+              <div class="spec-row">
+                <span class="spec-name">The screen refresh rate</span>
+                <span class="spec-val">120 Hz</span>
+              </div>
+              <div class="spec-row">
+                <span class="spec-name">The pixel density</span>
+                <span class="spec-val">460 ppi</span>
+              </div>
+              <div class="spec-row">
+                <span class="spec-name">Screen type</span>
+                <span class="spec-val">OLED</span>
+              </div>
+              <div class="spec-row">
+                <span class="spec-name">Additionally</span>
+                <span class="spec-val multiline"
+                  >Dynamic Island<br />Always-On display<br />HDR display<br />True
+                  Tone<br />Wide color (P3)</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="specs-section">
+            <h3>CPU</h3>
+            <div class="specs-list">
+              <div class="spec-row">
+                <span class="spec-name">CPU</span>
+                <span class="spec-val">A16 Bionic</span>
+              </div>
+              <div class="spec-row">
+                <span class="spec-name">Number of cores</span>
+                <span class="spec-val">6</span>
+              </div>
+            </div>
+          </div>
+
+          <button class="btn btn-outline view-more">
+            <span>View More</span>
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <polyline points="6,9 12,15 18,9"></polyline>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section class="reviews">
+      <div class="container">
+        <h2>Reviews</h2>
+
+        <div class="reviews-overview">
+          <div class="rating-summary">
+            <div class="overall-rating">4.8</div>
+            <div class="rating-subtitle">of 125 reviews</div>
+            <div class="stars">
+              <span class="star filled">★</span>
+              <span class="star filled">★</span>
+              <span class="star filled">★</span>
+              <span class="star filled">★</span>
+              <span class="star">★</span>
+            </div>
+          </div>
+
+          <div class="rating-breakdown">
+            <div class="rating-row">
+              <span class="rating-label">Excellent</span>
+              <div class="rating-bar">
+                <div class="rating-fill" style="width: 82%"></div>
+              </div>
+              <span class="rating-count">100</span>
+            </div>
+            <div class="rating-row">
+              <span class="rating-label">Good</span>
+              <div class="rating-bar">
+                <div class="rating-fill" style="width: 9%"></div>
+              </div>
+              <span class="rating-count">11</span>
+            </div>
+            <div class="rating-row">
+              <span class="rating-label">Average</span>
+              <div class="rating-bar">
+                <div class="rating-fill" style="width: 2.5%"></div>
+              </div>
+              <span class="rating-count">3</span>
+            </div>
+            <div class="rating-row">
+              <span class="rating-label">Below Average</span>
+              <div class="rating-bar">
+                <div class="rating-fill" style="width: 6.5%"></div>
+              </div>
+              <span class="rating-count">8</span>
+            </div>
+            <div class="rating-row">
+              <span class="rating-label">Poor</span>
+              <div class="rating-bar">
+                <div class="rating-fill" style="width: 1%"></div>
+              </div>
+              <span class="rating-count">1</span>
+            </div>
+          </div>
+        </div>
+
+        <textarea class="comment-input" placeholder="Leave Comment"></textarea>
+
+        <div class="reviews-list">
+          <div class="review-item">
+            <img
+              src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=56&h=56"
+              alt="Grace Carey"
+              class="reviewer-avatar"
+            />
+            <div class="review-content">
+              <div class="review-header">
+                <span class="reviewer-name">Grace Carey</span>
+                <span class="review-date">24 January,2023</span>
+              </div>
+              <div class="review-stars">
+                <span class="star filled">★</span>
+                <span class="star filled">★</span>
+                <span class="star filled">★</span>
+                <span class="star filled">★</span>
+                <span class="star">★</span>
+              </div>
+              <p class="review-text">
+                I was a bit nervous to be buying a secondhand phone from Amazon,
+                but I couldn't be happier with my purchase!! I have a pre-paid
+                data plan so I was worried that this phone wouldn't connect with
+                my data plan, since the new phones don't have the physical Sim
+                tray anymore, but couldn't have been easier! I bought an
+                Unlocked black iPhone 14 Pro Max in excellent condition and
+                everything is PERFECT. It was super easy to set up and the phone
+                works and looks great. It truly was in excellent condition.
+                Highly recommend!!!🖤
+              </p>
+            </div>
+          </div>
+
+          <div class="review-item">
+            <img
+              src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=56&h=56"
+              alt="Ronald Richards"
+              class="reviewer-avatar"
+            />
+            <div class="review-content">
+              <div class="review-header">
+                <span class="reviewer-name">Ronald Richards</span>
+                <span class="review-date">24 January,2023</span>
+              </div>
+              <div class="review-stars">
+                <span class="star filled">★</span>
+                <span class="star filled">★</span>
+                <span class="star filled">★</span>
+                <span class="star filled">★</span>
+                <span class="star filled">★</span>
+              </div>
+              <p class="review-text">
+                This phone has 1T storage and is durable. Plus all the new
+                iPhones have a C port! Apple is phasing out the current ones!
+                (All about the Benjamin's) So if you want a phone that's going
+                to last grab an iPhone 14 pro max and get several cords and
+                plugs.
+              </p>
+            </div>
+          </div>
+
+          <div class="review-item">
+            <img
+              src="https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=56&h=56"
+              alt="Darcy King"
+              class="reviewer-avatar"
+            />
+            <div class="review-content">
+              <div class="review-header">
+                <span class="reviewer-name">Darcy King</span>
+                <span class="review-date">24 January,2023</span>
+              </div>
+              <div class="review-stars">
+                <span class="star filled">★</span>
+                <span class="star filled">★</span>
+                <span class="star filled">★</span>
+                <span class="star filled">★</span>
+                <span class="star">★</span>
+              </div>
+              <p class="review-text">
+                I might be the only one to say this but the camera is a little
+                funky. Hoping it will change with a software update: otherwise,
+                love this phone! Came in great condition
+              </p>
+              <div class="review-images">
+                <img
+                  src="https://images.pexels.com/photos/788946/pexels-photo-788946.jpeg?auto=compress&cs=tinysrgb&w=118&h=88"
+                  alt="Review image"
+                />
+                <img
+                  src="https://images.pexels.com/photos/788946/pexels-photo-788946.jpeg?auto=compress&cs=tinysrgb&w=118&h=88"
+                  alt="Review image"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="review-item">
+            <img
+              src="https://images.pexels.com/photos/697509/pexels-photo-697509.jpeg?auto=compress&cs=tinysrgb&w=56&h=56"
+              alt="John Malcolm"
+              class="reviewer-avatar"
+            />
+            <div class="review-content">
+              <div class="review-header">
+                <span class="reviewer-name">John Malcolm</span>
+                <span class="review-date">24 January,2023</span>
+              </div>
+              <div class="review-stars">
+                <span class="star filled">★</span>
+                <span class="star filled">★</span>
+                <span class="star filled">★</span>
+                <span class="star filled">★</span>
+                <span class="star">★</span>
+              </div>
+              <p class="review-text">
+                In Washington, it is already difficult to surprise with the
+                opening of a new institution, but it is still possible.
+                Especially if it is a True Cost project. Here you pay an
+                entrance fee and get meals at cost price.
+              </p>
+            </div>
+          </div>
+          <div class="reviews-fade"></div>
+        </div>
+
+        <div class="d-flex justify-content-center">
+          <div>
+            <button class="btn btn-outline view-more">
+              <span>View More</span>
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <polyline points="6,9 12,15 18,9"></polyline>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Related Products Section -->
+    <section class="related-products">
+      <div class="container">
+        <h2>Related Products</h2>
+
+        <div class="products-grid">
+          <div class="product-card">
+            <div class="product-favorite">
+              <svg
+                width="32"
+                height="32"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
+                ></path>
+              </svg>
+            </div>
+            <img
+              src="assets/related-image-1.png"
+              alt="iPhone 14 Pro"
+              class="product-img"
+            />
+            <h3 class="product-name">Apple iPhone 14 Pro 512GB Gold (MQ233)</h3>
+            <p class="product-price">$1437</p>
+            <div>
+              <button class="btn btn-primary">Buy Now</button>
+            </div>
+          </div>
+          <div class="product-card">
+            <div class="product-favorite">
+              <svg
+                width="32"
+                height="32"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
+                ></path>
+              </svg>
+            </div>
+            <img
+              src="assets/related-image-2.png"
+              alt="iPhone 14 Pro"
+              class="product-img"
+            />
+            <h3 class="product-name">AirPods Max Silver</h3>
+            <p class="product-price">$549</p>
+            <div>
+              <button class="btn btn-primary">Buy Now</button>
+            </div>
+          </div>
+
+          <div class="product-card">
+            <div class="product-favorite">
+              <svg
+                width="32"
+                height="32"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
+                ></path>
+              </svg>
+            </div>
+            <img
+              src="assets/related-image-3.png"
+              alt="Apple Watch"
+              class="product-img"
+            />
+            <h3 class="product-name">
+              Apple Watch Series 9 GPS 41mm Starlight Aluminium Case
+            </h3>
+            <p class="product-price">$399</p>
+            <div>
+              <button class="btn btn-primary">Buy Now</button>
+            </div>
+          </div>
+
+          <div class="product-card">
+            <div class="product-favorite">
+              <svg
+                width="32"
+                height="32"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
+                ></path>
+              </svg>
+            </div>
+            <img
+              src="assets/related-image-4.png"
+              alt="iPhone 14 Pro"
+              class="product-img"
+            />
+            <h3 class="product-name">Apple iPhone 14 Pro 1TB Gold (MQ2V3)</h3>
+            <p class="product-price">$1499</p>
+            <div>
+              <button class="btn btn-primary ps-3 pe-3">Buy Now</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
