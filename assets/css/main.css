@@ -165,6 +165,13 @@
     color: var(--color-white);
   }
 
+  .btn--dark-outline {
+    background: none;
+    padding: 1.6rem 5.6rem;
+    border: 1px solid var(--color-black);
+    color: var(--color-black);
+  }
+
   .btn--dark {
     background-color: var(--color-black);
     color: var(--color-white);
@@ -527,5 +534,164 @@
 
   .btn--buy:hover {
     background-color: #0077ed;
+  }
+}
+
+@layer popular-products {
+  .popular-product__card {
+    overflow: hidden;
+    min-width: 375px;
+
+    height: 640px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-inline: 3.2rem;
+    padding-block-end: 5.6rem;
+    margin-block-start: 5.6rem;
+    justify-content: space-between;
+    max-width: 360px;
+  }
+
+  @media (width < calc(1024 / 16 * 1rem)) {
+    .carousel-track {
+      overflow-x: auto;
+    }
+  }
+
+  .popular-product__card.ppc-two {
+    background-color: var(--color-light-graygray);
+  }
+  .popular-product__card.ppc-three {
+    background-color: #eaeaea;
+  }
+  .popular-product__card.ppc-four {
+    background-color: var(--color-charleston-green);
+  }
+
+  .popular-product__card.ppc-four h3 {
+    color: var(--color-white);
+  }
+
+  .popular-product__card.ppc-four .ppc__image {
+    height: 375px;
+  }
+
+  .ppc-one .ppc__image {
+    position: relative;
+    width: 295px;
+  }
+
+  .ppc-one .ppc__image img {
+    height: 230px;
+  }
+
+  .ppc-one .ppc__image img:first-child {
+    position: absolute;
+    rotate: 230deg;
+    translate: 80px 60px;
+    scale: 1.05;
+    z-index: 555;
+  }
+
+  .ppc-one .ppc__image img:last-child {
+    rotate: 30deg;
+    translate: -20px -60px;
+    scale: 1.3;
+  }
+
+  .ppc-two .ppc__image img {
+    position: relative;
+    top: -50px;
+    left: 50px;
+    width: 370px;
+  }
+
+  .ppc-three .ppc__image img {
+    position: relative;
+    left: 5px;
+    top: -30px;
+    height: 385px;
+  }
+
+  .ppc-four .ppc__image img {
+    position: relative;
+    left: 150px;
+    top: -70px;
+    height: 540px;
+  }
+
+  .ppc__content {
+    max-width: 295px;
+  }
+
+  .ppc__description {
+    margin-block-start: 1.6rem;
+    color: var(--color-gray);
+    margin-bottom: 20px;
+    line-height: 1.5;
+  }
+
+  .shop-now-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #0071e3;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: background-color 0.2s;
+  }
+
+  .popular-product__card .btn:hover {
+    background-color: var(--color-black);
+    color: white;
+    border: none;
+  }
+
+  .shop-now-btn:hover {
+    background-color: #0077ed;
+  }
+
+  .track {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+  /*carousel*/
+  @media (width <= calc(1300 / 16 * 1rem)) {
+    .track {
+      justify-content: start;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .popular-product__card {
+      flex: 0 0 100%; /* Show one card at a time */
+      padding: 20px;
+    }
+
+    .carousel-dots {
+      display: flex;
+      justify-content: center;
+      margin-top: 15px;
+      position: absolute;
+      bottom: 1rem;
+    }
+
+    .carousel-dots button {
+      border: none;
+      background: #ccc;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      margin: 0 5px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .carousel-dots button.active {
+      background: #333; /* active dot color */
+    }
   }
 }
