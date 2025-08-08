@@ -27,33 +27,49 @@
   @font-face {
     font-display: swap;
     font-family: "SF Pro Display";
-    font-style: normal;
+    /* font-style: normal; */
     font-weight: 400;
-    src: url("/assets/css/fonts/SFPRODISPLAYREGULAR.woff2") format("woff2");
+    src: url("./fonts/SF-Pro-Display-Regular.woff2") format("woff2");
   }
 
   @font-face {
     font-display: swap;
     font-family: "SF Pro Display";
-    font-style: bold;
+    /* font-style: normal; */
     font-weight: 700;
-    src: url("./fonts/SFPRODISPLAYBOLD.woff2") format("woff2");
+    src: url("./fonts/SF-Pro-Display-Bold.woff2") format("woff2");
   }
 
   @font-face {
     font-display: swap;
     font-family: "SF Pro Display";
-    font-style: medium;
+    /* font-style: normal; */
     font-weight: 500;
-    src: url("./fonts/SFPRODISPLAYMEDIUM.woff2") format("woff2");
+    src: url("./fonts/SF-Pro-Display-Medium.woff2") format("woff2");
   }
 
   @font-face {
     font-display: swap;
     font-family: "SF Pro Display";
-    font-style: normal;
+    /* font-style: normal; */
     font-weight: 600;
-    src: url("./fonts/SFPRODISPLAYSEMIBOLDITALIC.woff2") format("woff2");
+    src: url("./fonts/SF-Pro-Display-Semibold.woff2") format("woff2");
+  }
+
+  @font-face {
+    font-display: swap;
+    font-family: "SF Pro Display";
+    /* font-style: normal; */
+    font-weight: 300;
+    src: url("./fonts/SF-Pro-Display-Light.woff2") format("woff2");
+  }
+
+  @font-face {
+    font-display: swap;
+    font-family: "SF Pro Display";
+    /* font-style: normal; */
+    font-weight: 100;
+    src: url("./fonts/SF-Pro-Display-Thin.woff2") format("woff2");
   }
 
   :root {
@@ -94,7 +110,6 @@
     color: var(--color-black);
     font-family: var(--ff-pro);
     font-size: var(--fs-16);
-    line-height: 1.5;
     margin: 0;
   }
 
@@ -106,19 +121,19 @@
   h2,
   h3 {
     color: var(--color-black);
-    line-height: 1;
+    /* line-height: 1; */
     margin: 0;
   }
 
   h1 {
     font-size: var(--fs-72);
-    font-weight: 400;
-    font-style: normal;
+    font-weight: 300;
   }
 
   h3 {
     font-size: var(--fs-34);
-    font-weight: 500;
+
+    font-weight: 300;
   }
 
   p {
@@ -170,7 +185,7 @@
   }
 
   .block {
-    --padding-bottom: 4rem;
+    /* --padding-bottom: 4rem; */
     /* padding: var(--padding-bottom) 2.5rem; */
   }
 
@@ -248,6 +263,64 @@
   }
 
   .mix-bold {
-    font-weight: bolder;
+    font-weight: 500;
+  }
+}
+
+@layer hero-sm {
+  .hero-sm-item {
+    text-align: center;
+    height: 425px;
+
+    .item__banner {
+      margin-block: 4rem 2.4rem;
+    }
+
+    p {
+      color: var(--color-gray);
+      margin-block-end: 1.6rem;
+    }
+
+    h3 {
+      line-height: 1.4;
+      margin-block-end: 0.8rem;
+    }
+  }
+
+  .hero-sm-item[data-dark="true"] h3 {
+    color: var(--color-white);
+  }
+
+  .item__banner > img {
+    height: 200px;
+  }
+
+  #hero-sm-one {
+    background-color: var(--color-light-gray);
+  }
+
+  #hero-sm-two {
+    background-color: var(--color-Jet);
+  }
+
+  #hero-sm-three {
+    background-color: var(--color-white);
+  }
+
+  #hero-sm-four {
+    background-color: #d2d2da;
+    height: 450px;
+    .item__banner {
+      margin-block: 0;
+    }
+  }
+
+  .item__content {
+    display: inline-block;
+    max-width: 343px;
+  }
+
+  .hero-sm .grid {
+    gap: 0;
   }
 }
