@@ -11,11 +11,58 @@
     <script src="../assets/js/home.js"></script>
 
     <style>
-      
-    </style>
+        .accordion-button:focus {
+     z-index: 3;
+     outline: 0;
+     color: black;
+     text-transform: none;
+     border: 1px solid  rgba(46, 46, 46, 1);
+      box-shadow: inset 0 -1px 0  rgba(46, 46, 46, 1);
+      }
+
+  .accordion-button {
+    background-color: #f8f9fa;
+    color: #333;
+    font-size: 1.1rem;
+    padding: 1rem;
+    transition: all 0.3s ease;
+  }
+  .accordion-button:hover {
+    background-color: #e9ecef;
+  }
+  .accordion-button:not(.collapsed) {
+    background-color:  rgba(46, 46, 46, 1);
+    color: #fff;
+     box-shadow: inset 0 -1px 0 aliceblue;
+       text-transform: uppercase;
+  }
+  .accordion-body {
+    background-color: #ffffff;
+    color: #555;
+    line-height: 1.7;
+    padding: 1.5rem;
+  }
+  .accordion-body p, .accordion-body ul {
+    margin-bottom: 1rem;
+  }
+  .accordion-body ul li {
+    margin-bottom: 0.5rem;
+    list-style: none;
+  }
+  .accordion-body ul li::before {
+    content: "\f00c";
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    color:  rgba(46, 46, 46, 1);
+    margin-right: 8px;
+  }
+
+  .accordion-button:not(.collapsed)::after {
+  filter: brightness(0) invert(1);
+}
+</style>
 </head>
 <body>
-
     <header class="container-fluid d-md-flex justify-content-md-between mt-1">
        
         <div class="d-none d-md-flex gap-2">
@@ -96,9 +143,90 @@
    <p><i class="fa-solid fa-gamepad"></i>Gaming</p>
 </nav>
 
-    <section>
+    <section class="container-fluid my-5">
 
-           
+      <p class="h2 text-center mb-2 text-uppercase fw-bolder">About</p>
+
+      <p class="text-center text-capitalize fw-normal">At Cyber Shop, we believe online shopping should be easy, safe, and inspiring.
+         We offer the best deals on a wide range of products from the latest electronics to home essentials along with exceptional customer service and 24/7 support. 
+         Our goal is to provide everything you need in one place, with high quality and competitive prices.</p>
+
+
+    <!-- Font Awesome CDN -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+
+
+<div class="accordion" id="accordionExample">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingOne">
+      <button class="accordion-button fw-bolder" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+        <i class="fas fa-users me-2"></i> Who We Are
+      </button>
+    </h2>
+    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        <p>
+          We are a passionate team of <strong>marketing professionals</strong> and <strong>technology experts</strong> dedicated to transforming the way people shop online.
+          Our platform connects customers with top-quality products from trusted sellers, ensuring a smooth, secure, and enjoyable shopping journey.
+        </p>
+        <p>
+          From fashion to electronics, we aim to offer an all-in-one online shopping destination with hand-picked deals and exclusive offers.
+        </p>
+        <p>
+          Our mission is to build trust and create a lasting relationship with our customers through innovation, transparency, and exceptional service.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingTwo">
+      <button class="accordion-button collapsed fw-bolder" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+        <i class="fas fa-lightbulb me-2"></i> Our Vision
+      </button>
+    </h2>
+    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        <p>
+          Our vision is to revolutionize e-commerce in the Arab world by becoming the <strong>most trusted</strong> and <strong>customer-focused</strong> platform in the region.
+        </p>
+        <p>
+          We aim to empower local sellers and small businesses, giving them the tools to compete globally while keeping their cultural identity intact.
+        </p>
+        <p>
+          Every day, we strive to improve our platform, enhance our services, and deliver value to every customer.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingThree">
+      <button class="accordion-button collapsed fw-bolder" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+        <i class="fas fa-heart me-2"></i> Our Values
+      </button>
+    </h2>
+    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        <ul>
+          <li><strong>Quality:</strong> Only the best products make it to our store.</li>
+          <li><strong>Transparency:</strong> Clear and honest product descriptions.</li>
+          <li><strong>Innovation:</strong> Using technology to improve your shopping experience.</li>
+          <li><strong>Customer Satisfaction:</strong> Your happiness is our priority.</li>
+          <li><strong>Community Support:</strong> Supporting local businesses and initiatives.</li>
+          <li><strong>Sustainability:</strong> Promoting eco-friendly products.</li>
+        </ul>
+        <p>
+          These principles define who we are and shape everything we do.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
      
     </section>
 
