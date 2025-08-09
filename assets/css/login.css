@@ -1,0 +1,95 @@
+:root{
+    --primary-color :#470096;
+    --primary-color-hover :#3f0f74;
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family:  Noto Sans, sans-serif;
+}
+section{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: 10px auto;
+}
+
+img{
+    width: 200px;
+    height: 50px;
+    margin: 10px auto;
+}
+
+#login{
+    background: #fff !important;
+    border: 1px solid #ddd;
+    border-radius:10px;
+    box-shadow: 1px 2px 2px #00000029;
+     max-width: 500px;
+    padding: 40px;
+}
+#fpass{
+        color: #555;
+}
+
+a:hover{
+    text-decoration: none;
+}
+
+#btnsub,#resetPassBtn,#checkEmailBtn{
+    background-color: var(--primary-color);
+    color: white;
+}
+
+#btnsub:hover{
+    background-color: var(--primary-color-hover);
+}
+
+#account{
+    color: var(--primary-color);
+        font-weight: 700;
+}
+#facebook{
+    background-color: #4267b2 ;
+    box-shadow: inset 0 1px #ffffff4d;
+    transition: all .1s;
+    font-weight: 700;
+}
+
+#google{
+    background-color: #e8f0fe;
+    border-color:#ccc ;
+    box-shadow: inset 0 1px #ffffff4d;
+    transition: all .1s;
+    font-weight: 700;
+}
+
+#footp{
+    margin-top: 15px;
+}
+
+.input-group{
+    transition: all 0.1s;
+}
+
+#sell{
+     color: var(--primary-color);
+    font-size: 2.8em;
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+.form-control:focus { 
+   border: none !important;
+   background: #00000005 !important;
+   box-shadow: 0 0 3px 2px var(--primary-color) !important;
+}
+
+.form-control{
+    border-top-right-radius: 10px  !important;
+    border-bottom-right-radius: 10px  !important;
+
+}
