@@ -25,3 +25,17 @@ header a {
         margin: 2px;
         color: white;
       }
+      
+ footer{
+        color: rgba(207, 207, 207, 1);
+        background-color: black;
+     }
+
+     footer h5{
+        color: white;
+     }
+     
+     #social i{
+        color: white;
+        font-size: larger;
+     }
