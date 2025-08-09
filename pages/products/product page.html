@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Commerce Product Listing</title>
+    <link href="../../assets\css\bs\bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../assets\css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+    <!-- Header -->
+<header class="container-fluid d-md-flex justify-content-md-between mt-1">
+        <div class="d-none d-md-flex gap-2">
+            <a href="mailto:Mohamedbasiouny111@gmail.com"><i class="fa-solid fa-envelope"></i>Mohamedbasiouny111@gmail.com</a>
+            <span>|</span>
+            <a href="tel:01111514032"><i class="fa-solid fa-phone"></i></i>01111514032</a>
+        </div>
+        <div id="navbartop" class="d-flex flex-row-reverse justify-content-center text-uppercase gap-2 ">
+            <a href="./pages/auth/Register.html"><i class="fa-solid fa-user-plus"></i> Register</a>
+            <span>|</span>
+            <a href="./pages/auth/login.html"><i class="fa-solid fa-arrow-right-to-bracket"></i> Login</a>
+            <span>|</span>
+            <a href="./pages/auth/SellerRegister.html">Be a seller</a>
+        </div>
+    </header>
+    <!-- Main Navigation/Categories -->
+    <nav class="container-fluid navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="Home.html"><img style="width: 150px; height: 50px; margin-right:30vw;" src="../../assets\images\logo.svg" alt=""></a>
+    
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <form class="position-relative d-md-flex justify-content-center align-item w-50">
+        <i class="fa-solid fa-magnifying-glass position-absolute top-50 start-0 translate-middle-y ms-3 text-muted"></i>
+        <input type="search" class="form-control ps-5" placeholder="Search" aria-label="Search">
+        </form>
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled"  href="#">Contact Us</a>
+        </li>
+         <li class="nav-item">
+          <a class="nav-link disabled"  href="#">Blog</a>
+        </li>
+         <li class="nav-item">
+          <a class="nav-link active"  href="#"><i class="fa-regular fa-heart"></i></a>
+        </li>
+         <li class="nav-item">
+          <a class="nav-link active"  href="#"><i class="fa-solid fa-cart-shopping"></i></a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<nav id="subnav" class="container-fluid d-none d-md-flex justify-content-evenly gap-2">
+    <p><i class="fa-solid fa-mobile"></i>Phones</p>
+    <p>|</p>
+    <p><i class="fa-solid fa-desktop"></i>Computers</p>
+      <p>|</p>
+    <p><i class="fa-solid fa-clock"></i>Smart Watches</p>
+      <p>|</p>
+    <p><i class="fa-solid fa-camera"></i>Cameras</p>
+      <p>|</p>
+    <p><i class="fa-solid fa-headset"></i>Headphones</p>
+    <p>|</p>
+    <p><i class="fa-solid fa-gamepad"></i>Gaming</p>
+</nav>
+    <!-- Breadcrumbs -->
+    <div class="container py-3">
+        <div class="bg-white rounded-3 border px-4 py-2">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item">
+                <a href="#" class="text-secondary text-decoration-none">Home</a>
+                </li>
+                <li class="breadcrumb-item">
+                <a href="#" class="text-secondary text-decoration-none">Catalog</a>
+                </li>
+                <li class="breadcrumb-item active text-dark fw-semibold" aria-current="page">
+                Smartphones
+                </li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+    <!-- Main Content Area -->
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Left Sidebar (Filters) -->
+            <aside class="col-md-3">
+  <div class="accordion" id="filterAccordion">
+    <!-- Price Filter -->
+    <div class="accordion-item mb-3">
+      <h2 class="accordion-header" id="headingPrice">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePrice" aria-expanded="true" aria-controls="collapsePrice">
+          Price
+        </button>
+      </h2>
+      <div id="collapsePrice" class="accordion-collapse collapse show" aria-labelledby="headingPrice">
+        <div class="accordion-body">
+          <div class="d-flex justify-content-between mb-2">
+            <input type="number" class="form-control me-2" value="200" min="0" id="priceFrom">
+            <input type="number" class="form-control" value="1299" max="2000" id="priceTo">
+          </div>
+          
+        </div>
+      </div>
+    </div>
+
+    <!-- Brand Filter -->
+    <div class="accordion-item mb-3">
+      <h2 class="accordion-header" id="headingBrand">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseBrand" aria-expanded="true" aria-controls="collapseBrand">
+          Brand
+        </button>
+      </h2>
+      <div id="collapseBrand" class="accordion-collapse collapse show" aria-labelledby="headingBrand">
+        <div class="accordion-body">
+          <div class="mb-3">
+            <input type="text" class="form-control" placeholder="Search brand...">
+          </div>
+          <!-- Brand checkboxes as before -->
+          <div class="filter-check mb-2">
+            <input class="form-check-input" type="checkbox" id="brandApple" checked>
+            <label class="form-check-label d-flex justify-content-between w-100" for="brandApple">
+              <span>Apple</span><span class="text-muted">110</span>
+            </label>
+          </div>
+          <div class="filter-check mb-2">
+            <input class="form-check-input" type="checkbox" id="brandSamsung">
+            <label class="form-check-label d-flex justify-content-between w-100" for="brandSamsung">
+              <span>Samsung</span><span class="text-muted">125</span>
+            </label>
+          </div>
+          <div class="filter-check mb-2">
+            <input class="form-check-input" type="checkbox" id="brandXiaomi">
+            <label class="form-check-label d-flex justify-content-between w-100" for="brandXiaomi">
+              <span>Xiaomi</span><span class="text-muted">68</span>
+            </label>
+          </div>
+          <div class="filter-check mb-2">
+            <input class="form-check-input" type="checkbox" id="brandPoco">
+            <label class="form-check-label d-flex justify-content-between w-100" for="brandPoco">
+              <span>Poco</span><span class="text-muted">44</span>
+            </label>
+          </div>
+          <div class="filter-check mb-2">
+            <input class="form-check-input" type="checkbox" id="brandOppo">
+            <label class="form-check-label d-flex justify-content-between w-100" for="brandOppo">
+              <span>OPPO</span><span class="text-muted">36</span>
+            </label>
+          </div>
+          <div class="filter-check mb-2">
+            <input class="form-check-input" type="checkbox" id="brandHonor">
+            <label class="form-check-label d-flex justify-content-between w-100" for="brandHonor">
+              <span>Honor</span><span class="text-muted">10</span>
+            </label>
+          </div>
+          <div class="filter-check mb-2">
+            <input class="form-check-input" type="checkbox" id="brandMotorola">
+            <label class="form-check-label d-flex justify-content-between w-100" for="brandMotorola">
+              <span>Motorola</span><span class="text-muted">34</span>
+            </label>
+          </div>
+          <div class="filter-check mb-2">
+            <input class="form-check-input" type="checkbox" id="brandNokia">
+            <label class="form-check-label d-flex justify-content-between w-100" for="brandNokia">
+              <span>Nokia</span><span class="text-muted">22</span>
+            </label>
+          </div>
+          <div class="filter-check">
+            <input class="form-check-input" type="checkbox" id="brandRealme">
+            <label class="form-check-label d-flex justify-content-between w-100" for="brandRealme">
+              <span>Realme</span><span class="text-muted">35</span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Built-in Memory Filter -->
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingMemory">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMemory" aria-expanded="true" aria-controls="collapseMemory">
+          Built-in memory
+        </button>
+      </h2>
+      <div id="collapseMemory" class="accordion-collapse collapse show" aria-labelledby="headingMemory">
+        <div class="accordion-body">
+          <div class="mb-3">
+            <input type="text" class="form-control" placeholder="Search memory...">
+          </div>
+          <!-- Memory checkboxes as before -->
+          <div class="filter-check mb-2">
+            <input class="form-check-input" type="checkbox" id="memory16">
+            <label class="form-check-label d-flex justify-content-between w-100" for="memory16">
+              <span>16GB</span><span class="text-muted">65</span>
+            </label>
+          </div>
+          <div class="filter-check mb-2">
+            <input class="form-check-input" type="checkbox" id="memory32">
+            <label class="form-check-label d-flex justify-content-between w-100" for="memory32">
+              <span>32GB</span><span class="text-muted">123</span>
+            </label>
+          </div>
+          <div class="filter-check mb-2">
+            <input class="form-check-input" type="checkbox" id="memory64">
+            <label class="form-check-label d-flex justify-content-between w-100" for="memory64">
+              <span>64GB</span><span class="text-muted">48</span>
+            </label>
+          </div>
+          <div class="filter-check mb-2">
+            <input class="form-check-input" type="checkbox" id="memory128">
+            <label class="form-check-label d-flex justify-content-between w-100" for="memory128">
+              <span>128GB</span><span class="text-muted">50</span>
+            </label>
+          </div>
+          <div class="filter-check mb-2">
+            <input class="form-check-input" type="checkbox" id="memory256">
+            <label class="form-check-label d-flex justify-content-between w-100" for="memory256">
+              <span>256GB</span><span class="text-muted">24</span>
+            </label>
+          </div>
+          <div class="filter-check">
+            <input class="form-check-input" type="checkbox" id="memory512">
+            <label class="form-check-label d-flex justify-content-between w-100" for="memory512">
+              <span>512GB</span><span class="text-muted">8</span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</aside>
+            <!-- Right Content (Product Listing) -->
+            <main class="col-md-9">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <div>Selected Products: <span class="fw-bold">85</span></div>
+                    <div class="dropdown">
+                        <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                            By rating
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li><a class="dropdown-item" href="#">5 </a></li>
+                            <li><a class="dropdown-item" href="#">4 </a></li>
+                            <li><a class="dropdown-item" href="#">3</a></li>
+                            <li><a class="dropdown-item" href="#">2</a></li>
+                            <li><a class="dropdown-item" href="#">1</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="row row-cols-1 row-cols-md-3 g-4">
+                    <!-- Product Card 1 -->
+                    <div class="col">
+                        <div class="card h-100 text-center position-relative">
+                            <div class="position-absolute top-0 end-0 p-2">
+                                <i class="far fa-heart text-muted"></i>
+                            </div>
+                            <div class="card-body">
+                                <img src="../../assets\images\1.png" class="card-img-top mb-3" alt="iPhone 14 Pro">
+                                <h5 class="card-title">Apple iPhone 14 Pro 512GB Gold </h5>
+                                <p class="card-text fs-4 fw-bold">$1437</p>
+                                <button class="btn btn-dark w-100">Buy Now</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Product Card 2 -->
+                    <div class="col">
+                        <div class="card h-100 text-center position-relative">
+                            <div class="position-absolute top-0 end-0 p-2">
+                                <i class="far fa-heart text-muted"></i>
+                            </div>
+                            <div class="card-body">
+                                <img src="../../assets\images\2.png" class="card-img-top mb-3" alt="iPhone 11">
+                                <h5 class="card-title">Apple iPhone 11 128GB White </h5>
+                                <p class="card-text fs-4 fw-bold">$510</p>
+                                <button class="btn btn-dark w-100">Buy Now</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Product Card 3 -->
+                    <div class="col">
+                        <div class="card h-100 text-center position-relative">
+                            <div class="position-absolute top-0 end-0 p-2">
+                                <i class="far fa-heart text-muted"></i>
+                            </div>
+                            <div class="card-body">
+                                <img src="../../assets\images\3.png" class="card-img-top mb-3" alt="iPhone 11">
+                                <h5 class="card-title">Apple iPhone 11 128GB White </h5>
+                                <p class="card-text fs-4 fw-bold">$550</p>
+                                <button class="btn btn-dark w-100">Buy Now</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Product Card 4 -->
+                    <div class="col">
+                        <div class="card h-100 text-center position-relative">
+                            <div class="position-absolute top-0 end-0 p-2">
+                                <i class="far fa-heart text-muted"></i>
+                            </div>
+                            <div class="card-body">
+                                <img src="../../assets\images\4.png" class="card-img-top mb-3" alt="iPhone 14 Pro">
+                                <h5 class="card-title">Apple iPhone 14 Pro 512GB Gold </h5>
+                                <p class="card-text fs-4 fw-bold">$1437</p>
+                                <button class="btn btn-dark w-100">Buy Now</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Product Card 5 -->
+                    <div class="col">
+                        <div class="card h-100 text-center position-relative">
+                            <div class="position-absolute top-0 end-0 p-2">
+                                <i class="far fa-heart text-muted"></i>
+                            </div>
+                            <div class="card-body">
+                                <img src="../../assets\images\5.png" class="card-img-top mb-3" alt="iPhone 11">
+                                <h5 class="card-title">Apple iPhone 11 128GB White </h5>
+                                <p class="card-text fs-4 fw-bold">$510</p>
+                                <button class="btn btn-dark w-100">Buy Now</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Product Card 6 -->
+                    <div class="col">
+                        <div class="card h-100 text-center position-relative">
+                            <div class="position-absolute top-0 end-0 p-2">
+                                <i class="far fa-heart text-muted"></i>
+                            </div>
+                            <div class="card-body">
+                                <img src="../../assets\images\6.png" class="card-img-top mb-3" alt="iPhone 14 Pro">
+                                <h5 class="card-title">Apple iPhone 14 Pro Max 1TB Purple </h5>
+                                <p class="card-text fs-4 fw-bold">$1899</p>
+                                <button class="btn btn-dark w-100">Buy Now</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card h-100 text-center position-relative">
+                            <div class="position-absolute top-0 end-0 p-2">
+                                <i class="far fa-heart text-muted"></i>
+                            </div>
+                            <div class="card-body">
+                                <img src="../../assets\images\7.png" class="card-img-top mb-3" alt="iPhone 11">
+                                <h5 class="card-title">Apple iPhone 11 128GB White </h5>
+                                <p class="card-text fs-4 fw-bold">$510</p>
+                                <button class="btn btn-dark w-100">Buy Now</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card h-100 text-center position-relative">
+                            <div class="position-absolute top-0 end-0 p-2">
+                                <i class="far fa-heart text-muted"></i>
+                            </div>
+                            <div class="card-body">
+                                <img src="../../assets\images\8.png" class="card-img-top mb-3" alt="iPhone 11">
+                                <h5 class="card-title">Apple iPhone 11 128GB White </h5>
+                                <p class="card-text fs-4 fw-bold">$510</p>
+                                <button class="btn btn-dark w-100">Buy Now</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card h-100 text-center position-relative">
+                            <div class="position-absolute top-0 end-0 p-2">
+                                <i class="far fa-heart text-muted"></i>
+                            </div>
+                            <div class="card-body">
+                                <img src="../../assets\images\9.png" class="card-img-top mb-3" alt="iPhone 11">
+                                <h5 class="card-title">Apple iPhone 11 128GB White </h5>
+                                <p class="card-text fs-4 fw-bold">$510</p>
+                                <button class="btn btn-dark w-100">Buy Now</button>
+                            </div>
+                        </div>
+                    </div>
+                    <nav aria-label="Page navigation" class="d-flex justify-content-center mt-4">
+                        <ul class="pagination pagination-lg justify-content-center">
+                            <li class="page-item disabled">
+                            <a class="page-link" href="#" tabindex="-1">&laquo;</a>
+                            </li>
+                            <li class="page-item active">
+                            <a class="page-link" href="#">1</a>
+                            </li>
+                            <li class="page-item">
+                            <a class="page-link" href="#">2</a>
+                            </li>
+                            <li class="page-item">
+                            <a class="page-link" href="#">3</a>
+                            </li>
+                            <li class="page-item">
+                            <a class="page-link" href="#">&raquo;</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </main>
+        </div>
+    </div>
+<footer>
+
+        <div id="foot" class="d-flex flex-sm-column flex-md-row justify-content-sm-evenly flex-wrap p-5">
+            <div class="d-flex flex-column gap-5">
+             <a href="Home.html"><img style="width: 150px; height: 50px;" src="../../assets\images\logoLight.svg" alt=""></a>
+             <p>We are a residential interior design firm located in Portland. </p>
+            </div>
+             <div>
+                <h5>Services</h5>
+               <p>Bonus program </p> 
+                <p>Gift cards</p>
+                <p>Credit and payment</p>
+                <p>Service contracts</p>
+                <p>Non-cash</p> 
+                <p>accountPayment</p>
+            </div>
+              <div>
+                <h5>Assistance to the buyer</h5>
+                <p>Find an order</p>
+                <p>Terms of delivery</p>
+                <p>Exchange and return of goods</p>
+                <p>Guarantee</p>
+                <p>Frequently asked questions</p>
+                <p>Terms of use of the site</p>
+            </div>
+            <div class="d-flex flex-column gap-3">              
+             <h5>Social Media</h5>
+              <div id="social" class="d-flex gap-3 flex-wrap">
+              <a href="#"><i class="fa-brands fa-facebook"></i></a>
+              <a href="#"><i class="fa-brands fa-instagram"></i></a>
+              <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+              <a href="#"><i class="fa-brands fa-youtube"></i></a> 
+                </div>
+             </div>
+        </div>
+    </footer>
+    <script src="../../assets\js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
