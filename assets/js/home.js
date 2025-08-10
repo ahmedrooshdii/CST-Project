@@ -7,11 +7,11 @@ document.addEventListener('DOMContentLoaded', function () {
       
         div.innerHTML = ""; 
 
-       
-        let newLink = document.createElement("a");
-        newLink.href = "newpage.html";
-        newLink.innerHTML = '<i class="fa-solid fa-user"></i> Hello ' + user.name;
-        div.appendChild(newLink);
+ let newLink = document.createElement("a");
+newLink.href = "../../pages/dashboard/profile.html"; 
+newLink.innerHTML = `<i class="fa-solid fa-user"></i> Hello ${user.name}`;
+div.appendChild(newLink);
+
 
          let separator = document.createElement("span");
         separator.textContent = " | ";

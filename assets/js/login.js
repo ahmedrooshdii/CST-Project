@@ -57,9 +57,9 @@ function login(e) {
         sessionStorage.setItem("currentUser", JSON.stringify(user));
 
         if (user.role === "admin") {
-            window.location.href = "admin.html";
+            window.location.href = "../../Home.html";
         } else if (user.role === "seller") {
-            window.location.href = "seller.html";
+            window.location.href = "../../Home.html";
         } else {
             window.location.href = "../../Home.html";
         }

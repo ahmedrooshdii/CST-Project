@@ -9,16 +9,38 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
    
-
   <link rel="stylesheet" href="css\style.css">
 
     <link rel="stylesheet" href="../../assets/css/home.css">
 
-      <script src="../../assets/js/home.js"></script>
+    <script src="../../assets/js/home.js"></script>
 
-  <style>
-    
-  </style>
+    <script>
+      window.addEventListener("load",function () {
+
+            var name = document.getElementById("name");
+            var storenamediv = document.getElementById("storenamediv");
+            var storename = document.getElementById("storename");
+            var email = document.getElementById("email");
+            var role = document.getElementById("role");
+
+            var user = JSON.parse(sessionStorage.getItem("currentUser"));
+            if (user) {
+              name.innerText = user.name;
+              email.innerText = user.email;
+              role.innerText = user.role
+
+              if( user.role == "seller"){
+                 storenamediv.style.display="flex";
+                storename.innerText = user.storename;
+              }
+
+         }else{
+                  window.location.href = "../../pages/auth/login.html";
+         }
+      });
+    </script>
+
 </head>
 <body class="bg-light"> <!-- Add bg-light like users page for consistent background -->
   <header class="container-fluid d-md-flex justify-content-md-between">
@@ -60,20 +82,22 @@
       <h2 class="mb-4"><i class="fa-solid fa-user"></i>Your Profile</h2>
       <div class="profile-card">
       <div class="row mb-3">
-        <div class="col-md-4 profile-label">Name:</div>
-        <div class="col-md-8 profile-value">Yasser Ahmed</div>
+        <div class="col-md-4 profile-label">Name :</div>
+        <div id="name" class="col-md-8 profile-value">Yasser Ahmed</div>
+      </div>
+
+       <div id="storenamediv" style="display: none;" class="row mb-3">
+        <div class="col-md-4 profile-label">Store Name :</div>
+        <div id="storename" class="col-md-8 profile-value">Store name</div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-md-4 profile-label">Email :</div>
+        <div id="email" class="col-md-8 profile-value">yas@example.com</div>
       </div>
       <div class="row mb-3">
-        <div class="col-md-4 profile-label">Email:</div>
-        <div class="col-md-8 profile-value">yas@example.com</div>
-      </div>
-      <div class="row mb-3">
-        <div class="col-md-4 profile-label">Role:</div>
-        <div class="col-md-8 profile-value">Admin</div>
-      </div>
-      <div class="row mb-3">
-        <div class="col-md-4 profile-label">Phone Number:</div>
-        <div class="col-md-8 profile-value">+1 555-1234</div>
+        <div class="col-md-4 profile-label">Role :</div>
+        <div id="role" class="col-md-8 profile-value">Admin</div>
       </div>
     </div>
     </div>
