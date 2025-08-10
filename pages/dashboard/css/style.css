@@ -1,0 +1,85 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: Arial, sans-serif;
+}
+    .sidebar {
+  position: fixed;       /* Fix sidebar to the left */
+  top: 0;
+  left: 0;
+  width: 220px;          /* Fixed width */
+  height: 100vh;         /* Full viewport height */
+  background-color: #000000;
+  color: #fff;
+  padding-top: 20px;
+  overflow-y: auto;      /* Scroll if content too tall */
+  box-sizing: border-box;
+  z-index: 1000;         /* Stay on top */
+}
+    .sidebar a.navbar-brand {
+        display: block;
+        margin: 0 auto 30px;
+        width: 150px;
+    }
+    .sidebar ul {
+        list-style: none;
+        padding-left: 0;
+        margin: 0;
+    }
+    .sidebar ul li {
+        margin-bottom: 10px;
+    }
+    .sidebar ul li a {
+        color: #b0b3c6;
+        text-decoration: none;
+        padding: 12px 25px;
+        display: block;
+        font-weight: 500;
+        border-radius: 8px;
+        transition: background-color 0.3s, color 0.3s;
+        font-size: 1rem;
+        user-select: none;
+    }
+    .sidebar ul li a:hover {
+        background-color: #34344e;
+        color: #fff;
+    }
+    .sidebar ul li a.active {
+        background: linear-gradient(90deg, #4e73df, #224abe);
+        color: #fff;
+        box-shadow: 0 0 8px rgba(78, 115, 223, 0.6);
+        font-weight: 700;
+    }
+    /* Adjust main content to not be under sidebar */
+    .col-md-10 {
+        margin-left: 220px;
+    }
+    /* Scrollbar for sidebar if content overflows */
+    .sidebar::-webkit-scrollbar {
+        width: 6px;
+    }
+    .sidebar::-webkit-scrollbar-thumb {
+        background-color: #44476b;
+        border-radius: 3px;
+    }
+    .main-content {
+      margin-left: 250px;
+      padding: 20px;
+    }
+    .content {
+  max-width: 1350px; /* or any width that fits nicely */
+  margin-left: 220px;
+  margin-right: auto;
+  padding: 20px 30px;
+}
+@media (max-width: 768px) {
+  .sidebar {
+    position: relative;
+    width: 100%;
+    height: auto;
+  }
+  .content {
+    margin-left: 0;
+  }
+}
