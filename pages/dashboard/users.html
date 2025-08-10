@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <title>Add User - Profit Pulse</title>
   <link
     href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
@@ -10,14 +11,30 @@
   />
   <link rel="stylesheet" href="css\style.css">
   <style>
-    
   </style>
 </head>
 <body class="bg-light">
-  <div class="row">
-    <!-- Sidebar -->
-    <div class="col-md-2 sidebar">
-      <a class="navbar-brand" href="Home.html">
+  <header class="container-fluid d-md-flex justify-content-md-between mt-1">
+    <div class="d-none d-md-flex gap-2">
+             <a href="mailto:Mohamedbasiouny111@gmail.com"><i class="fa-solid fa-envelope"></i>Mohamedbasiouny111@gmail.com</a>
+            <span>|</span>
+            <a href="tel:01111514032"><i class="fa-solid fa-phone"></i></i>01111514032</a>
+        </div>
+
+        <div id="navbartop" class="d-flex flex-row-reverse justify-content-center text-uppercase gap-2 ">
+            <a href="./pages/auth/Register.html"><i class="fa-solid fa-user-plus"></i> Register</a>
+            <span>|</span>
+            <a href="./pages/auth/login.html"><i class="fa-solid fa-arrow-right-to-bracket"></i> Login</a>
+             <span>|</span>
+            <a href="./pages/auth/SellerRegister.html">Be a seller</a>
+        </div>
+  </header>
+
+  <div class="container-fluid">
+    <div class="row">
+      <!-- Sidebar -->
+      <div class="col-md-2 sidebar">
+        <a class="navbar-brand" href="Home.html">
         <img
           style="width: 150px; height: 50px; margin-left: -.1vw"
           src="img/logoLight.svg"
@@ -33,11 +50,11 @@
         <li><a href="customers.html" class="nav-link">👥 Customers</a></li>
         <li><a href="setting.html" class="nav-link">⚙️ Settings</a></li>
       </ul>
-    </div>
+      </div>
 
-    <!-- Main Content -->
-    <div class="content">
-      <h2 class="mb-4">Users</h2>
+      <!-- Main Content -->
+      <div class="col-md-10 content">
+        <h2 class="mb-4">Users</h2>
 <div class="mb-3">
     <input
       type="text"
@@ -95,9 +112,9 @@
 </table>
         </div>
       </div>
+      </div>
     </div>
   </div>
-
   <script>
   const searchInput = document.getElementById('searchInput');
   const tableBody = document.querySelector('#usersTable tbody');
@@ -115,3 +132,9 @@
 </script>
 </body>
 </html>
+
+
+
+
+
+<!-- </body> -->
