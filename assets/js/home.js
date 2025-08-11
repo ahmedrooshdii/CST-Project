@@ -27,6 +27,14 @@ div.appendChild(newLink);
         });
         div.appendChild(logoutLink);
     }
+
+
+
+    // role
+   var userspage = document.getElementById("usersPage");
+      if (user.role !== "admin") {
+       userspage.style.display = "none";        
+  }
     
 
 });
