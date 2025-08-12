@@ -1,6 +1,5 @@
 window.addEventListener('load', function () {
   const user = JSON.parse(sessionStorage.getItem("currentUser"));
-
   if (!user) {
     window.location.href = "../../pages/auth/login.html";
     return;
@@ -39,10 +38,12 @@ function showData() {
 showData();
 
 function deleteData(i) {
-  users.splice(i, 1);
-  localStorage.users = JSON.stringify(users);
-
-  showData();
+  
+  if (confirm("Are you sure delete user")) {
+    users.splice(i, 1); 
+    localStorage.users = JSON.stringify(users); 
+    showData(); 
+  }
 }
 
   function updateData(index) {
@@ -59,19 +60,24 @@ function deleteData(i) {
       users[currentIndex].role = document.getElementById("updateRole").value;
       localStorage.setItem("users", JSON.stringify(users));
       showData();
+    showToast("Updated successfully!", "success");
 
       const modal = bootstrap.Modal.getInstance(document.getElementById("staticBackdrop"));
       modal.hide();
+      
     }
   }
 
-  function deleteData(index) {
-    users.splice(index, 1);
-    localStorage.setItem("users", JSON.stringify(users));
-    showData();
-  }
+      function showToast(message, type = "danger") {
+    let toastEl = document.getElementById("toastMessage");
 
-  showData();
+    toastEl.className = `toast align-items-center text-bg-${type} border-0`;
+    
+    toastEl.querySelector(".toast-body").textContent = message;
+
+    let toast = new bootstrap.Toast(toastEl);
+    toast.show();
+}
 
 
 //search
