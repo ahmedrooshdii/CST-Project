@@ -15,8 +15,9 @@ function checkconfirmpass() {
         confirmInput.classList.remove("is-invalid");
         confirmInput.classList.add("is-valid");
     } else {
-        confirmInput.classList.remove("is-invalid", "is-valid");
-    }
+        confirmInput.classList.add("is-invalid");
+        confirmInput.classList.remove("is-valid");
+          }
 };
 
 passInput.addEventListener("input", checkpass);
@@ -82,7 +83,7 @@ function register(e) {
      var name = document.getElementById("name").value;
     var email = document.getElementById("email").value;
     var password = document.getElementById("pass").value;
-
+checkconfirmpass();
    if (!name || !email || !password ||
         confirmInput.classList.contains("is-invalid") ||
         passInput.classList.contains("is-invalid") ||
