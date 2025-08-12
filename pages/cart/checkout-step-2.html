@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Select Address</title>
+    <link rel="stylesheet" href="../../assets/css/checkout-2.css" />
+    <link rel="stylesheet" href="../../assets/css/home.css">
+        <link rel="stylesheet" href="../../assets/css/bs/bootstrap.min.css">
+
+    <script src="./assets/js/home.js"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+      <header class="container-fluid d-md-flex justify-content-md-between mt-1">
+       
+        <div class="d-none d-md-flex gap-2">
+             <a href="mailto:Mohamedbasiouny111@gmail.com"><i class="fa-solid fa-envelope"></i>Mohamedbasiouny111@gmail.com</a>
+            <span>|</span>
+            <a href="tel:01111514032"><i class="fa-solid fa-phone"></i></i>01111514032</a>
+        </div>
+
+        <div id="navbartop" class="d-flex flex-row-reverse justify-content-center text-uppercase gap-2 ">
+            <a href="../../pages/auth/Register.html"><i class="fa-solid fa-user-plus"></i> Register</a>
+            <span>|</span>
+            <a href="../../pages/auth/login.html"><i class="fa-solid fa-arrow-right-to-bracket"></i> Login</a>
+             <span>|</span>
+            <a href="../../pages/auth/SellerRegister.html">Be a seller</a>
+        </div>
+    </header>
+
+<nav class="container-fluid navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+
+    <a class="navbar-brand" href="Home.html"><img style="width: 150px; height: 50px; margin-right:30vw;" src="../../assets/images/logo.svg" alt=""></a>
+    
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+   
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+       
+        <form class="position-relative d-md-flex justify-content-center align-item w-50">
+       
+        <i class="fa-solid fa-magnifying-glass position-absolute top-50 start-0 translate-middle-y ms-3 text-muted"></i>
+        <input type="search" class="form-control ps-5" placeholder="Search" aria-label="Search">
+       
+        </form>
+
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="../..//pages/about.html">About</a>
+        </li>
+     
+        <li class="nav-item">
+          <a class="nav-link"  href="#">Contact Us</a>
+        </li>
+
+         <li class="nav-item">
+          <a class="nav-link"  href="#">Blog</a>
+        </li>
+
+         <li class="nav-item">
+          <a class="nav-link active"  href="#"><i class="fa-regular fa-heart"></i></a>
+        </li>
+
+         <li class="nav-item">
+          <a class="nav-link active"  href="../../pages/cart/shopping-cart.html"><i class="fa-solid fa-cart-shopping"></i></a>
+        </li>
+      </ul>
+      
+    </div>
+
+  </div>
+</nav>
+
+<nav id="subnav" class="container-fluid d-none d-md-flex justify-content-evenly gap-2">
+   <p><i class="fa-solid fa-mobile"></i>Phones</p>
+   <p>|</p>
+   <p><i class="fa-solid fa-desktop"></i>Computers</p>
+      <p>|</p>
+   <p><i class="fa-solid fa-clock"></i>Smart Watches</p>
+      <p>|</p>
+   <p><i class="fa-solid fa-camera"></i>Cameras</p>
+      <p>|</p>
+   <p><i class="fa-solid fa-headset"></i>Headphones</p>
+   <p>|</p>
+   <p><i class="fa-solid fa-gamepad"></i>Gaming</p>
+</nav>
+<div class="steps-icons w-100">
+  <div class="container d-flex justify-content-evenly align-items-center p-5">
+    <span><img src="../../assets/icons/checkout-location-grey-icon.svg" alt=""></span>
+    <span><img class="w-100" src="../../assets/icons/dashedline-icon.svg" alt=""></span>
+    <span><img  src="../../assets/icons/checkout-shipping-icon.svg" alt=""></span>
+    <span><img class="w-100" src="../../assets/icons/dashedline-icon.svg" alt=""></span>
+    <span><img  src="../../assets/icons/checkout-payment-grey-icon.svg" alt=""></span>
+  </div>
+</div>
+   <div class="container-shippment">
+        <div class="content">
+            <h2 class="title">Shipment Method</h2>
+            
+            <form class="shipment-form">
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <div class="radio-content">
+                            <input type="radio" id="free" name="shipment" value="free" checked>
+                            <label for="free" class="radio-label">
+                                <div class="radio-info">
+                                    <span class="radio-price">Free</span>
+                                    <span class="radio-description">Regular shipment</span>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="radio-date">17 Oct, 2023</div>
+                    </div>
+                    
+                    <div class="radio-option ">
+                        <div class="radio-content">
+                            <input type="radio" id="express" name="shipment" value="express" >
+                            <label for="express" class="radio-label">
+                                <div class="radio-info">
+                                    <span class="radio-price">$8.50</span>
+                                    <span class="radio-description">Get your delivery as soon as possible</span>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="radio-date">1 Oct, 2023</div>
+                    </div>
+                    
+                    <div class="radio-option ">
+                        <div class="radio-content">
+                            <input type="radio" id="schedule" name="shipment" value="schedule" >
+                            <label for="schedule" class="radio-label">
+                                <div class="radio-info">
+                                    <span class="radio-price">Schedule</span>
+                                    <span class="radio-description">Pick a date when you want to get your delivery</span>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="radio-date">
+                            Select Date
+                            <svg class="chevron-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6,9 12,15 18,9"></polyline>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            
+            <div class="button-group">
+                <button type="button" class="btn-ship btn-outline-ship">Back</button>
+                <button type="button" class="btn-ship btn-primary-ship">Next</button>
+            </div>
+        </div>
+    </div>
+     <footer>
+
+        <div id="foot" class="d-flex flex-sm-column flex-md-row justify-content-sm-evenly flex-wrap p-5">
+            <div class="d-flex flex-column gap-5">
+
+             <a href="Home.html"><img style="width: 150px; height: 50px;" src="../../assets/images/logoLight.svg" alt=""></a>
+             <p>We are a residential interior design firm located in Portland. </p>
+
+             
+            </div>
+
+             <div>
+                <h5>Services</h5>
+               <p>Bonus program </p> 
+                <p>Gift cards</p>
+                <p>Credit and payment</p>
+                <p>Service contracts</p>
+                <p>Non-cash</p> 
+                <p>accountPayment</p>
+            </div>
+
+              <div>
+                <h5>Assistance to the buyer</h5>
+                <p>Find an order</p>
+                <p>Terms of delivery</p>
+                <p>Exchange and return of goods</p>
+                <p>Guarantee</p>
+                <p>Frequently asked questions</p>
+                <p>Terms of use of the site</p>
+            </div>
+
+            <div class="d-flex flex-column gap-3">              
+             <h5>Social Media</h5>
+              <div id="social" class="d-flex gap-3 flex-wrap">
+              <a href="#"><i class="fa-brands fa-facebook"></i></a>
+              <a href="#"><i class="fa-brands fa-instagram"></i></a>
+              <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+              <a href="#"><i class="fa-brands fa-youtube"></i></a>
+            
+                </div>
+             </div>
+        </div>
+
+     
+
+    </footer>
+
+            <script src="../../assets/js/bs/bootstrap.bundle.js"></script>
+
+  </body>
+</html>

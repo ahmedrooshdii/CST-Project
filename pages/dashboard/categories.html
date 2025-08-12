@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Add User - Profit Pulse</title>
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    rel="stylesheet"/>
+         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+         <link rel="stylesheet" href="../../assets/css/bs/bootstrap.min.css">
+    <link rel="stylesheet" href="../../assets/css/home.css">
+  <link rel="stylesheet" href="css/style.css">
+    <script src="../../assets/js/home.js" defer></script>
+  <style>
+    .modal-dialog {
+    margin-top: 80px; 
+}
+
+  </style>
+</head>
+<body class="bg-light">
+  <header class="container-fluid d-md-flex justify-content-md-between">
+    <div class="d-none d-md-flex gap-2">
+             <a href="mailto:Mohamedbasiouny111@gmail.com"><i class="fa-solid fa-envelope"></i>Mohamedbasiouny111@gmail.com</a>
+            <span>|</span>
+            <a href="tel:01111514032"><i class="fa-solid fa-phone"></i></i>01111514032</a>
+        </div>
+        <div id="navbartop" class="d-flex flex-row-reverse justify-content-center text-uppercase gap-2 ">
+            <a href="../../pages/auth/Register.html"><i class="fa-solid fa-user-plus"></i> Register</a>
+            <span>|</span>
+            <a href="../../pages/auth/login.html"><i class="fa-solid fa-arrow-right-to-bracket"></i> Login</a>
+             <span>|</span>
+            <a href="../../pages/auth/SellerRegister.html">Be a seller</a>
+        </div>
+  </header>
+  <div class="container-fluid">
+    <div class="row">
+      <!-- Sidebar -->
+      <div class="col-md-2 sidebar">
+        <a class="navbar-brand" href="Home.html">
+        <img
+          style="width: 150px; height: 50px; margin-left: -.1vw"
+          src="../../assets/images/logoLight.svg"
+          alt="Logo"
+        />
+      </a>
+      <ul>
+        <li><a href="dashboard.html" class="nav-link">📊 Dashboard</a></li>
+        <li><a href="profile.html" class="nav-link">👤 profile</a></li>
+        <li><a id="usersPage" href="users.html" class="nav-link ">👤 Users</a></li>
+        <li><a href="orders.html" class="nav-link">🛒 Orders</a></li>
+        <li><a href="products.html" class="nav-link">🛒 Products</a></li>
+        <li><a href="customers.html" class="nav-link">👥 Customers</a></li>
+        <li><a href="categories.html" class="nav-link active">👥 Categories</a></li>
+        <li><a href="contactus.html" class="nav-link">👥 Contact us</a></li>
+      </ul>
+      </div>
+      <!-- Main Content -->
+      <div class="col-md-10 content">
+  <h2 class="mb-4">Categories</h2>
+
+  <!-- Action buttons -->
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addCategoryModal">
+      <i class="fa-solid fa-plus"></i> Add Category
+    </button>
+    <input type="text" id="searchCategory" class="form-control w-25" placeholder="Search categories...">
+  </div>
+
+  <!-- Categories Table -->
+  <div class="card shadow-sm">
+    <div class="card-body p-3">
+      <table id="categoriesTable" class="table table-hover align-middle">
+        <thead class="table-dark">
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Category Name</th>
+            <th scope="col">Description</th>
+            <th scope="col">Status</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody id="categoryTbody">
+          <!-- Example Row -->
+          <!-- <tr>
+            <td>1</td>
+            <td>Smartphones</td>
+            <td>All kinds of mobile phones</td>
+            <td><span class="badge bg-success">Active</span></td>
+            <td>
+              <button class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editCategoryModal">
+                <i class="fa-solid fa-pen"></i>
+              </button>
+              <button class="btn btn-danger btn-sm">
+                <i class="fa-solid fa-trash"></i>
+              </button>
+            </td>
+          </tr> -->
+          <!-- End Example Row -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- Add Category Modal -->
+<div class="modal fade" id="addCategoryModal" tabindex="-1" aria-labelledby="addCategoryModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addCategoryModalLabel">Add New Category</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label class="form-label">Category Name</label>
+            <input type="text" id="categoryName" class="form-control" placeholder="Enter category name">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Description</label>
+            <textarea id="categoryDescription" class="form-control" rows="3" placeholder="Enter category description"></textarea>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Status</label>
+            <select id="categoryStatus" class="form-select">
+  <option value="active" selected>Active</option>
+  <option value="inactive">Inactive</option>
+</select>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Edit Category Modal -->
+<div class="modal fade" id="editCategoryModal" tabindex="-1" aria-labelledby="editCategoryModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editCategoryModalLabel">Edit Category</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label class="form-label">Category Name</label>
+            <input type="text" class="form-control" value="Smartphones">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Description</label>
+            <textarea class="form-control" rows="3">All kinds of mobile phones</textarea>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Status</label>
+            <select class="form-select">
+              <option value="active" selected>Active</option>
+              <option value="inactive">Inactive</option>
+            </select>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary">Update</button>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+document.addEventListener("DOMContentLoaded", function () {
+  let categoryId = 1; // ID counter
+
+  document.querySelector("#addCategoryModal .btn-primary").addEventListener("click", function () {
+    const name = document.getElementById("categoryName").value.trim();
+    const desc = document.getElementById("categoryDescription").value.trim();
+    const status = document.getElementById("categoryStatus").value;
+
+    if (!name || !desc) {
+      alert("Please fill in all fields");
+      return;
+    }
+
+    // Create new row
+    const tableBody = document.getElementById("categoryTbody");
+    const row = document.createElement("tr");
+    row.innerHTML = `
+      <td>${categoryId++}</td>
+      <td>${name}</td>
+      <td>${desc}</td>
+      <td>
+        <span class="badge ${status === "active" ? "bg-success" : "bg-secondary"}">
+          ${status.charAt(0).toUpperCase() + status.slice(1)}
+        </span>
+      </td>
+      <td>
+        <button class="btn btn-warning btn-sm edit-btn" data-id="1">
+  <i class="fa-solid fa-pen"></i>
+</button>
+<button class="btn btn-danger btn-sm delete-btn" data-id="1">
+  <i class="fa-solid fa-trash"></i>
+</button>
+      </td>
+    `;
+
+    tableBody.appendChild(row);
+
+    // Clear form
+    document.getElementById("categoryName").value = "";
+    document.getElementById("categoryDescription").value = "";
+    document.getElementById("categoryStatus").value = "active";
+
+    // Close modal
+    const modal = bootstrap.Modal.getInstance(document.getElementById("addCategoryModal"));
+    modal.hide();
+  });
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  const searchInput = document.getElementById("searchCategory");
+  const tableBody = document.getElementById("categoryTbody");
+
+  searchInput.addEventListener("keyup", function () {
+    const searchText = this.value.toLowerCase();
+    const rows = tableBody.getElementsByTagName("tr");
+
+    for (let row of rows) {
+      const cells = row.getElementsByTagName("td");
+      let match = false;
+
+      for (let cell of cells) {
+        if (cell.textContent.toLowerCase().includes(searchText)) {
+          match = true;
+          break;
+        }
+      }
+
+      row.style.display = match ? "" : "none";
+    }
+  });
+});
+document.addEventListener("DOMContentLoaded", () => {
+  const categoryTbody = document.getElementById("categoryTbody");
+  const editModal = new bootstrap.Modal(document.getElementById("editCategoryModal"));
+  
+  let currentEditRow = null; // To track which row is being edited
+
+  // Delegate click event on tbody for buttons (edit & delete)
+  categoryTbody.addEventListener("click", function(event) {
+    const target = event.target.closest("button");
+    if (!target) return;
+
+    const row = target.closest("tr");
+
+    if (target.classList.contains("delete-btn")) {
+      // Delete row
+      if (confirm("Are you sure you want to delete this category?")) {
+        row.remove();
+      }
+    }
+    else if (target.classList.contains("edit-btn")) {
+      // Edit row: Fill modal with row data and show modal
+      currentEditRow = row;
+      
+      const cells = row.querySelectorAll("td");
+      const name = cells[1].textContent;
+      const description = cells[2].textContent;
+      const statusText = cells[3].textContent.trim().toLowerCase();
+
+      document.querySelector("#editCategoryModal input.form-control").value = name;
+      document.querySelector("#editCategoryModal textarea.form-control").value = description;
+      
+      const statusSelect = document.querySelector("#editCategoryModal select.form-select");
+      statusSelect.value = statusText === "active" ? "active" : "inactive";
+
+      editModal.show();
+    }
+  });
+
+  // Save changes button in modal
+  document.querySelector("#editCategoryModal .btn-primary").addEventListener("click", () => {
+    if (!currentEditRow) return;
+
+    const nameInput = document.querySelector("#editCategoryModal input.form-control");
+    const descInput = document.querySelector("#editCategoryModal textarea.form-control");
+    const statusSelect = document.querySelector("#editCategoryModal select.form-select");
+
+    // Update table row cells
+    const cells = currentEditRow.querySelectorAll("td");
+    cells[1].textContent = nameInput.value;
+    cells[2].textContent = descInput.value;
+
+    // Update status badge with color
+    const statusCell = cells[3];
+    statusCell.innerHTML = '';
+    const span = document.createElement("span");
+    span.classList.add("badge");
+    if (statusSelect.value === "active") {
+      span.classList.add("bg-success");
+      span.textContent = "Active";
+    } else {
+      span.classList.add("bg-secondary");
+      span.textContent = "Inactive";
+    }
+    statusCell.appendChild(span);
+    editModal.hide();
+  });
+});
+
+</script>
+
+</body>
+</html>

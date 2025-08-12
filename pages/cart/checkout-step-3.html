@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Select Address</title>
+    <link rel="stylesheet" href="../../assets/css/checkout-3.css" />
+    <link rel="stylesheet" href="../../assets/css/home.css">
+        <link rel="stylesheet" href="../../assets/css/bs/bootstrap.min.css">
+
+    <script src="./assets/js/home.js"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+      <header class="container-fluid d-md-flex justify-content-md-between mt-1">
+       
+        <div class="d-none d-md-flex gap-2">
+             <a href="mailto:Mohamedbasiouny111@gmail.com"><i class="fa-solid fa-envelope"></i>Mohamedbasiouny111@gmail.com</a>
+            <span>|</span>
+            <a href="tel:01111514032"><i class="fa-solid fa-phone"></i></i>01111514032</a>
+        </div>
+
+        <div id="navbartop" class="d-flex flex-row-reverse justify-content-center text-uppercase gap-2 ">
+            <a href="../../pages/auth/Register.html"><i class="fa-solid fa-user-plus"></i> Register</a>
+            <span>|</span>
+            <a href="../../pages/auth/login.html"><i class="fa-solid fa-arrow-right-to-bracket"></i> Login</a>
+             <span>|</span>
+            <a href="../../pages/auth/SellerRegister.html">Be a seller</a>
+        </div>
+    </header>
+
+<nav class="container-fluid navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+
+    <a class="navbar-brand" href="Home.html"><img style="width: 150px; height: 50px; margin-right:30vw;" src="../../assets/images/logo.svg" alt=""></a>
+    
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+   
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+       
+        <form class="position-relative d-md-flex justify-content-center align-item w-50">
+       
+        <i class="fa-solid fa-magnifying-glass position-absolute top-50 start-0 translate-middle-y ms-3 text-muted"></i>
+        <input type="search" class="form-control ps-5" placeholder="Search" aria-label="Search">
+       
+        </form>
+
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="../..//pages/about.html">About</a>
+        </li>
+     
+        <li class="nav-item">
+          <a class="nav-link"  href="#">Contact Us</a>
+        </li>
+
+         <li class="nav-item">
+          <a class="nav-link"  href="#">Blog</a>
+        </li>
+
+         <li class="nav-item">
+          <a class="nav-link active"  href="#"><i class="fa-regular fa-heart"></i></a>
+        </li>
+
+         <li class="nav-item">
+          <a class="nav-link active"  href="../../pages/cart/shopping-cart.html"><i class="fa-solid fa-cart-shopping"></i></a>
+        </li>
+      </ul>
+      
+    </div>
+
+  </div>
+</nav>
+
+<nav id="subnav" class="container-fluid d-none d-md-flex justify-content-evenly gap-2">
+   <p><i class="fa-solid fa-mobile"></i>Phones</p>
+   <p>|</p>
+   <p><i class="fa-solid fa-desktop"></i>Computers</p>
+      <p>|</p>
+   <p><i class="fa-solid fa-clock"></i>Smart Watches</p>
+      <p>|</p>
+   <p><i class="fa-solid fa-camera"></i>Cameras</p>
+      <p>|</p>
+   <p><i class="fa-solid fa-headset"></i>Headphones</p>
+   <p>|</p>
+   <p><i class="fa-solid fa-gamepad"></i>Gaming</p>
+</nav>
+<div class="steps-icons w-100">
+  <div class="container d-flex justify-content-evenly align-items-center p-5">
+    <span><img src="../../assets/icons/checkout-location-grey-icon.svg" alt=""></span>
+    <span><img class="w-100" src="../../assets/icons/dashedline-icon.svg" alt=""></span>
+    <span><img  src="../../assets/icons/checkout-shipping-icon.svg" alt=""></span>
+    <span><img class="w-100" src="../../assets/icons/dashedline-icon.svg" alt=""></span>
+    <span><img  src="../../assets/icons/checkout-payment-grey-icon.svg" alt=""></span>
+  </div>
+</div>
+    <div class="container">
+        <!-- Summary Section -->
+        <div class="summary-section">
+            <div class="card">
+                <h2 class="section-title">Summary</h2>
+                
+                <!-- Products -->
+                <div class="products-list">
+                    <div class="product-item">
+                        <div class="product-image" style="background-image: url('./public/image-phone-mini.png')"></div>
+                        <div class="product-details">
+                            <div class="product-name">Apple iPhone 14 Pro Max 128Gb</div>
+                            <div class="product-price">$1399</div>
+                        </div>
+                    </div>
+                    
+                    <div class="product-item">
+                        <div class="product-image" style="background-image: url('./public/image-phone-mini-1.png')"></div>
+                        <div class="product-details">
+                            <div class="product-name">AirPods Max Silver</div>
+                            <div class="product-price">$549</div>
+                        </div>
+                    </div>
+                    
+                    <div class="product-item">
+                        <div class="product-image" style="background-image: url('./public/image-phone-mini-2.png')"></div>
+                        <div class="product-details">
+                            <div class="product-name">Apple Watch Series 9 GPS 41mm</div>
+                            <div class="product-price">$399</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Address and Shipping -->
+                <div class="order-details">
+                    <div class="detail-group">
+                        <div class="detail-label">Address</div>
+                        <div class="detail-value">1131 Dusty Townline, Jacksonville, TX 40322</div>
+                    </div>
+                    
+                    <div class="detail-group">
+                        <div class="detail-label">Shipment method</div>
+                        <div class="detail-value">Free</div>
+                    </div>
+                </div>
+                
+                <!-- Summary Totals -->
+                <div class="summary-totals">
+                    <div class="total-row">
+                        <span class="total-label">Subtotal</span>
+                        <span class="total-value">$2347</span>
+                    </div>
+                    
+                    <div class="total-row secondary">
+                        <span class="total-label">Estimated Tax</span>
+                        <span class="total-value">$50</span>
+                    </div>
+                    
+                    <div class="total-row secondary">
+                        <span class="total-label">Estimated shipping & Handling</span>
+                        <span class="total-value">$29</span>
+                    </div>
+                    
+                    <div class="total-row final">
+                        <span class="total-label">Total</span>
+                        <span class="total-value">$2426</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Payment Section -->
+        <div class="payment-section">
+            <h2 class="section-title">Payment</h2>
+            
+            <!-- Payment Tabs -->
+            <div class="payment-tabs">
+                <button class="tab-button active" data-tab="credit-card">Credit Card</button>
+                <button class="tab-button" data-tab="paypal">PayPal</button>
+                <button class="tab-button" data-tab="paypal-credit">PayPal Credit</button>
+            </div>
+            
+            <!-- Credit Card Tab Content -->
+            <div class="tab-content active" id="credit-card">
+                <!-- Credit Card Visual -->
+                <div class="credit-card">
+                    <div class="card-background">
+                        <div class="card-overlay-1"></div>
+                        <div class="card-overlay-2"></div>
+                        
+                        <div class="card-header">
+                            <img src="./public/image-7.png" alt="Chip" class="card-chip">
+                            <img src="./public/wifi.svg" alt="Contactless" class="card-wifi">
+                        </div>
+                        
+                        <div class="card-footer">
+                            <div class="card-numbers">
+                                <span>4085</span>
+                                <span>9536</span>
+                                <span>8475</span>
+                                <span>9530</span>
+                            </div>
+                            
+                            <div class="card-bottom">
+                                <span class="cardholder-label">Cardholder</span>
+                                <img src="./public/mastercard.png" alt="Mastercard" class="card-logo">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Payment Form -->
+                <div class="payment-form">
+                    <input type="text" placeholder="Cardholder Name" class="form-input">
+                    <input type="text" placeholder="Card Number" class="form-input">
+                    
+                    <div class="form-row">
+                        <input type="text" placeholder="Exp.Date" class="form-input">
+                        <input type="text" placeholder="CVV" class="form-input">
+                    </div>
+                </div>
+            </div>
+            
+            <!-- PayPal Tab Content -->
+            <div class="tab-content" id="paypal">
+                <div class="placeholder-content">
+                    PayPal payment options would go here
+                </div>
+            </div>
+            
+            <!-- PayPal Credit Tab Content -->
+            <div class="tab-content" id="paypal-credit">
+                <div class="placeholder-content">
+                    PayPal Credit payment options would go here
+                </div>
+            </div>
+            
+            <!-- Checkbox -->
+            <div class="checkbox-group">
+                <input type="checkbox" id="same-billing" class="custom-checkbox">
+                <label for="same-billing">Same as billing address</label>
+            </div>
+            
+            <!-- Action Buttons -->
+            <div class="action-buttons">
+                <button class="btn btn-outline">Back</button>
+                <button class="btn btn-primary">Pay</button>
+            </div>
+        </div>
+    </div>
+    
+    
+     <footer>
+
+        <div id="foot" class="d-flex flex-sm-column flex-md-row justify-content-sm-evenly flex-wrap p-5">
+            <div class="d-flex flex-column gap-5">
+
+             <a href="Home.html"><img style="width: 150px; height: 50px;" src="../../assets/images/logoLight.svg" alt=""></a>
+             <p>We are a residential interior design firm located in Portland. </p>
+
+             
+            </div>
+
+             <div>
+                <h5>Services</h5>
+               <p>Bonus program </p> 
+                <p>Gift cards</p>
+                <p>Credit and payment</p>
+                <p>Service contracts</p>
+                <p>Non-cash</p> 
+                <p>accountPayment</p>
+            </div>
+
+              <div>
+                <h5>Assistance to the buyer</h5>
+                <p>Find an order</p>
+                <p>Terms of delivery</p>
+                <p>Exchange and return of goods</p>
+                <p>Guarantee</p>
+                <p>Frequently asked questions</p>
+                <p>Terms of use of the site</p>
+            </div>
+
+            <div class="d-flex flex-column gap-3">              
+             <h5>Social Media</h5>
+              <div id="social" class="d-flex gap-3 flex-wrap">
+              <a href="#"><i class="fa-brands fa-facebook"></i></a>
+              <a href="#"><i class="fa-brands fa-instagram"></i></a>
+              <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+              <a href="#"><i class="fa-brands fa-youtube"></i></a>
+            
+                </div>
+             </div>
+        </div>
+
+     
+
+    </footer>
+
+            <script src="../../assets/js/bs/bootstrap.bundle.js"></script>
+
+<script >
+        document.addEventListener('DOMContentLoaded', function() {
+    const tabButtons = document.querySelectorAll('.tab-button');
+    const tabContents = document.querySelectorAll('.tab-content');
+    
+    tabButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const targetTab = this.getAttribute('data-tab');
+            
+            tabButtons.forEach(btn => btn.classList.remove('active'));
+            tabContents.forEach(content => content.classList.remove('active'));
+            
+            this.classList.add('active');
+            document.getElementById(targetTab).classList.add('active');
+        });
+    });
+    
+    const inputs = document.querySelectorAll('.form-input');
+    
+    inputs.forEach(input => {
+        input.addEventListener('focus', function() {
+            this.style.borderColor = '#000';
+        });
+        
+        input.addEventListener('blur', function() {
+            if (!this.value) {
+                this.style.borderColor = '#cecece';
+            }
+        });
+    });
+    
+    const cardNumberInput = document.querySelector('input[placeholder="Card Number"]');
+    if (cardNumberInput) {
+        cardNumberInput.addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\s/g, '').replace(/[^0-9]/gi, '');
+            let formattedValue = value.match(/.{1,4}/g)?.join(' ') || value;
+            if (formattedValue !== e.target.value) {
+                e.target.value = formattedValue;
+            }
+        });
+    }
+    
+    const expiryInput = document.querySelector('input[placeholder="Exp.Date"]');
+    if (expiryInput) {
+        expiryInput.addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length >= 2) {
+                value = value.substring(0, 2) + '/' + value.substring(2, 4);
+            }
+            e.target.value = value;
+        });
+    }
+    
+    const cvvInput = document.querySelector('input[placeholder="CVV"]');
+    if (cvvInput) {
+        cvvInput.addEventListener('input', function(e) {
+            e.target.value = e.target.value.replace(/\D/g, '').substring(0, 4);
+        });
+    }
+});
+    </script>
+   
+  </body>
+</html>

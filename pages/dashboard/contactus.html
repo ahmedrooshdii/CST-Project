@@ -3,19 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-
   <title>Add User - Profit Pulse</title>
   <link
     href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
     rel="stylesheet"/>
          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
          <link rel="stylesheet" href="../../assets/css/bs/bootstrap.min.css">
     <link rel="stylesheet" href="../../assets/css/home.css">
   <link rel="stylesheet" href="css/style.css">
-
     <script src="../../assets/js/home.js" defer></script>
-
   <style>
   </style>
 </head>
@@ -26,7 +22,6 @@
             <span>|</span>
             <a href="tel:01111514032"><i class="fa-solid fa-phone"></i></i>01111514032</a>
         </div>
-
         <div id="navbartop" class="d-flex flex-row-reverse justify-content-center text-uppercase gap-2 ">
             <a href="../../pages/auth/Register.html"><i class="fa-solid fa-user-plus"></i> Register</a>
             <span>|</span>
@@ -35,7 +30,6 @@
             <a href="../../pages/auth/SellerRegister.html">Be a seller</a>
         </div>
   </header>
-
   <div class="container-fluid">
     <div class="row">
       <!-- Sidebar -->
@@ -50,26 +44,18 @@
       <ul>
         <li><a href="dashboard.html" class="nav-link">📊 Dashboard</a></li>
         <li><a href="profile.html" class="nav-link">👤 profile</a></li>
-        <li><a id="usersPage" href="users.html" class="nav-link active">👤 Users</a></li>
+        <li><a id="usersPage" href="users.html" class="nav-link ">👤 Users</a></li>
         <li><a href="orders.html" class="nav-link">🛒 Orders</a></li>
         <li><a href="products.html" class="nav-link">🛒 Products</a></li>
         <li><a href="customers.html" class="nav-link">👥 Customers</a></li>
         <li><a href="categories.html" class="nav-link">👥 Categories</a></li>
-        <li><a href="aboutus.html" class="nav-link">👥 About us</a></li>
+        <li><a href="contactus.html" class="nav-link active">👥 Contact us</a></li>
       </ul>
       </div>
-
       <!-- Main Content -->
-      <div class="col-md-10 content">
-        <h2 class="mb-4">Users</h2>
-<div class="mb-3">
-    <input
-      type="text"
-      id="searchInput"
-      class="form-control"
-      placeholder="Search users..."
-    />
-  </div>
+       <div class="col-md-10 content">
+        <h2 class="mb-4">Contact us</h2>
+
       <div class="card shadow-sm">
         <div class="card-body p-3">
 
@@ -80,8 +66,7 @@
       <th scope="col">Id</th>
       <th scope="col">Name</th>
       <th scope="col">Email</th>
-      <th scope="col">Role</th>
-      <th scope="col">Update</th> 
+      <th scope="col">phone</th>
       <th scope="col">Delete</th> 
     </tr>
   </thead>
@@ -95,69 +80,7 @@
     </div>
   </div>
 
-<section>
-  <!-- Modal -->
-  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
-    tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="staticBackdropLabel">Update User</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <form id="updateForm">
-            <div class="mb-3">
-              <label class="form-label">Name</label>
-              <input type="text" id="updateName" class="form-control">
-            </div>
-            <div class="mb-3">
-              <label class="form-label">Email</label>
-              <input type="email" id="updateEmail" class="form-control">
-            </div>
-          <div class="mb-3">
-  <label for="updateRole" class="form-label fw-bold">Role</label>
-  <select id="updateRole" class="form-select shadow-sm border-dark">
-    <option value="" disabled selected>-- Select Role --</option>
-    <option value="admin">Admin</option>
-    <option value="seller">Seller</option>
-    <option value="user">User</option>
-  </select>
-</div>
 
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" onclick="saveUpdate()">Save changes</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-     <!-- toast code -->
-       <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
-  <div id="toastMessage" class="toast align-items-center text-bg-danger border-0" role="alert">
-    <div class="d-flex">
-      <div class="toast-body">
-       
-      </div>
-      <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
-    </div>
-  </div>
-</div>
-
-
-    <script src="../../assets/js/users.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
-
 </body>
 </html>
-
-
-
-
-
-<!-- </body> -->
