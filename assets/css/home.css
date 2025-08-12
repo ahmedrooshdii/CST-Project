@@ -1,0 +1,41 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+nav{
+    margin: 0 10px;
+    border-bottom: 1px solid rgba(0, 0, 0, .07);
+}
+header a {
+    text-decoration: none;
+    color: #222;
+    font-family: sans-serif;
+    font-size: .9em;
+
+}
+
+ #subnav{
+         color: aliceblue;
+        background-color: rgba(46, 46, 46, 1);
+        padding-top: 10px;
+      }
+
+      #subnav i{
+        margin: 2px;
+        color: white;
+      }
+      
+ footer{
+        color: rgba(207, 207, 207, 1);
+        background-color: black;
+     }
+
+     footer h5{
+        color: white;
+     }
+     
+     #social i{
+        color: white;
+        font-size: larger;
+     }

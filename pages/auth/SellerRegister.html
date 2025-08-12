@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seller Register</title>
+         <link rel="stylesheet" href="../../assets/css/bs/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../../assets/css/login.css">
+
+    <link rel="stylesheet" href="../../assets/css/home.css">
+
+    <script src="../../assets/js/sellerregister.js" defer></script>
+
+    <style>
+
+.form-control{
+    border-top-right-radius: 10px  !important;
+    border-bottom-right-radius: 10px  !important;
+
+}
+
+#txt{
+    color: #121;
+    font-size: 1.1em;
+    font-weight: 400;
+    line-height: 1.8;
+}
+#head{
+font-size: .95em;
+    letter-spacing: 1px;
+}
+    </style>
+</head>
+<body>
+
+
+   <header class="container-fluid d-md-flex justify-content-md-between mt-1">
+       
+        <div class="d-none d-md-flex gap-2">
+             <a href="mailto:Mohamedbasiouny111@gmail.com"><i class="fa-solid fa-envelope"></i>Mohamedbasiouny111@gmail.com</a>
+            <span>|</span>
+            <a href="tel:01111514032"><i class="fa-solid fa-phone"></i></i>01111514032</a>
+        </div>
+
+        <div class="d-flex flex-row-reverse justify-content-center text-uppercase gap-2 ">
+            <a href="./Register.html"><i class="fa-solid fa-user-plus"></i> Register</a>
+            <span>|</span>
+            <a href="./login.html"><i class="fa-solid fa-arrow-right-to-bracket"></i> Login</a>
+             <span>|</span>
+            <a href="./SellerRegister.html">Be a seller</a>
+        </div>
+    </header>
+    
+
+    <header>
+
+    </header>
+
+    <section>
+
+
+            <p id="head" class="text-center mt-2">Register now with few easy steps!</p>
+            <p id ="sell" class="h4 text-center m-0">Seller Registration</p>
+            <p id="txt" class="text-center">Please make sure to fill in the form with your <br> actual information or else your account may become banned or suspended.</p>
+
+
+        <div id="login" class="w-100 w-md-50">
+
+            <form class="needs-validation" novalidate action="">
+
+               <label for="name" class=" mb-1 fw-bold ">Name</label> 
+
+                <div class="input-group mb-3 rounded-3">     
+             
+               <span class="input-group-text"><i class="fa-regular fa-user"></i></span>
+               <input type="text"  name="name" class="form-control" id="name" placeholder="Your name" required>
+             
+               <span id="span" class="invalid-feedback">
+                   Please choose a name.
+                </span>
+                </div>
+
+                 <label for="sname" class=" mb-1 fw-bold ">store name</label> 
+
+                <div class="input-group mb-3 rounded-3">     
+             
+               <span class="input-group-text"><i class="fa-regular fa-user"></i></span>
+               <input type="text"  name="sname" class="form-control" id="sname" placeholder="Your store name" required>
+             
+               <span id="span" class="invalid-feedback">
+                   Please choose a store name.
+                </span>
+                </div>
+
+                <label for="email" class=" mb-1 fw-bold ">Email</label> 
+
+                <div class="input-group mb-3 rounded-3">     
+             
+               <span class="input-group-text"><i class="fa-regular fa-envelope"></i></span>
+               <input type="email"  name="email" class="form-control" id="email" placeholder="Your email" required>
+             
+               <span id="span" class="invalid-feedback">
+                   Please choose a email.
+                </span>
+                </div>
+              
+
+                 <label for="pass" class=" mb-1 fw-bold">Password</label> 
+                <div class="input-group mb-3 rounded-3">         
+               <span class="input-group-text"><i class="fa-solid fa-lock"></i></span>
+               <input type="password" class="form-control" id="pass" placeholder="Your password" required>
+
+                <span id="passError" class="invalid-feedback">
+                   Please choose a password.
+                </span>
+              </div>
+
+                <label for="cpass" class=" mb-1 fw-bold">Confirm password</label> 
+                <div class="input-group mb-4 rounded-3">         
+               <span class="input-group-text"><i class="fa-solid fa-lock"></i></span>
+               <input type="password" class="form-control" id="cpass" placeholder="Your password" required>
+
+                <span id="confirmError" class="invalid-feedback">
+                   Please choose confirm password.
+                </span>
+              </div>
+
+              <div class="text-end">
+                <button id="btnsub" type="submit" class="btn w-50" onclick="register(event)">Submit</button>
+              </div>
+            </form>
+
+           
+
+            <p class="text-center mt-4">By continuing, you agree to the  <a class="link-dark" href="http://">Privacy policy</a></p>
+
+
+        </div>
+    </section>
+
+       <div class="position-fixed top-0 end-0 p-3" style="z-index: 11">
+  <div id="toastMessage" class="toast align-items-center text-bg-danger border-0" role="alert">
+    <div class="d-flex">
+      <div class="toast-body">
+       
+      </div>
+      <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+    </div>
+  </div>
+</div>
+    <footer style="background-color:#ffffff; color: black;">
+        <hr>
+        <p id="footp" class="text-center">© 2025 - All rights reserved by Ishop</p>
+    </footer>
+
+        <script src="../../assets/js/bs/bootstrap.bundle.js"></script>
+</body>
+</html>

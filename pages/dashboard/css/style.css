@@ -1,0 +1,138 @@
+/* Reset box-sizing globally for easier layout */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: Arial, sans-serif;
+  overflow-x: hidden; /* prevent horizontal scroll */
+}
+
+/* Fixed Header */
+header {
+  margin: 0;
+  padding: 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background: rgb(0, 0, 0);
+  z-index: 1100;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+header a,
+header span {
+  color: #ffffff !important;
+}
+
+
+
+header a {
+  text-decoration: none;
+  color: black;
+}
+/* Sidebar fixed on left below header */
+.sidebar {
+  position: fixed;
+  top: 60px; /* below header */
+  left: 0;
+  width: 220px;
+  height: calc(100vh - 60px);
+  background-color: #000000;
+  color: #fff;
+  padding-top: 20px;
+  overflow-y: auto;
+  z-index: 1000;
+}
+
+/* Sidebar links */
+.sidebar a.navbar-brand {
+  display: block;
+  margin: 0 auto 30px;
+  width: 150px;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.sidebar ul li {
+  margin-bottom: 10px;
+}
+
+.sidebar ul li a {
+  color: #b0b3c6;
+  text-decoration: none;
+  padding: 12px 25px;
+  display: block;
+  font-weight: 500;
+  border-radius: 8px;
+  transition: background-color 0.3s, color 0.3s;
+  font-size: 1rem;
+  user-select: none;
+}
+
+.sidebar ul li a:hover {
+  background-color: #34344e;
+  color: #fff;
+}
+
+.sidebar ul li a.active {
+  background: linear-gradient(90deg, #4e73df, #224abe);
+  color: #fff;
+  box-shadow: 0 0 8px rgba(78, 115, 223, 0.6);
+  font-weight: 700;
+}
+
+/* Scrollbar for sidebar */
+.sidebar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+  background-color: #44476b;
+  border-radius: 3px;
+}
+
+/* Main content to the right of sidebar, below header */
+.content {
+  margin-left: 220px; /* leave space for sidebar */
+  padding: 20px 30px;
+  margin-top: 60px; /* leave space for header */
+}
+
+/* Bootstrap row negative margins cause horizontal overflow
+   Wrap it in container to fix */
+.container-fluid {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+/* Responsive for mobile */
+@media (max-width: 768px) {
+  /* Sidebar relative, full width on top */
+  .sidebar {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    padding-top: 10px;
+  }
+
+  /* Content full width below sidebar and header */
+  .content {
+    margin-left: 0;
+    margin-top: 20px; /* small margin below sidebar */
+    padding: 10px 15px;
+  }
+}
