@@ -547,7 +547,6 @@
   .popular-product__card {
     overflow: hidden;
     min-width: 375px;
-
     height: 640px;
     display: flex;
     flex-direction: column;
@@ -560,7 +559,7 @@
   }
 
   @media (width < calc(1024 / 16 * 1rem)) {
-    .carousel-track {
+    .track {
       overflow-x: auto;
     }
   }
