@@ -71,3 +71,59 @@ function renderProductCard(product) {
 //   const addProductBtn = this.document.getElementById("add-product-btn");
 //   addProductBtn.addEventListener("click", addProductToLocalStorage);
 // });
+
+window.addEventListener("load", function () {
+  const user = JSON.parse(sessionStorage.getItem("currentUser"));
+  if (!user) {
+    window.location.href = "../../pages/auth/login.html";
+    return;
+  }
+
+  //   if (user.role !== "admin") {
+  //     window.location.href = "../../Home.html";
+  //   }
+
+  let products = JSON.parse(localStorage.getItem("products")) || [];
+  const userProducts = products.filter(
+    (product) => product.sellerEmail === user.email
+  );
+  userProducts.forEach((product) => {
+    renderProduct(product);
+  });
+});
+
+function renderProduct(product) {
+  // Get table tbody
+  const tbody = document.querySelector("#productsTable tbody");
+
+  // Create new row
+  const newRow = document.createElement("tr");
+
+  // Determine status badge class
+  let statusClass = "bg-success";
+  if (productStatus === "Out of Stock" || productStock == 0) {
+    statusClass = "bg-danger";
+  } else if (productStatus === "Inactive") {
+    statusClass = "bg-warning";
+  }
+
+  // Create row HTML
+  newRow.setAttribute("data-id", product.id);
+  newRow.innerHTML = `
+        <td>${product.name}</td>
+        <td>${parseFloat(product.price).toFixed(2)}</td>
+        <td>${product.stock}</td>
+        <td><span class="badge ${statusClass}">${product.status}</span></td>
+        <td>
+          <button class="btn btn-sm btn-primary me-1" onclick="editProduct(this)">
+            <i class="fa-solid fa-edit"></i>
+          </button>
+          <button class="btn btn-sm btn-danger remove-btn" onclick="deleteProduct(this)">
+            <i class="fa-solid fa-trash"></i>
+          </button>
+        </td>
+    `;
+
+  // Add row to table
+  tbody.appendChild(newRow);
+}
