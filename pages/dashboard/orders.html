@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>orders</title>
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    rel="stylesheet"/>
+         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+         <link rel="stylesheet" href="../../assets/css/bs/bootstrap.min.css">
+    <link rel="stylesheet" href="../../assets/css/home.css">
+  <link rel="stylesheet" href="css/style.css">
+    <script src="../../assets/js/home.js" defer></script>
+  <style>
+</style>
+</head>
+<body class="bg-light">
+    <header class="container-fluid d-md-flex justify-content-md-between">
+    <div class="d-none d-md-flex gap-2">
+             <a href="mailto:Mohamedbasiouny111@gmail.com"><i class="fa-solid fa-envelope"></i>Mohamedbasiouny111@gmail.com</a>
+            <span>|</span>
+            <a href="tel:01111514032"><i class="fa-solid fa-phone"></i></i>01111514032</a>
+        </div>
+        <div id="navbartop" class="d-flex flex-row-reverse justify-content-center text-uppercase gap-2 ">
+            <a href="../../pages/auth/Register.html"><i class="fa-solid fa-user-plus"></i> Register</a>
+            <span>|</span>
+            <a href="../../pages/auth/login.html"><i class="fa-solid fa-arrow-right-to-bracket"></i> Login</a>
+             <span>|</span>
+            <a href="../../pages/auth/SellerRegister.html">Be a seller</a>
+        </div>
+  </header>
+    <div class="container-fluid">
+    <div class="row">
+      <!-- Sidebar -->
+      <div class="col-md-2 sidebar">
+        <a class="navbar-brand" href="../../Home.html">
+        <img
+          style="width: 150px; height: 50px; margin-left: -.1vw"
+          src="../../assets/images/logoLight.svg"
+          alt="Logo"
+        />
+      </a>
+      <ul>
+        <li><a href="dashboard.html" class="nav-link">📊 Dashboard</a></li>
+        <li><a href="profile.html" class="nav-link">👤 profile</a></li>
+        <li><a id="usersPage" href="users.html" class="nav-link">👤 Users</a></li>
+        <li><a href="orders.html" class="nav-link active">🛒 Orders</a></li>
+        <li><a href="products.html" class="nav-link">🛒 Products</a></li>
+        <li><a href="customers.html" class="nav-link">👥 Customers</a></li>
+        <li><a href="categories.html" class="nav-link">👥 Categories</a></li>
+        <li><a href="aboutus.html" class="nav-link">👥 About us</a></li>
+      </ul>
+      </div>
+
+     <!-- Main Content -->
+      <div class="col-md-10 content">
+        <h2 class="mb-4">Orders</h2>
+        <!-- Filters -->
+        <div class="row mb-3">
+          <div class="col-md-4">
+            <input type="text" class="form-control" placeholder="Search by customer or order ID" />
+          </div>
+          <div class="col-md-3">
+            <select class="form-select">
+              <option value="all">Status: All</option>
+              <option value="pending">Pending</option>
+              <option value="shipped">Shipped</option>
+              <option value="completed">Completed</option>
+              <option value="cancelled">Cancelled</option>
+            </select>
+          </div>
+          <div class="col-md-3">
+            <input type="date" class="form-control" />
+          </div>
+          <!-- Removed Filter Button Column -->
+        </div>
+
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <table class="table table-hover align-middle">
+              <thead>
+                <tr>
+                  <th>Order ID</th>
+                  <th>Customer</th>
+                  <th>Date</th>
+                  <th>Total</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>#1001</td>
+                  <td>yasser</td>
+                  <td>2025-08-10</td>
+                  <td>$150.00</td>
+                  <td><span class="badge bg-warning status-badge">Pending</span></td>
+                  <td>
+                    <button class="btn btn-sm btn-info" data-bs-toggle="offcanvas" data-bs-target="#orderDetails" onclick="loadOrderDetails('1001')">View</button>
+                    <button class="btn btn-sm btn-success">Mark Shipped</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>#1002</td>
+                  <td>ahmed</td>
+                  <td>2025-08-09</td>
+                  <td>$240.00</td>
+                  <td><span class="badge bg-success status-badge">Completed</span></td>
+                  <td>
+                    <button class="btn btn-sm btn-info" data-bs-toggle="offcanvas" data-bs-target="#orderDetails" onclick="loadOrderDetails('1002')">View</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>#1003</td>
+                  <td>mohamed</td>
+                  <td>2025-08-08</td>
+                  <td>$99.00</td>
+                  <td><span class="badge bg-danger status-badge">Cancelled</span></td>
+                  <td>
+                    <button class="btn btn-sm btn-info" data-bs-toggle="offcanvas" data-bs-target="#orderDetails" onclick="loadOrderDetails('1003')">View</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="orderDetails">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title">Order Details</h5>
+      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"></button>
+    </div>
+    <div class="offcanvas-body">
+      <p><strong>Order ID:</strong> <span id="detailOrderId"></span></p>
+      <p><strong>Customer:</strong> <span id="detailCustomer"></span></p>
+      <p><strong>Date:</strong> <span id="detailDate"></span></p>
+      <p><strong>Total:</strong> <span id="detailTotal"></span></p>
+      <p><strong>Status:</strong> <span id="detailStatus"></span></p>
+      <hr />
+      <h6>Items</h6>
+      <ul id="detailItems"></ul>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const searchInput = document.querySelector('input[placeholder="Search by customer or order ID"]');
+      const statusSelect = document.querySelector('select');
+      const dateInput = document.querySelector('input[type="date"]');
+      const tableRows = document.querySelectorAll("tbody tr");
+
+      function filterOrders() {
+        const searchValue = searchInput.value.trim().toLowerCase();
+        const statusValue = statusSelect.value.trim().toLowerCase();
+        const dateValue = dateInput.value;
+
+        tableRows.forEach(row => {
+          const orderId = row.cells[0].textContent.toLowerCase().replace('#', '');
+          const customer = row.cells[1].textContent.toLowerCase();
+          const date = row.cells[2].textContent;
+          const status = row.cells[4].textContent.toLowerCase();
+
+          const matchesSearch = !searchValue || orderId.includes(searchValue) || customer.includes(searchValue);
+          const matchesStatus = statusValue === "all" || status === statusValue;
+          const matchesDate = !dateValue || date === dateValue;
+
+          row.style.display = (matchesSearch && matchesStatus && matchesDate) ? "" : "none";
+        });
+      }
+
+      // Instant filtering on input or select changes
+      searchInput.addEventListener("input", filterOrders);
+      statusSelect.addEventListener("change", filterOrders);
+      dateInput.addEventListener("change", filterOrders);
+
+      // Initial filter to show all rows on page load
+      filterOrders();
+    });
+
+    function loadOrderDetails(orderId) {
+  // Find the table row with this orderId
+  const row = Array.from(document.querySelectorAll("tbody tr")).find(r =>
+    r.cells[0].textContent.replace('#', '') === orderId
+  );
+  if (!row) return;
+
+  // Get order info from the row cells
+  const customer = row.cells[1].textContent;
+  const date = row.cells[2].textContent;
+  const total = row.cells[3].textContent;
+  const status = row.cells[4].textContent;
+
+  // Populate the offcanvas details fields
+  document.getElementById("detailOrderId").textContent = "#" + orderId;
+  document.getElementById("detailCustomer").textContent = customer;
+  document.getElementById("detailDate").textContent = date;
+  document.getElementById("detailTotal").textContent = total;
+  document.getElementById("detailStatus").textContent = status;
+
+  // For demo: clear existing items and add a placeholder
+  const itemsList = document.getElementById("detailItems");
+  itemsList.innerHTML = "";
+  // Example static items, replace with real data if you have it
+  const exampleItems = [
+    "Item 1 - Quantity: 2",
+    "Item 2 - Quantity: 1",
+  ];
+  exampleItems.forEach(item => {
+    const li = document.createElement("li");
+    li.textContent = item;
+    itemsList.appendChild(li);
+  });
+}
+
+  </script>
+</body>
+</html>
