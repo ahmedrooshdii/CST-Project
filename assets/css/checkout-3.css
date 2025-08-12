@@ -1,0 +1,549 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: #f8f9fa;
+    color: #000;
+    line-height: 1.5;
+}
+
+/* Container */
+.container {
+    max-width: 1440px;
+    margin: 0 auto;
+    display: flex;
+    gap: 96px;
+    padding: 24px 160px 72px;
+    min-height: 100vh;
+}
+
+/* Card Component */
+.card {
+    background: white;
+    border: 1px solid #ebebeb;
+    border-radius: 10px;
+    padding: 32px 24px;
+}
+
+/* Section Titles */
+.section-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: #000;
+    margin-bottom: 24px;
+    letter-spacing: 0.6px;
+}
+
+/* Summary Section */
+.summary-section {
+    flex: 1;
+}
+
+.products-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.product-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px;
+    background: #f6f6f6;
+    border-radius: 13px;
+}
+
+.product-image {
+    width: 40px;
+    height: 40px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 4px;
+}
+
+.product-details {
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 24px;
+}
+
+.product-name {
+    font-size: 16px;
+    font-weight: 500;
+    color: #000;
+    max-width: 319px;
+}
+
+.product-price {
+    font-size: 16px;
+    font-weight: 700;
+    color: #000;
+    white-space: nowrap;
+}
+
+/* Order Details */
+.order-details {
+    margin-bottom: 24px;
+}
+
+.detail-group {
+    margin-bottom: 16px;
+}
+
+.detail-label {
+    font-size: 14px;
+    font-weight: 500;
+    color: #545454;
+    margin-bottom: 8px;
+}
+
+.detail-value {
+    font-size: 16px;
+    color: #000;
+    padding: 12px 0;
+}
+
+/* Summary Totals */
+.summary-totals {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.total-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.total-row.secondary .total-label {
+    color: #545454;
+    font-weight: 400;
+}
+
+.total-row.secondary .total-value {
+    font-weight: 500;
+}
+
+.total-row.final .total-label,
+.total-row.final .total-value {
+    font-weight: 700;
+}
+
+.total-label {
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 0.48px;
+}
+
+.total-value {
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 0.48px;
+}
+
+/* Payment Section */
+.payment-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+}
+
+/* Payment Tabs */
+.payment-tabs {
+    display: flex;
+    gap: 56px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.tab-button {
+    background: none;
+    border: none;
+    padding: 8px 0 16px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #707070;
+    cursor: pointer;
+    letter-spacing: 0.42px;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s ease;
+}
+
+.tab-button.active {
+    color: #000;
+    border-bottom-color: #000;
+}
+
+.tab-button:hover {
+    color: #000;
+}
+
+/* Tab Content */
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* Credit Card */
+.credit-card {
+    width: 337px;
+    height: 190px;
+    margin-bottom: 40px;
+    position: relative;
+}
+
+.card-background {
+    width: 100%;
+    height: 188px;
+    background: #000;
+    border-radius: 15.81px;
+    position: relative;
+    overflow: hidden;
+    margin-top: 1px;
+}
+
+.card-overlay-1,
+.card-overlay-2 {
+    position: absolute;
+    width: 127px;
+    height: 188px;
+    top: 0;
+    background: url('./public/rectangle-4169.svg') no-repeat;
+}
+
+.card-overlay-1 {
+    left: 111px;
+}
+
+.card-overlay-2 {
+    left: 152px;
+    background-image: url('./public/rectangle-4170.svg');
+}
+
+.card-header {
+    position: absolute;
+    top: 23px;
+    left: 22px;
+    display: flex;
+    align-items: center;
+    gap: 5.75px;
+    padding-left: 5.75px;
+}
+
+.card-chip {
+    width: 20.5px;
+    height: 20.5px;
+}
+
+.card-wifi {
+    width: 24px;
+    height: 24px;
+}
+
+.card-footer {
+    position: absolute;
+    bottom: 17px;
+    left: 22px;
+    width: 299px;
+}
+
+.card-numbers {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 23px;
+    padding-right: 40.24px;
+}
+
+.card-numbers span {
+    font-size: 17.2px;
+    font-weight: 600;
+    color: white;
+    letter-spacing: 2px;
+}
+
+.card-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cardholder-label {
+    font-size: 14px;
+    font-weight: 500;
+    color: #aeaeae;
+}
+
+.card-logo {
+    width: 40.24px;
+    height: 22.99px;
+}
+
+/* Payment Form */
+.payment-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 40px;
+}
+
+.form-input {
+    height: 48px;
+    padding: 12px 16px;
+    border: 0.5px solid #cecece;
+    border-radius: 7px;
+    font-size: 14px;
+    background: white;
+    transition: border-color 0.2s ease;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: #000;
+}
+
+.form-input::placeholder {
+    color: #979797;
+}
+
+.form-row {
+    display: flex;
+    gap: 16px;
+}
+
+.form-row .form-input {
+    flex: 1;
+}
+
+/* Placeholder Content */
+.placeholder-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 160px;
+    color: #707070;
+    font-size: 16px;
+}
+
+/* Checkbox */
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 40px;
+}
+
+.custom-checkbox {
+    width: 16px;
+    height: 16px;
+    accent-color: #000;
+}
+
+.checkbox-group label {
+    font-size: 15px;
+    font-weight: 500;
+    color: #000;
+    cursor: pointer;
+}
+
+/* Action Buttons */
+.action-buttons {
+    display: flex;
+    gap: 23px;
+}
+
+.btn {
+    flex: 1;
+    padding: 24px 86px;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: none;
+}
+
+.btn-outline {
+    background: white;
+    border: 1px solid #000;
+    color: #000;
+}
+
+.btn-outline:hover {
+    background: #f8f9fa;
+}
+
+.btn-primary {
+    background: #000;
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #333;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .container {
+        padding: 24px 80px 72px;
+        gap: 48px;
+    }
+}
+
+@media (max-width: 992px) {
+    .container {
+        padding: 24px 40px 72px;
+        gap: 32px;
+    }
+
+    .payment-tabs {
+        gap: 32px;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        padding: 24px 20px 48px;
+        gap: 32px;
+    }
+
+    .credit-card {
+        width: 100%;
+        max-width: 337px;
+    }
+
+    .card-background {
+        width: 100%;
+    }
+
+    .payment-tabs {
+        gap: 24px;
+        flex-wrap: wrap;
+    }
+
+    .tab-button {
+        font-size: 13px;
+    }
+
+    .action-buttons {
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .btn {
+        padding: 16px 24px;
+    }
+}
+
+@media (max-width: 576px) {
+    .container {
+        padding: 16px;
+        gap: 24px;
+    }
+
+    .card {
+        padding: 24px 16px;
+    }
+
+    .product-details {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+        padding-right: 16px;
+    }
+
+    .product-name {
+        max-width: none;
+        font-size: 14px;
+    }
+
+    .product-price {
+        font-size: 14px;
+        align-self: flex-end;
+    }
+
+    .payment-tabs {
+        gap: 16px;
+    }
+
+    .tab-button {
+        font-size: 12px;
+        padding: 8px 0 12px;
+    }
+
+    .credit-card {
+        max-width: 280px;
+        height: 158px;
+    }
+
+    .card-background {
+        height: 156px;
+        border-radius: 12px;
+    }
+
+    .card-numbers span {
+        font-size: 14px;
+    }
+
+    .form-input {
+        height: 44px;
+        padding: 10px 12px;
+        font-size: 13px;
+    }
+
+    .section-title {
+        font-size: 18px;
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 400px) {
+    .container {
+        padding: 12px;
+    }
+
+    .product-item {
+        padding: 12px;
+        gap: 12px;
+    }
+
+    .product-image {
+        width: 32px;
+        height: 32px;
+    }
+
+    .credit-card {
+        max-width: 240px;
+        height: 135px;
+    }
+
+    .card-background {
+        height: 133px;
+    }
+
+    .card-numbers span {
+        font-size: 12px;
+    }
+
+    .cardholder-label {
+        font-size: 12px;
+    }
+
+    .card-logo {
+        width: 32px;
+        height: 18px;
+    }
+}
