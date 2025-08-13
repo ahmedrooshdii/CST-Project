@@ -104,155 +104,173 @@
   </div>
 </div>
     <div class="container">
-        <!-- Summary Section -->
-        <div class="summary-section">
-            <div class="card">
-                <h2 class="section-title">Summary</h2>
-                
-                <!-- Products -->
-                <div class="products-list">
-                    <div class="product-item">
-                        <div class="product-image" style="background-image: url('./public/image-phone-mini.png')"></div>
-                        <div class="product-details">
-                            <div class="product-name">Apple iPhone 14 Pro Max 128Gb</div>
-                            <div class="product-price">$1399</div>
-                        </div>
-                    </div>
-                    
-                    <div class="product-item">
-                        <div class="product-image" style="background-image: url('./public/image-phone-mini-1.png')"></div>
-                        <div class="product-details">
-                            <div class="product-name">AirPods Max Silver</div>
-                            <div class="product-price">$549</div>
-                        </div>
-                    </div>
-                    
-                    <div class="product-item">
-                        <div class="product-image" style="background-image: url('./public/image-phone-mini-2.png')"></div>
-                        <div class="product-details">
-                            <div class="product-name">Apple Watch Series 9 GPS 41mm</div>
-                            <div class="product-price">$399</div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Address and Shipping -->
-                <div class="order-details">
-                    <div class="detail-group">
-                        <div class="detail-label">Address</div>
-                        <div class="detail-value">1131 Dusty Townline, Jacksonville, TX 40322</div>
-                    </div>
-                    
-                    <div class="detail-group">
-                        <div class="detail-label">Shipment method</div>
-                        <div class="detail-value">Free</div>
-                    </div>
-                </div>
-                
-                <!-- Summary Totals -->
-                <div class="summary-totals">
-                    <div class="total-row">
-                        <span class="total-label">Subtotal</span>
-                        <span class="total-value">$2347</span>
-                    </div>
-                    
-                    <div class="total-row secondary">
-                        <span class="total-label">Estimated Tax</span>
-                        <span class="total-value">$50</span>
-                    </div>
-                    
-                    <div class="total-row secondary">
-                        <span class="total-label">Estimated shipping & Handling</span>
-                        <span class="total-value">$29</span>
-                    </div>
-                    
-                    <div class="total-row final">
-                        <span class="total-label">Total</span>
-                        <span class="total-value">$2426</span>
-                    </div>
-                </div>
+      <!-- Summary Section -->
+      <div class="summary-section">
+        <div class="card">
+          <h2 class="section-title">Summary</h2>
+
+          <div class="products-list">
+            <div class="product-item">
+              <div
+                class="product-image"
+                style="
+                  background-image: url('https://images.pexels.com/photos/788946/pexels-photo-788946.jpeg?auto=compress&cs=tinysrgb&w=40&h=40');
+                "
+              ></div>
+              <div class="product-details">
+                <div class="product-name">Apple iPhone 14 Pro Max 128Gb</div>
+                <div class="product-price">$1399</div>
+              </div>
             </div>
+
+            <div class="product-item">
+              <div
+                class="product-image"
+                style="
+                  background-image: url('https://images.pexels.com/photos/3394650/pexels-photo-3394650.jpeg?auto=compress&cs=tinysrgb&w=40&h=40');
+                "
+              ></div>
+              <div class="product-details">
+                <div class="product-name">AirPods Max Silver</div>
+                <div class="product-price">$549</div>
+              </div>
+            </div>
+
+            <div class="product-item">
+              <div
+                class="product-image"
+                style="
+                  background-image: url('https://images.pexels.com/photos/437037/pexels-photo-437037.jpeg?auto=compress&cs=tinysrgb&w=40&h=40');
+                "
+              ></div>
+              <div class="product-details">
+                <div class="product-name">Apple Watch Series 9 GPS 41mm</div>
+                <div class="product-price">$399</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="summary-details">
+            <div class="address-section">
+              <div class="detail-group">
+                <div class="detail-label">Address</div>
+                <div class="detail-value">
+                  1131 Dusty Townline, Jacksonville, TX 40322
+                </div>
+              </div>
+
+              <div class="detail-group">
+                <div class="detail-label">Shipment method</div>
+                <div class="detail-value">Free</div>
+              </div>
+            </div>
+
+            <div class="pricing-section">
+              <div class="pricing-row">
+                <span class="pricing-label">Subtotal</span>
+                <span class="pricing-value">$2347</span>
+              </div>
+
+              <div class="pricing-row secondary">
+                <span class="pricing-label">Estimated Tax</span>
+                <span class="pricing-value">$50</span>
+              </div>
+
+              <div class="pricing-row secondary">
+                <span class="pricing-label">Estimated shipping & Handling</span>
+                <span class="pricing-value">$29</span>
+              </div>
+
+              <div class="pricing-row total">
+                <span class="pricing-label">Total</span>
+                <span class="pricing-value">$2426</span>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
+
+      <!-- Payment Section -->
+      <div class="payment-section">
+        <h2 class="section-title">Payment</h2>
+
+        <div class="payment-tabs">
+          <button class="tab-button active" data-tab="credit-card">
+            Credit Card
+          </button>
+          
+        </div>
+
+        <div class="tab-content active" id="credit-card">
+          <div class="credit-card">
+            <div class="card-visual">
+              <img src="../../assets/icons/card-details-icon.svg" alt="">
+            </div>
+
+            <div class="form-group">
+              <input
+                type="text"
+                class="form-input"
+                placeholder="Cardholder Name"
+                id="cardholder-name"
+              />
+            </div>
+
+            <div class="form-group">
+              <input
+                type="text"
+                class="form-input"
+                placeholder="Card Number"
+                id="card-number"
+                maxlength="19"
+              />
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <input
+                  type="text"
+                  class="form-input"
+                  placeholder="Exp.Date"
+                  id="exp-date"
+                  maxlength="5"
+                />
+              </div>
+              <div class="form-group">
+                <input
+                  type="text"
+                  class="form-input"
+                  placeholder="CVV"
+                  id="cvv"
+                  maxlength="3"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
         
-        <!-- Payment Section -->
-        <div class="payment-section">
-            <h2 class="section-title">Payment</h2>
-            
-            <!-- Payment Tabs -->
-            <div class="payment-tabs">
-                <button class="tab-button active" data-tab="credit-card">Credit Card</button>
-                <button class="tab-button" data-tab="paypal">PayPal</button>
-                <button class="tab-button" data-tab="paypal-credit">PayPal Credit</button>
-            </div>
-            
-            <!-- Credit Card Tab Content -->
-            <div class="tab-content active" id="credit-card">
-                <!-- Credit Card Visual -->
-                <div class="credit-card">
-                    <div class="card-background">
-                        <div class="card-overlay-1"></div>
-                        <div class="card-overlay-2"></div>
-                        
-                        <div class="card-header">
-                            <img src="./public/image-7.png" alt="Chip" class="card-chip">
-                            <img src="./public/wifi.svg" alt="Contactless" class="card-wifi">
-                        </div>
-                        
-                        <div class="card-footer">
-                            <div class="card-numbers">
-                                <span>4085</span>
-                                <span>9536</span>
-                                <span>8475</span>
-                                <span>9530</span>
-                            </div>
-                            
-                            <div class="card-bottom">
-                                <span class="cardholder-label">Cardholder</span>
-                                <img src="./public/mastercard.png" alt="Mastercard" class="card-logo">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Payment Form -->
-                <div class="payment-form">
-                    <input type="text" placeholder="Cardholder Name" class="form-input">
-                    <input type="text" placeholder="Card Number" class="form-input">
-                    
-                    <div class="form-row">
-                        <input type="text" placeholder="Exp.Date" class="form-input">
-                        <input type="text" placeholder="CVV" class="form-input">
-                    </div>
-                </div>
-            </div>
-            
-            <!-- PayPal Tab Content -->
-            <div class="tab-content" id="paypal">
-                <div class="placeholder-content">
-                    PayPal payment options would go here
-                </div>
-            </div>
-            
-            <!-- PayPal Credit Tab Content -->
-            <div class="tab-content" id="paypal-credit">
-                <div class="placeholder-content">
-                    PayPal Credit payment options would go here
-                </div>
-            </div>
-            
-            <!-- Checkbox -->
-            <div class="checkbox-group">
-                <input type="checkbox" id="same-billing" class="custom-checkbox">
-                <label for="same-billing">Same as billing address</label>
-            </div>
-            
-            <!-- Action Buttons -->
-            <div class="action-buttons">
-                <button class="btn btn-outline">Back</button>
-                <button class="btn btn-primary">Pay</button>
-            </div>
+
+        <div class="checkbox-group">
+          <label class="checkbox-label">
+            <input type="checkbox" class="checkbox-input" />
+            <span class="checkbox-custom"></span>
+            Same as billing address
+          </label>
         </div>
+
+        <div class="button-group">
+          <button class="btn-3 btn-3-outline">Back</button>
+          <button class="btn-3 btn-3-primary">Pay</button>
+        </div>
+      </div>
     </div>
+
+                
+            
+            
+        
+            
     
     
      <footer>
@@ -304,67 +322,7 @@
 
             <script src="../../assets/js/bs/bootstrap.bundle.js"></script>
 
-<script >
-        document.addEventListener('DOMContentLoaded', function() {
-    const tabButtons = document.querySelectorAll('.tab-button');
-    const tabContents = document.querySelectorAll('.tab-content');
-    
-    tabButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const targetTab = this.getAttribute('data-tab');
-            
-            tabButtons.forEach(btn => btn.classList.remove('active'));
-            tabContents.forEach(content => content.classList.remove('active'));
-            
-            this.classList.add('active');
-            document.getElementById(targetTab).classList.add('active');
-        });
-    });
-    
-    const inputs = document.querySelectorAll('.form-input');
-    
-    inputs.forEach(input => {
-        input.addEventListener('focus', function() {
-            this.style.borderColor = '#000';
-        });
-        
-        input.addEventListener('blur', function() {
-            if (!this.value) {
-                this.style.borderColor = '#cecece';
-            }
-        });
-    });
-    
-    const cardNumberInput = document.querySelector('input[placeholder="Card Number"]');
-    if (cardNumberInput) {
-        cardNumberInput.addEventListener('input', function(e) {
-            let value = e.target.value.replace(/\s/g, '').replace(/[^0-9]/gi, '');
-            let formattedValue = value.match(/.{1,4}/g)?.join(' ') || value;
-            if (formattedValue !== e.target.value) {
-                e.target.value = formattedValue;
-            }
-        });
-    }
-    
-    const expiryInput = document.querySelector('input[placeholder="Exp.Date"]');
-    if (expiryInput) {
-        expiryInput.addEventListener('input', function(e) {
-            let value = e.target.value.replace(/\D/g, '');
-            if (value.length >= 2) {
-                value = value.substring(0, 2) + '/' + value.substring(2, 4);
-            }
-            e.target.value = value;
-        });
-    }
-    
-    const cvvInput = document.querySelector('input[placeholder="CVV"]');
-    if (cvvInput) {
-        cvvInput.addEventListener('input', function(e) {
-            e.target.value = e.target.value.replace(/\D/g, '').substring(0, 4);
-        });
-    }
-});
-    </script>
+
    
   </body>
 </html>
