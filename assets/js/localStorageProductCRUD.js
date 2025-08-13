@@ -90,6 +90,8 @@ window.addEventListener("load", function () {
   userProducts.forEach((product) => {
     renderProduct(product);
   });
+
+  loadCategoriesIntoSelect();
 });
 
 function renderProduct(product) {
@@ -126,4 +128,19 @@ function renderProduct(product) {
 
   // Add row to table
   tbody.appendChild(newRow);
+}
+
+function loadCategoriesIntoSelect() {
+  const categorySelect = document.getElementById("productCategory");
+
+  categorySelect.innerHTML = `<option value="">Select Category</option>`;
+
+  const categories = JSON.parse(localStorage.getItem("categories")) || [];
+
+  categories.forEach((cat) => {
+    const option = document.createElement("option");
+    option.value = cat.name;
+    option.textContent = cat.name;
+    categorySelect.appendChild(option);
+  });
 }
