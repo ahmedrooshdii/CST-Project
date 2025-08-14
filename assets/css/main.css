@@ -463,6 +463,7 @@
   .product-card {
     flex: 0 0 268px;
 
+    cursor: pointer;
     background-color: var(--color-cultured);
 
     border-radius: 12px;
