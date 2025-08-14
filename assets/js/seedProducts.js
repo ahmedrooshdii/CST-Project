@@ -8,8 +8,8 @@ function seedProducts() {
 
   const sampleProducts = [
     {
-      name: "iPhone 14 Pro Max",
-      price: 45000,
+      name: "Apple iPhone 14 Pro Max 128GB · Deep Purple (MQ9T3RX/A)",
+      price: 900,
       stock: 12,
       status: "Active",
       description: "Apple flagship smartphone with A16 chip",

@@ -103,9 +103,9 @@ function renderProduct(product) {
 
   // Determine status badge class
   let statusClass = "bg-success";
-  if (productStatus === "Out of Stock" || productStock == 0) {
+  if (product.status === "Out of Stock" || productStock == 0) {
     statusClass = "bg-danger";
-  } else if (productStatus === "Inactive") {
+  } else if (product.status === "Inactive") {
     statusClass = "bg-warning";
   }
 
