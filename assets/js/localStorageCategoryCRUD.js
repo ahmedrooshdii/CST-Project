@@ -13,6 +13,10 @@ window.addEventListener("load", function () {
 
   // Query Elements -----------------------
   const categoryTbody = document.getElementById("categoryTbody");
+  const imageInput = document.getElementById("categoryImage");
+  const preview = document.getElementById("preview");
+  const imageInputUpdate = document.getElementById("categoryImageUpdate");
+  const previewUpdate = document.getElementById("previewUpdate");
   const addModal = new bootstrap.Modal(
     document.getElementById("addCategoryModal")
   );
@@ -23,6 +27,8 @@ window.addEventListener("load", function () {
   // Declare categories --------------------
   let categories = [];
   let currentEditId = null;
+  // Declare image url variable --------------------
+  let imageUrl = "";
 
   // CRUD METHODS --------------------------
   function loadCategories() {
@@ -67,6 +73,7 @@ window.addEventListener("load", function () {
       name,
       description,
       status,
+      imageUrl,
     };
     categories.push(newCategory);
     saveCategories();
@@ -77,7 +84,7 @@ window.addEventListener("load", function () {
   function updateCategory(id, name, description, status) {
     const index = categories.findIndex((c) => c.id === id);
     if (index !== -1) {
-      categories[index] = { id, name, description, status };
+      categories[index] = { id, name, description, status, imageUrl };
       saveCategories();
       renderCategories();
       showToast("Updated successfully!", "success");
@@ -166,7 +173,11 @@ window.addEventListener("load", function () {
         category.description;
       document.querySelector("#editCategoryModal select.form-select").value =
         category.status;
-
+      imageUrl = category.imageUrl;
+      if (imageUrl) {
+        previewUpdate.src = imageUrl;
+        previewUpdate.classList.remove("d-none");
+      }
       editModal.show();
     }
   });
@@ -176,6 +187,38 @@ window.addEventListener("load", function () {
     .addEventListener("keyup", function () {
       searchCategories(this.value.toLowerCase());
     });
+
+  // Image Converting on adding File
+  //add form
+  imageInput.addEventListener("change", function () {
+    const file = this.files[0];
+
+    if (file) {
+      const reader = new FileReader();
+
+      reader.onload = function (ev) {
+        imageUrl = ev.target.result;
+        preview.src = imageUrl;
+        preview.classList.remove("d-none");
+      };
+      reader.readAsDataURL(file);
+    }
+  });
+  //update form
+  imageInputUpdate.addEventListener("change", function () {
+    const file = this.files[0];
+
+    if (file) {
+      const reader = new FileReader();
+
+      reader.onload = function (ev) {
+        imageUrl = ev.target.result;
+        previewUpdate.src = imageUrl;
+        previewUpdate.classList.remove("d-none");
+      };
+      reader.readAsDataURL(file);
+    }
+  });
 
   // ==== INIT ====
   loadCategories();
