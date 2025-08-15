@@ -46,7 +46,7 @@ window.addEventListener("load", function () {
   let users = JSON.parse(localStorage.getItem("users")) || [];
 
   function getCurrentUser() {
-    return users.find((u) => u.email === currentUser.email);
+    return users.find((u) => u.email === currentUser?.email);
   }
 
   function saveUsers() {
