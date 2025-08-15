@@ -110,8 +110,8 @@
       <div id="collapsePrice" class="accordion-collapse collapse show" aria-labelledby="headingPrice">
         <div class="accordion-body">
           <div class="d-flex justify-content-between mb-2">
-            <input type="number" class="form-control me-2" value="200" min="0" id="priceFrom">
-            <input type="number" class="form-control" value="1299" max="2000" id="priceTo">
+            <input type="number" class="form-control me-2" value="50" min="0" id="priceFrom">
+            <input type="number" class="form-control" value="5000" max="2000" id="priceTo">
           </div>
           
         </div>
@@ -132,7 +132,7 @@
           </div>
           <!-- Brand checkboxes as before -->
           <div class="filter-check mb-2">
-            <input class="form-check-input" type="checkbox" id="catphone" checked>
+            <input class="form-check-input" type="checkbox" id="catphone" >
             <label class="form-check-label d-flex justify-content-between w-100" for="catphone">
               <span>phones</span><span class="text-muted">110</span>
             </label>
@@ -173,7 +173,7 @@
     </div>
 
     <!-- Built-in Memory Filter -->
-    <div class="accordion-item">  <!--style="display: none;"-->
+    <div class="accordion-item" style="display: none;">  <!--style="display: none;"-->
       <h2 class="accordion-header" id="headingMemory">
         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMemory" aria-expanded="true" aria-controls="collapseMemory">
           Built-in memory
@@ -552,6 +552,68 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
+// Attach event listeners to all category checkboxes
+document.querySelectorAll('#collapseBrand input[type="checkbox"]').forEach(checkbox => {
+    checkbox.addEventListener("change", filterProductsByCategory);
+});
+
+// Run filter on page load too
+filterProductsByCategory();
+
+function filterProductsByCategory() {
+    // Get all checked categories from checkbox value or label text
+    const selectedCategories = Array.from(document.querySelectorAll('#collapseBrand input[type="checkbox"]:checked'))
+        .map(cb => cb.nextElementSibling.querySelector("span").textContent.trim().toLowerCase());
+
+    // Loop over product cards
+    document.querySelectorAll(".product-card").forEach(card => {
+        const productCategory = card.dataset.category?.toLowerCase();
+
+        // Show if matches any selected category OR if none selected
+        if (selectedCategories.length === 0 || selectedCategories.includes(productCategory)) {
+            card.style.display = "";
+        } else {
+            card.style.display = "none";
+        }
+    });
+}
+//price
+// Attach event listeners for price inputs
+document.getElementById("priceFrom").addEventListener("input", filterProducts);
+document.getElementById("priceTo").addEventListener("input", filterProducts);
+
+// Combine category + price filter in one function
+function filterProducts() {
+    const priceFrom = parseFloat(document.getElementById("priceFrom").value) || 0;
+    const priceTo = parseFloat(document.getElementById("priceTo").value) || Infinity;
+
+    // Get selected categories (lowercase)
+    const selectedCategories = Array.from(document.querySelectorAll('#collapseBrand input[type="checkbox"]:checked'))
+        .map(cb => cb.nextElementSibling.querySelector("span").textContent.trim().toLowerCase());
+
+    document.querySelectorAll(".product-card").forEach(card => {
+        const productCategory = card.dataset.category?.toLowerCase();
+        const productPrice = parseFloat(card.dataset.price);
+
+        const matchCategory = selectedCategories.length === 0 || selectedCategories.includes(productCategory);
+        const matchPrice = productPrice >= priceFrom && productPrice <= priceTo;
+
+        // Show if matches both category & price
+        if (matchCategory && matchPrice) {
+            card.style.display = "";
+        } else {
+            card.style.display = "none";
+        }
+    });
+}
+
+// Run on page load to apply default filter
+filterProducts();
+
+// Update category checkboxes to use the combined filter
+document.querySelectorAll('#collapseBrand input[type="checkbox"]').forEach(checkbox => {
+    checkbox.addEventListener("change", filterProducts);
+});
 
 
 </script>
