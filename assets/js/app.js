@@ -1,3 +1,5 @@
+// Created by: Ahmed Roshdi
+
 /* -------- Categories carousel --------*/
 const carousel = document.querySelector(".categories__carousel");
 const nextBtn = document.getElementById("next");

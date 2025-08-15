@@ -1,3 +1,5 @@
+// Created by: Ahmed Roshdi
+
 function seedProducts() {
   let existingProducts = JSON.parse(localStorage.getItem("products")) || [];
   if (existingProducts.length > 0) return;

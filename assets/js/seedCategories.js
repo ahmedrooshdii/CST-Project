@@ -1,3 +1,5 @@
+// Created by: Ahmed Roshdi
+
 function seedProducts() {
   let existingCategories = JSON.parse(localStorage.getItem("categories")) || [];
   if (existingCategories.length > 0) return;

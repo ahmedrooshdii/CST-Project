@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      /* من الستايل بتاعك */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      nav {
+        margin: 0 10px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+      }
+      header a {
+        text-decoration: none;
+        color: #222;
+        font-family: sans-serif;
+        font-size: 0.9em;
+      }
+      #subnav {
+        color: aliceblue;
+        background-color: rgba(46, 46, 46, 1);
+        padding-top: 10px;
+      }
+      #subnav i {
+        margin: 2px;
+        color: white;
+      }
+      footer {
+        color: rgba(207, 207, 207, 1);
+        background-color: black;
+      }
+      footer h5 {
+        color: white;
+      }
+      #social i {
+        color: white;
+        font-size: larger;
+      }
+
+      /* هيدر فوق */
+      .top-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 8px 10px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+        flex-wrap: wrap;
+      }
+      .top-header .header-left,
+      .top-header .header-right {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      /* النافبار */
+      .main-nav {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        padding: 10px;
+        position: relative;
+      }
+      .main-nav .logo img {
+        width: 150px;
+        height: 50px;
+      }
+      .search-form {
+        position: relative;
+        flex: 1;
+        max-width: 400px;
+      }
+      .search-form i {
+        position: absolute;
+        top: 50%;
+        left: 10px;
+        transform: translateY(-50%);
+        color: gray;
+      }
+      .search-form input {
+        width: 100%;
+        padding: 8px 8px 8px 35px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+      .menu {
+        list-style: none;
+        display: flex;
+        gap: 15px;
+        margin: 0;
+      }
+      .menu a {
+        text-decoration: none;
+        color: #222;
+      }
+      .menu-toggle {
+        display: none;
+        background: none;
+        border: none;
+        font-size: 1.4em;
+      }
+
+      /* سب ناف */
+      .sub-nav {
+        display: flex;
+        justify-content: space-evenly;
+        gap: 10px;
+        flex-wrap: wrap;
+        padding: 10px 0;
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        .menu {
+          display: none;
+          flex-direction: column;
+          position: absolute;
+          top: 60px;
+          right: 10px;
+          background: white;
+          border: 1px solid #ddd;
+          padding: 10px;
+        }
+        .menu.show {
+          display: flex;
+        }
+        .menu-toggle {
+          display: block;
+          margin-left: auto;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="top-header">
+      <div class="header-left">
+        <a href="mailto:Mohamedbasiouny111@gmail.com">
+          <i class="fa-solid fa-envelope"></i> Mohamedbasiouny111@gmail.com
+        </a>
+        <span>|</span>
+        <a href="tel:01111514032">
+          <i class="fa-solid fa-phone"></i> 01111514032
+        </a>
+      </div>
+
+      <div class="header-right">
+        <a href="./pages/auth/Register.html"
+          ><i class="fa-solid fa-user-plus"></i> Register</a
+        >
+        <span>|</span>
+        <a href="./pages/auth/login.html"
+          ><i class="fa-solid fa-arrow-right-to-bracket"></i> Login</a
+        >
+        <span>|</span>
+        <a href="./pages/auth/SellerRegister.html">Be a seller</a>
+      </div>
+    </header>
+
+    <nav class="main-nav">
+      <a href="Home.html" class="logo">
+        <img src="./assets/images/logo.svg" alt="Logo" />
+      </a>
+
+      <form class="search-form">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="search" placeholder="Search" aria-label="Search" />
+      </form>
+
+      <ul class="menu">
+        <li><a href="#">Home</a></li>
+        <li><a href="./pages/about.html">About</a></li>
+        <li><a href="./pages/ContactUs.html">Contact Us</a></li>
+        <li><a href="#">Blog</a></li>
+        <li>
+          <a href="#"><i class="fa-regular fa-heart"></i></a>
+        </li>
+        <li>
+          <a href="#"><i class="fa-solid fa-cart-shopping"></i></a>
+        </li>
+      </ul>
+
+      <button class="menu-toggle"><i class="fa-solid fa-bars"></i></button>
+    </nav>
+
+    <nav id="subnav" class="sub-nav">
+      <p><i class="fa-solid fa-mobile"></i>Phones</p>
+      <p>|</p>
+      <p><i class="fa-solid fa-desktop"></i>Computers</p>
+      <p>|</p>
+      <p><i class="fa-solid fa-clock"></i>Smart Watches</p>
+      <p>|</p>
+      <p><i class="fa-solid fa-camera"></i>Cameras</p>
+      <p>|</p>
+      <p><i class="fa-solid fa-headset"></i>Headphones</p>
+      <p>|</p>
+      <p><i class="fa-solid fa-gamepad"></i>Gaming</p>
+    </nav>
+  </body>
+</html>

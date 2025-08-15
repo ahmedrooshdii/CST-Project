@@ -1,3 +1,5 @@
+// Created by: Ahmed Roshdi
+
 window.addEventListener("load", function () {
   const user = JSON.parse(sessionStorage.getItem("currentUser"));
   if (!user) {
@@ -5,9 +7,9 @@ window.addEventListener("load", function () {
     return;
   }
 
-  if (user.role !== "admin") {
-    window.location.href = "../../Home.html";
-  }
+  // if (user.role !== "admin") {
+  //   window.location.href = "../../Home.html";
+  // }
 
   // Query Elements -----------------------
   const categoryTbody = document.getElementById("categoryTbody");
@@ -69,7 +71,7 @@ window.addEventListener("load", function () {
     categories.push(newCategory);
     saveCategories();
     renderCategories();
-    showToast("Updated successfully!", "success");
+    showToast("Added successfully!", "success");
   }
 
   function updateCategory(id, name, description, status) {
@@ -78,6 +80,7 @@ window.addEventListener("load", function () {
       categories[index] = { id, name, description, status };
       saveCategories();
       renderCategories();
+      showToast("Updated successfully!", "success");
     }
   }
 
@@ -85,6 +88,7 @@ window.addEventListener("load", function () {
     categories = categories.filter((cat) => cat.id !== id);
     saveCategories();
     renderCategories();
+    showToast("Deleted successfully!", "success");
   }
 
   function searchCategories(searchText) {

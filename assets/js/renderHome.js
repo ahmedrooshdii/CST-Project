@@ -1,3 +1,5 @@
+// Created by: Ahmed Roshdi
+
 document.addEventListener("DOMContentLoaded", function () {
   renderProductCards();
   attachCardListeners();
@@ -106,8 +108,11 @@ function renderCategoryCards() {
 }
 
 function addToCart(e) {
-  const currentUser = JSON.parse(sessionStorage.getItem("currentUser"))?.email;
-
+  const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
+  if (!currentUser) {
+    window.location.href = "../../pages/auth/login.html";
+    return;
+  }
   let users = JSON.parse(localStorage.getItem("users"));
 
   const card = e.target.closest(".product-card");
@@ -116,7 +121,7 @@ function addToCart(e) {
   const quantity = 1;
 
   users.forEach((user) => {
-    if (user.email === currentUser) {
+    if (user.email === currentUser.email) {
       if (!user.cart) user.cart = [];
       const existingItem = user.cart.find(
         (item) => item.productId === productId
