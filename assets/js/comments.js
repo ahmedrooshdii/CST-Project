@@ -122,6 +122,7 @@ window.addEventListener("load", function () {
 
     reviewList.prepend(reviewItem);
     commentInput.value = "";
+    showToast("Review added successfully!", "success");
   });
 
   function renderReviews() {
