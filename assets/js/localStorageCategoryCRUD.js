@@ -170,8 +170,10 @@ window.addEventListener("load", function () {
       document.querySelector("#editCategoryModal select.form-select").value =
         category.status;
       imageUrl = category.imageUrl;
-      previewUpdate.src = imageUrl;
-      previewUpdate.classList.remove("d-none");
+      if (imageUrl) {
+        previewUpdate.src = imageUrl;
+        previewUpdate.classList.remove("d-none");
+      }
       editModal.show();
     }
   });
@@ -207,6 +209,8 @@ window.addEventListener("load", function () {
 
       reader.onload = function (ev) {
         imageUrl = ev.target.result;
+        previewUpdate.src = imageUrl;
+        previewUpdate.classList.remove("d-none");
       };
       reader.readAsDataURL(file);
     }
