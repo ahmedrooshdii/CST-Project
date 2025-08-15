@@ -168,10 +168,10 @@
         <div class="row align-items-center justify-content-between">
           <div class="col-12 col-lg-6">
             <div
-              class="imagesWrapper d-flex flex-md-row flex-column align-items-center"
+              class="imagesWrapper d-flex flex-md-row flex-column align-items-center justify-content-center"
             >
               <!-- Side Images -->
-              <div
+              <!-- <div
                 class="side-images d-flex flex-md-column flex-row justify-content-center gap-3"
               >
                 <div class="side-image-wrapper">
@@ -186,21 +186,20 @@
                 <div class="side-image-wrapper">
                   <img src="../../assets/images/side-image-3.png" alt="" />
                 </div>
-              </div>
+              </div> -->
 
               <!-- Main Image -->
-              <div class="main-image flex-grow-1">
-                <img src="../../assets/images/main-image.png" alt="" />
+              <div class="main-image text-center">
+                <img id="product-image" src="" alt="" />
               </div>
             </div>
           </div>
           <div class="col-12 col-lg-5 pt-4 pt-lg-0">
             <div class="product-info">
-              <h1 class="product-title">Apple iPhone 14 Pro Max</h1>
+              <h1 class="product-title" id="product-title"></h1>
 
               <div class="product-price">
-                <span class="current-price">$1399</span>
-                <span class="original-price">$1499</span>
+                <span class="current-price" id="price"></span>
               </div>
 
               <div class="color-selection">
@@ -288,7 +287,7 @@
                 <a href="#" class="more-link">more...</a>
               </p>
 
-              <div class="action-buttons">
+              <div class="action-buttons flex-wrap">
                 <button class="btn btn-outline">Add to Wishlist</button>
                 <button class="btn btn-primary">Add to Cart</button>
               </div>
@@ -336,67 +335,45 @@
         <div class="details-card">
           <h2>Details</h2>
 
-          <p class="details-intro">
-            Just as a book is judged by its cover, the first thing you notice
-            when you pick up a modern smartphone is the display. Nothing
-            surprising, because advanced technologies allow you to practically
-            level the display frames and cutouts for the front camera and
-            speaker, leaving no room for bold design solutions. And how good
-            that in such realities Apple everything is fine with displays. Both
-            critics and mass consumers always praise the quality of the picture
-            provided by the products of the Californian brand. And last year's
-            6.7-inch Retina panels, which had ProMotion, caused real admiration
-            for many.
-          </p>
+          <p class="details-intro" id="product-description-info"></p>
 
           <div class="specs-section">
-            <h3>Screen</h3>
+            <h3>Product Information</h3>
             <div class="specs-list">
               <div class="spec-row">
-                <span class="spec-name">Screen diagonal</span>
-                <span class="spec-val">6.7"</span>
+                <span class="spec-name">Category</span>
+                <span class="spec-val" id="product-category"></span>
               </div>
               <div class="spec-row">
-                <span class="spec-name">The screen resolution</span>
-                <span class="spec-val">2796x1290</span>
+                <span class="spec-name">Status</span>
+                <span class="spec-val" id="product-status"></span>
               </div>
               <div class="spec-row">
-                <span class="spec-name">The screen refresh rate</span>
-                <span class="spec-val">120 Hz</span>
-              </div>
-              <div class="spec-row">
-                <span class="spec-name">The pixel density</span>
-                <span class="spec-val">460 ppi</span>
-              </div>
-              <div class="spec-row">
-                <span class="spec-name">Screen type</span>
-                <span class="spec-val">OLED</span>
-              </div>
-              <div class="spec-row">
-                <span class="spec-name">Additionally</span>
-                <span class="spec-val multiline"
-                  >Dynamic Island<br />Always-On display<br />HDR display<br />True
-                  Tone<br />Wide color (P3)</span
-                >
+                <span class="spec-name">Stock</span>
+                <span class="spec-val" id="product-stock"></span>
               </div>
             </div>
           </div>
 
           <div class="specs-section">
-            <h3>CPU</h3>
+            <h3>Seller Details</h3>
             <div class="specs-list">
               <div class="spec-row">
-                <span class="spec-name">CPU</span>
-                <span class="spec-val">A16 Bionic</span>
+                <span class="spec-name">Seller name</span>
+                <span class="spec-val" id="seller-name"></span>
               </div>
               <div class="spec-row">
-                <span class="spec-name">Number of cores</span>
-                <span class="spec-val">6</span>
+                <span class="spec-name">Seller contact</span>
+                <span class="spec-val" id="seller-contact"></span>
+              </div>
+              <div class="spec-row">
+                <span class="spec-name">Store Name</span>
+                <span class="spec-val" id="seller-storename"></span>
               </div>
             </div>
           </div>
 
-          <button class="btn btn-outline view-more">
+          <!-- <button class="btn btn-outline view-more">
             <span>View More</span>
             <svg
               width="24"
@@ -408,7 +385,7 @@
             >
               <polyline points="6,9 12,15 18,9"></polyline>
             </svg>
-          </button>
+          </button> -->
         </div>
       </div>
     </section>
@@ -791,6 +768,6 @@
       crossorigin="anonymous"
     ></script>
     <script src="../../assets/js/bs/bootstrap.bundle.js"></script>
-    <script src="../../assets/js/renderHome.js"></script>
+    <script src="../../assets/js/single-product-render.js"></script>
   </body>
 </html>
