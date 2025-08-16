@@ -17,7 +17,7 @@
     height: auto;
     margin: 0 auto;
     display: block;
-  }
+}
 </style>
 </head>
 <body>
@@ -39,7 +39,7 @@
     <!-- Main Navigation/Categories -->
     <nav class="container-fluid navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
-    <a class="navbar-brand" href="../../Home.html"><img style="width: 150px; height: 50px; margin-right:30vw;" src="../../assets\images\logo.svg" alt=""></a>
+    <a class="navbar-brand" href="../../Home.html"><img style=" height: 50px; margin-right:20vw;" src="../../assets\images\logo.svg" alt=""></a>
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -131,7 +131,25 @@
     </div>
 
     <!-- categories Filter -->
-    <div class="accordion-item mb-3">
+     <div class="accordion-item mb-3">
+  <h2 class="accordion-header" id="headingCategory">
+    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCategory" aria-expanded="true" aria-controls="collapseCategory">
+      Categories
+    </button>
+  </h2>
+  <div id="collapseCategory" class="accordion-collapse collapse show" aria-labelledby="headingCategory">
+    <div class="accordion-body">
+      <!-- Search box -->
+      <div class="mb-3">
+        <input type="text" id="searchCategoryFilter" class="form-control" placeholder="Search category...">
+      </div>
+      <!-- Dynamic category checkboxes will be inserted here -->
+      <div id="categoryFilters"></div>
+    </div>
+  </div>
+</div>
+
+    <!-- <div class="accordion-item mb-3">
       <h2 class="accordion-header" id="headingBrand">
         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseBrand" aria-expanded="true" aria-controls="collapseBrand">
           Categories
@@ -141,9 +159,9 @@
         <div class="accordion-body">
           <div class="mb-3">
             <input type="text" class="form-control" placeholder="Search brand...">
-          </div>
+          </div> -->
           <!-- Brand checkboxes as before -->
-          <div class="filter-check mb-2">
+          <!-- <div class="filter-check mb-2">
             <input class="form-check-input" type="checkbox" id="catphone" >
             <label class="form-check-label d-flex justify-content-between w-100" for="catphone">
               <span>phones</span><span class="text-muted">110</span>
@@ -178,11 +196,11 @@
             <label class="form-check-label d-flex justify-content-between w-100" for="catgaming">
               <span>gaming</span><span class="text-muted">10</span>
             </label>
-          </div>
+          </div> -->
           
-        </div>
+        <!-- </div>
       </div>
-    </div>
+    </div> -->
 
     <!-- Built-in Memory Filter -->
     <div class="accordion-item" style="display: none;">  <!--style="display: none;"-->
@@ -464,170 +482,145 @@
     </footer>
     <script src="../../assets\js/bootstrap.bundle.min.js"></script>
     <script>
-      //handle buy now buttons 
 document.addEventListener("DOMContentLoaded", () => {
-    const cartKey = "cartItems"; // localStorage key
-    // Load existing cart from localStorage or start empty
-    let cart = JSON.parse(localStorage.getItem(cartKey)) || [];
-    // Add click event to all "Buy Now" buttons
-    document.querySelectorAll(".add-to-cart").forEach(button => {
-        button.addEventListener("click", () => {
-            const product = {
-                name: button.dataset.name,
-                price: parseFloat(button.dataset.price),
-                img: button.dataset.img,
-                quantity: 1
-            };
-            // Check if product already exists in cart
-            const existing = cart.find(item => item.name === product.name);
-            if (existing) {
-                existing.quantity += 1; // Increase quantity if exists
-            } else {
-                cart.push(product); // Add new product
-            }
-            // Save updated cart to localStorage
-            localStorage.setItem(cartKey, JSON.stringify(cart));
-            alert(`${product.name} added to cart!`);
-        });
-    });
-});
-//get  product from local storage to be card
-document.addEventListener("DOMContentLoaded", () => {
-    const productsContainer = document.querySelector(".row.row-cols-1.row-cols-md-3.g-4");
+  const cartKey = "cartItems"; // localStorage key
 
-    // Clear container first 
-    productsContainer.innerHTML = "";
+  // Load existing cart from localStorage or start empty
+  let cart = JSON.parse(localStorage.getItem(cartKey)) || [];
 
-    // Get products from localStorage
-    const products = JSON.parse(localStorage.getItem("products")) || [];
+  // Get product container
+  const productsContainer = document.querySelector(".row.row-cols-1.row-cols-md-3.g-4");
+  productsContainer.innerHTML = "";
 
-    if (products.length === 0) {
-        productsContainer.innerHTML = `<p class="text-center w-100">No products available.</p>`;
-        return;
-    }
+  // Load products from localStorage
+  const products = JSON.parse(localStorage.getItem("products")) || [];
 
+  if (products.length === 0) {
+    productsContainer.innerHTML = `<p class="text-center w-100">No products available.</p>`;
+  } else {
     products.forEach(product => {
-    const col = document.createElement("div");
-    col.className = "col product-card";
-    col.setAttribute("data-name", product.name);
-    col.setAttribute("data-price", product.price);
-    col.setAttribute("data-img", product.image);
-    col.setAttribute("data-description", product.description);
-    col.setAttribute("data-category", product.category);
-    col.setAttribute("data-stock", product.stock);
+      const col = document.createElement("div");
+      col.className = "col product-card";
+      col.setAttribute("data-name", product.name);
+      col.setAttribute("data-price", product.price);
+      col.setAttribute("data-img", product.image);
+      col.setAttribute("data-description", product.description);
+      col.setAttribute("data-category", product.category);
+      col.setAttribute("data-stock", product.stock);
 
-    col.innerHTML = `
-    <div class="card h-100 text-center position-relative product-link">
-        <div class="position-absolute top-0 end-0 p-2">
+      col.innerHTML = `
+        <div class="card h-100 text-center position-relative product-link">
+          <div class="position-absolute top-0 end-0 p-2">
             <i class="far fa-heart text-muted"></i>
-        </div>
-        <div class="card-body">
+          </div>
+          <div class="card-body">
             <img src="${product.image}" class="card-img-top mb-3" alt="${product.name}">
             <h5 class="card-title">${product.name}</h5>
             <p class="card-text fs-4 fw-bold">$${parseFloat(product.price).toFixed(2)}</p>
             <button class="btn btn-dark w-100 add-to-cart">Buy Now</button>
+          </div>
         </div>
-    </div>
-    `;
+      `;
 
-    // Add click event to navigate to product-details page     (for product detailes page)
-    col.querySelector(".product-link").addEventListener("click", (e) => {
-        // Prevent click if "Buy Now" is clicked
-        if(e.target.classList.contains("add-to-cart")) return;
+      // Go to single product page if card clicked (not Buy Now)
+      col.querySelector(".product-link").addEventListener("click", (e) => {
+        if (e.target.classList.contains("add-to-cart")) return;
         window.location.href = `single-product.html?id=${product.id}`;
+      });
+
+      productsContainer.appendChild(col);
+    });
+  }
+
+  // Attach Buy Now buttons
+  document.querySelectorAll(".add-to-cart").forEach(button => {
+    button.addEventListener("click", () => {
+      const card = button.closest(".product-card");
+      const product = {
+        name: card.dataset.name,
+        price: parseFloat(card.dataset.price),
+        img: card.dataset.img,
+        quantity: 1
+      };
+
+      const existing = cart.find(item => item.name === product.name);
+      if (existing) existing.quantity += 1;
+      else cart.push(product);
+
+      localStorage.setItem(cartKey, JSON.stringify(cart));
+      alert(`${product.name} added to cart!`);
+    });
+  });
+
+  
+  // CATEGORY FILTER (dynamic)
+ 
+  const filterContainer = document.getElementById("categoryFilters");
+  const searchInput = document.getElementById("searchCategoryFilter");
+  const categories = JSON.parse(localStorage.getItem("categories")) || [];
+
+  function renderCategories(list) {
+    filterContainer.innerHTML = "";
+    list.forEach(cat => {
+      const div = document.createElement("div");
+      div.className = "filter-check mb-2";
+      div.innerHTML = `
+        <input class="form-check-input" type="checkbox" id="cat-${cat.id}" value="${cat.name}">
+        <label class="form-check-label d-flex justify-content-between w-100" for="cat-${cat.id}">
+          <span>${cat.name}</span>
+        </label>
+      `;
+      filterContainer.appendChild(div);
     });
 
-    productsContainer.appendChild(col);
-});
-
-    // Re-attach Buy Now event for dynamically added buttons
-    const cartKey = "cartItems"; // localStorage key
-    let cart = JSON.parse(localStorage.getItem(cartKey)) || [];
-
-    document.querySelectorAll(".add-to-cart").forEach(button => {
-        button.addEventListener("click", () => {
-            const card = button.closest(".product-card");
-            const product = {
-                name: card.dataset.name,
-                price: parseFloat(card.dataset.price),
-                img: card.dataset.img,
-                quantity: 1
-            };
-            // Check if product already exists in cart
-            const existing = cart.find(item => item.name === product.name);
-            if (existing) existing.quantity += 1;
-            else cart.push(product);
-
-            localStorage.setItem(cartKey, JSON.stringify(cart));
-            alert(`${product.name} added to cart!`);
-        });
+    // Attach filter event to new checkboxes
+    document.querySelectorAll('#collapseCategory input[type="checkbox"]').forEach(cb => {
+      cb.addEventListener("change", filterProducts);
     });
-});
+  }
 
-// Attach event listeners to all category checkboxes
-document.querySelectorAll('#collapseBrand input[type="checkbox"]').forEach(checkbox => {
-    checkbox.addEventListener("change", filterProductsByCategory);
-});
+  // Initial render
+  renderCategories(categories);
 
-// Run filter on page load too
-filterProductsByCategory();
+  // Search inside categories
+  searchInput.addEventListener("keyup", function () {
+    const searchText = this.value.toLowerCase();
+    const filtered = categories.filter(cat =>
+      cat.name.toLowerCase().includes(searchText)
+    );
+    renderCategories(filtered);
+  });
 
-function filterProductsByCategory() {
-    // Get all checked categories from checkbox value or label text
-    const selectedCategories = Array.from(document.querySelectorAll('#collapseBrand input[type="checkbox"]:checked'))
-        .map(cb => cb.nextElementSibling.querySelector("span").textContent.trim().toLowerCase());
 
-    // Loop over product cards
-    document.querySelectorAll(".product-card").forEach(card => {
-        const productCategory = card.dataset.category?.toLowerCase();
+  // COMBINED FILTER (Category + Price)
 
-        // Show if matches any selected category OR if none selected
-        if (selectedCategories.length === 0 || selectedCategories.includes(productCategory)) {
-            card.style.display = "";
-        } else {
-            card.style.display = "none";
-        }
-    });
-}
-//price
-// Attach event listeners for price inputs
-document.getElementById("priceFrom").addEventListener("input", filterProducts);
-document.getElementById("priceTo").addEventListener("input", filterProducts);
-
-// Combine category + price filter in one function
-function filterProducts() {
+  function filterProducts() {
     const priceFrom = parseFloat(document.getElementById("priceFrom").value) || 0;
     const priceTo = parseFloat(document.getElementById("priceTo").value) || Infinity;
 
-    // Get selected categories (lowercase)
-    const selectedCategories = Array.from(document.querySelectorAll('#collapseBrand input[type="checkbox"]:checked'))
-        .map(cb => cb.nextElementSibling.querySelector("span").textContent.trim().toLowerCase());
+    const selectedCategories = Array.from(
+      document.querySelectorAll('#collapseCategory input[type="checkbox"]:checked')
+    ).map(cb => cb.value.toLowerCase());
 
     document.querySelectorAll(".product-card").forEach(card => {
-        const productCategory = card.dataset.category?.toLowerCase();
-        const productPrice = parseFloat(card.dataset.price);
+      const productCategory = card.dataset.category?.toLowerCase();
+      const productPrice = parseFloat(card.dataset.price);
 
-        const matchCategory = selectedCategories.length === 0 || selectedCategories.includes(productCategory);
-        const matchPrice = productPrice >= priceFrom && productPrice <= priceTo;
+      const matchCategory = selectedCategories.length === 0 || selectedCategories.includes(productCategory);
+      const matchPrice = productPrice >= priceFrom && productPrice <= priceTo;
 
-        // Show if matches both category & price
-        if (matchCategory && matchPrice) {
-            card.style.display = "";
-        } else {
-            card.style.display = "none";
-        }
+      card.style.display = (matchCategory && matchPrice) ? "" : "none";
     });
-}
+  }
 
-// Run on page load to apply default filter
-filterProducts();
+  // Price filter events
+  document.getElementById("priceFrom").addEventListener("input", filterProducts);
+  document.getElementById("priceTo").addEventListener("input", filterProducts);
 
-// Update category checkboxes to use the combined filter
-document.querySelectorAll('#collapseBrand input[type="checkbox"]').forEach(checkbox => {
-    checkbox.addEventListener("change", filterProducts);
+  // Run filter on page load
+  filterProducts();
 });
-
-
 </script>
+
 </body>
 </html>
