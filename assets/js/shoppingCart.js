@@ -9,6 +9,8 @@ let checkoutBtn;
 let subTotalPrice;
 let taxPrice;
 let totalPrice;
+
+// document load
 window.addEventListener("load", () => {
   //query elements
   cartContainer = document.getElementById("cart-content");
@@ -103,7 +105,6 @@ function getProduct(id) {
   let product = products.filter((el) => {
     return el.id == id;
   })[0];
-  console.log(product);
   return product;
 }
 //increement the quantity
