@@ -58,7 +58,9 @@ window.addEventListener("load", function () {
     if (!user) return;
 
     document.querySelectorAll(".favorite").forEach((icon) => {
-      const productId = icon.closest("[data-id]").dataset.id;
+      const card = icon.closest("[data-id]");
+      if (!card) return; // لو ملقاش card فيه data-id يخرج
+      const productId = card.dataset.id;
       if (user.favorites && user.favorites.includes(productId)) {
         icon.querySelector(".fav__icon").classList.add("makeFavorite");
       } else {

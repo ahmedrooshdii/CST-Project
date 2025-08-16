@@ -452,7 +452,7 @@ p {
 /*Cards*/
 .product-card {
   flex: 0 0 268px;
-
+  max-width: 268px;
   cursor: pointer;
   background-color: var(--color-cultured);
 
