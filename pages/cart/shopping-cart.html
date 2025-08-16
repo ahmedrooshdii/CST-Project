@@ -33,7 +33,7 @@
 <nav class="container-fluid navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
 
-    <a class="navbar-brand" href="Home.html"><img style="width: 150px; height: 50px; margin-right:30vw;" src="../../assets/images/logo.svg" alt=""></a>
+    <a class="navbar-brand" href="../../Home.html"><img style="width: 150px; height: 50px; margin-right:30vw;" src="../../assets/images/logo.svg" alt=""></a>
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -51,7 +51,7 @@
 
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
+          <a class="nav-link active" aria-current="page" href="../../Home.html">Home</a>
         </li>
         <li class="nav-item">
               <a class="nav-link" href="../../pages/products/product page.html">All Products</a>
@@ -62,7 +62,7 @@
         </li>
      
         <li class="nav-item">
-          <a class="nav-link"  href="#">Contact Us</a>
+          <a class="nav-link"  href="../ContactUs.html">Contact Us</a>
         </li>
 
          <li class="nav-item">
@@ -105,124 +105,16 @@
             <div class="shopping-cart-section">
                 <h2 class="section-title">Shopping Cart</h2>
                 
-                <div class="cart-card">
-                    <!-- Cart Item 1 -->
-                    <div class="cart-item">
-                        <div class="item-image" style="background-image: url('../../assets/images/main-image.png');background-size: contain;background-repeat: no-repeat; "></div>
-                        
-                        <div class="item-details">
-                            <div class="item-info">
-                                <div class="item-name">Apple iPhone 14 Pro Max 128Gb Deep Purple</div>
-                                <div class="item-id">#25139526913984</div>
-                            </div>
-                            
-                            <div class="item-controls">
-                                <div class="quantity-controls">
-                                    <button class="quantity-btn minus-btn">
-                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                            <line x1="5" y1="12" x2="19" y2="12"></line>
-                                        </svg>
-                                    </button>
-                                    <div class="quantity-display">1</div>
-                                    <button class="quantity-btn plus-btn">
-                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                            <line x1="12" y1="5" x2="12" y2="19"></line>
-                                            <line x1="5" y1="12" x2="19" y2="12"></line>
-                                        </svg>
-                                    </button>
-                                </div>
-                                
-                                <div class="item-price">$1399</div>
-                                
-                                <button class="remove-btn">
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <line x1="18" y1="6" x2="6" y2="18"></line>
-                                        <line x1="6" y1="6" x2="18" y2="18"></line>
-                                    </svg>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
+                <div class="cart-card" id="cart-content">
                     
-                    <div class="separator"></div>
                     
-                    <!-- Cart Item 2 -->
-                    <div class="cart-item">
-                        <div class="item-image" style="background-image: url('../../assets/images/related-image-2.png') ;background-size: contain;background-repeat: no-repeat;"></div>
-                        
-                        <div class="item-details">
-                            <div class="item-info">
-                                <div class="item-name">AirPods Max Silver</div>
-                                <div class="item-id">#53459358345</div>
-                            </div>
-                            
-                            <div class="item-controls">
-                                <div class="quantity-controls">
-                                    <button class="quantity-btn minus-btn">
-                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                            <line x1="5" y1="12" x2="19" y2="12"></line>
-                                        </svg>
-                                    </button>
-                                    <div class="quantity-display">1</div>
-                                    <button class="quantity-btn plus-btn">
-                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                            <line x1="12" y1="5" x2="12" y2="19"></line>
-                                            <line x1="5" y1="12" x2="19" y2="12"></line>
-                                        </svg>
-                                    </button>
-                                </div>
-                                
-                                <div class="item-price">$549</div>
-                                
-                                <button class="remove-btn">
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <line x1="18" y1="6" x2="6" y2="18"></line>
-                                        <line x1="6" y1="6" x2="18" y2="18"></line>
-                                    </svg>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
+                    <!-- <div class="separator"></div> -->
                     
-                    <div class="separator"></div>
+                 
                     
-                    <!-- Cart Item 3 -->
-                    <div class="cart-item">
-                        <div class="item-image" style="background-image: url('../../assets/images/related-image-3.png');background-size: contain;background-repeat: no-repeat;"></div>
-                        
-                        <div class="item-details">
-                            <div class="item-info">
-                                <div class="item-name">Apple Watch Series 9 GPS 41mm Starlight Aluminium</div>
-                                <div class="item-id">#63632324</div>
-                            </div>
-                            
-                            <div class="item-controls">
-                                <div class="quantity-controls">
-                                    <button class="quantity-btn minus-btn">
-                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                            <line x1="5" y1="12" x2="19" y2="12"></line>
-                                        </svg>
-                                    </button>
-                                    <div class="quantity-display">1</div>
-                                    <button class="quantity-btn plus-btn">
-                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                            <line x1="12" y1="5" x2="12" y2="19"></line>
-                                            <line x1="5" y1="12" x2="19" y2="12"></line>
-                                        </svg>
-                                    </button>
-                                </div>
-                                
-                                <div class="item-price">$399</div>
-                                
-                                <button class="remove-btn">
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <line x1="18" y1="6" x2="6" y2="18"></line>
-                                        <line x1="6" y1="6" x2="18" y2="18"></line>
-                                    </svg>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
+                    
+                   
+                    
                 </div>
             </div>
             
@@ -255,29 +147,29 @@
                         <div class="summary-details">
                             <div class="summary-row">
                                 <span class="summary-label">Subtotal</span>
-                                <span class="summary-value">$2347</span>
+                                <span class="summary-value" id="subTotalPrice"></span>
                             </div>
                             
                             <div class="summary-subsection">
                                 <div class="summary-row">
                                     <span class="summary-label secondary">Estimated Tax</span>
-                                    <span class="summary-value">$50</span>
+                                    <span class="summary-value" id="taxPrice"></span>
                                 </div>
                                 
                                 <div class="summary-row">
                                     <span class="summary-label secondary">Estimated shipping & Handling</span>
-                                    <span class="summary-value">$29</span>
+                                    <span class="summary-value" id="shippingPrice">$15</span>
                                 </div>
                             </div>
                             
                             <div class="summary-row total">
                                 <span class="summary-label">Total</span>
-                                <span class="summary-value">$2426</span>
+                                <span class="summary-value" id="totalPrice"></span>
                             </div>
                         </div>
                         
                         <!-- Checkout Button -->
-                        <button class="checkout-btn">Checkout</button>
+                        <button class="checkout-btn" id="checkoutBtn">Checkout</button>
                     </div>
                 </div>
             </div>
@@ -334,5 +226,6 @@
     </footer>
 
         <script src="../../assets/js/bs/bootstrap.bundle.js"></script>
+        <script src="../../assets/js/shoppingCart.js"></script>
 </body>
 </html>

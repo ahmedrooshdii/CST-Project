@@ -472,3 +472,8 @@ body {
         font-size: 1.125rem;
     }
 }
+
+button.checkout-btn[disabled] {
+    background-color: grey;
+    cursor: not-allowed;
+}

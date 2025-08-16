@@ -14,10 +14,6 @@ window.addEventListener("load", () => {
     return userss.find((u) => u.email === currentUser?.email);
   }
 
-  //get all users
-  function getUsers() {
-    userss = JSON.parse(localStorage.getItem("users"));
-  }
   //save user
   function saveUsers() {
     localStorage.setItem("users", JSON.stringify(userss));
@@ -45,8 +41,6 @@ window.addEventListener("load", () => {
     saveUsers();
   });
   cartBtn.addEventListener("click", function () {
-    console.log("here");
-
     const user = getCurrentUser();
     if (!user) {
       window.location.href = "../../pages/auth/login.html";
