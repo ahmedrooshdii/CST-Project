@@ -123,16 +123,25 @@ window.addEventListener("load", function () {
     const name = document.getElementById("categoryName").value.trim();
     const desc = document.getElementById("categoryDescription").value.trim();
     const status = document.getElementById("categoryStatus").value;
+    // const imageUrl = document.getElementById("categoryImage").value;
 
-    if (name || desc) {
+    console.log(imageUrl);
+
+    if (name && desc && imageUrl) {
       addCategory(name, desc, status);
+      console.log("addedddddddd");
+      document.getElementById("categoryName").value = "";
+      document.getElementById("categoryDescription").value = "";
+      document.getElementById("categoryStatus").value = "active";
+      document.getElementById("categoryImage").value = "";
+
+      preview.classList.add("d-none");
+      imageUrl = "";
+
+      addModal.hide();
+    } else {
+      showToast("Please fill data first!", "warning");
     }
-
-    document.getElementById("categoryName").value = "";
-    document.getElementById("categoryDescription").value = "";
-    document.getElementById("categoryStatus").value = "active";
-
-    addModal.hide();
   });
 
   document.querySelector("#updateCat").addEventListener("click", () => {
@@ -142,11 +151,15 @@ window.addEventListener("load", function () {
     const descInput = document
       .querySelector("#editCategoryModal textarea.form-control")
       .value.trim();
+
+    const imgInput = document
+      .querySelector("#editCategoryModal #categoryImageUpdate")
+      .value.trim();
     const statusSelect = document.querySelector(
       "#editCategoryModal select.form-select"
     ).value;
 
-    updateCategory(currentEditId, nameInput, descInput, statusSelect);
+    updateCategory(currentEditId, nameInput, descInput, statusSelect, imgInput);
     editModal.hide();
   });
 
