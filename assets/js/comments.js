@@ -3,7 +3,10 @@ window.addEventListener("load", function () {
   const reviewList = document.querySelector(".reviews-list");
   const addCommentBtn = document.getElementById("addCommentBtn");
   const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
-
+  //get star form
+  const form = document.getElementById("starsInputForm");
+  // get number of stars every change
+  let numberOfStars;
   renderReviews();
 
   addCommentBtn.addEventListener("click", () => {
@@ -334,4 +337,13 @@ window.addEventListener("load", function () {
       showToast("Review updated successfully!", "success");
     };
   }
+
+  //event listner for stars change
+  form.addEventListener("change", () => {
+    const selectedStar = form.querySelector("input[name='star']:checked");
+
+    if (selectedStar) {
+      numberOfStars = +selectedStar.value;
+    }
+  });
 });
