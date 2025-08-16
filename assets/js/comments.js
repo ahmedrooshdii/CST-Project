@@ -7,7 +7,16 @@ window.addEventListener("load", function () {
   const form = document.getElementById("starsInputForm");
   // get number of stars every change
   let numberOfStars;
+
   renderReviews();
+
+  form.addEventListener("change", () => {
+    const selectedStar = form.querySelector("input[name='star']:checked");
+
+    if (selectedStar) {
+      numberOfStars = +selectedStar.value; // هنا بيتخزن عدد النجوم
+    }
+  });
 
   addCommentBtn.addEventListener("click", () => {
     if (!currentUser) {
@@ -19,6 +28,11 @@ window.addEventListener("load", function () {
 
     if (commentText === "") {
       showToast("Please write a comment first.", "warning");
+      return;
+    }
+
+    if (!numberOfStars) {
+      showToast("Please select a rating first.", "warning");
       return;
     }
 
@@ -43,7 +57,7 @@ window.addEventListener("load", function () {
       userAvatar:
         "https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=56&h=56",
       date: formattedDate,
-      stars: 4,
+      stars: numberOfStars || 0,
       text: commentText,
     };
 
@@ -81,11 +95,7 @@ window.addEventListener("load", function () {
           <span class="review-date">${formattedDate}</span>
         </div>
         <div class="review-stars">
-          <span class="star filled">★</span>
-          <span class="star filled">★</span>
-          <span class="star filled">★</span>
-          <span class="star filled">★</span>
-          <span class="star">★</span>
+          ${renderStars(review.stars)}
         </div>
         <p class="review-text">${commentText}</p>
           <div class="text-end">
@@ -320,14 +330,11 @@ window.addEventListener("load", function () {
         if (userReview) userReview.text = newText;
       }
 
-      // حفظ التغييرات
       localStorage.setItem("products", JSON.stringify(products));
       localStorage.setItem("users", JSON.stringify(users));
 
-      // تحديث الـ UI
       selectedReviewItem.querySelector(".review-text").textContent = newText;
 
-      // إعادة الوضع الطبيعي
       saveBtn.remove();
       addCommentBtn.style.display = "inline-block";
       commentInput.value = "";
