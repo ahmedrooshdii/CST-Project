@@ -4,6 +4,10 @@ let users = JSON.parse(localStorage.getItem("users"));
 let user = getCurrentUser();
 let orderProcessing = JSON.parse(localStorage.getItem("orderProcessing"));
 let nextBtn;
+//check validity
+if (!orderProcessing) {
+  location.href = "../../pages/cart/shopping-cart.html";
+}
 // document load
 window.addEventListener("load", () => {
   //query elements
@@ -141,7 +145,6 @@ function addAddress(title, specification, description, phone) {
     phone,
   };
 
-  console.log(user);
   user.addresses = user.addresses ?? [];
 
   user.addresses.push(newAddress);

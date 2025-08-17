@@ -199,6 +199,10 @@
               let orderProcessing = JSON.parse(localStorage.getItem("orderProcessing"));
               orderProcessing.shipment="free"
 
+              if (!orderProcessing) {
+  location.href = "../../pages/cart/shopping-cart.html";
+}
+
               // even listener for form 
               form.addEventListener("change",()=>{
                 const data = new FormData(form).get("shipment")
