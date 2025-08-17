@@ -94,12 +94,10 @@
 
     <div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
        
-       <form class="col-12 col-md-12 col-lg-5 col-xl-6 position-relative">
-       
-        <i class="fa-solid fa-magnifying-glass position-absolute top-50 start-0 translate-middle-y ms-3 text-muted"></i>
-        <input type="search" class="form-control ps-5" placeholder="Search" aria-label="Search">
-       
-        </form>
+       <form id="homeSearchForm" class="col-12 col-md-12 col-lg-5 col-xl-6 position-relative">
+          <i class="fa-solid fa-magnifying-glass position-absolute top-50 start-0 translate-middle-y ms-3 text-muted"></i>
+          <input type="search" id="productSearch" class="form-control ps-5" placeholder="Search" aria-label="Search">
+      </form>
 
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
@@ -107,7 +105,7 @@
           <a class="nav-link " aria-current="page" href="../Home.html">Home</a>
         </li>
         <li class="nav-item">
-              <a class="nav-link" href="../../pages/products/product page.html">All Products</a>
+              <a class="nav-link" href="products/product page.html">All Products</a>
             </li>
         <li class="nav-item">
           <a class="nav-link  active" href="./about.html">About</a>
@@ -274,5 +272,24 @@
     </footer>
 
         <script src="../../assets/js/bs/bootstrap.bundle.js"></script>
+        <script>
+          document.addEventListener("DOMContentLoaded", function () {
+  handleHomeSearch("homeSearchForm", "productSearch", "products/product page.html"); //handle search
+});
+function handleHomeSearch(formId, inputId, targetPage) {
+  const form = document.getElementById(formId);
+  if (!form) return;
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    const query = document.getElementById(inputId)?.value.trim();
+    if (query) {
+      window.location.href = `${targetPage}?search=${encodeURIComponent(query)}`;
+    } else {
+      window.location.href = targetPage;
+    }
+  });
+}
+        </script>
 </body>
 </html>
