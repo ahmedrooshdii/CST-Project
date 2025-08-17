@@ -1,7 +1,7 @@
 //declare variable
 const productId = new URLSearchParams(location.search).get("id");
 const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
-
+const productsList = JSON.parse(localStorage.getItem("products"));
 let userss = JSON.parse(localStorage.getItem("users"));
 
 window.addEventListener("load", () => {
@@ -50,14 +50,22 @@ window.addEventListener("load", () => {
     user.cart = user.cart || [];
     const existingItem = user.cart.find((item) => item.productId === productId);
     if (existingItem) {
-      existingItem.quantity += Number(1);
-      showToast(
-        "The Item Already exist in Cart and quantity was incremented by one",
-        "success"
-      );
+      if (checkStock(existingItem.quantity + 1)) {
+        existingItem.quantity += Number(1);
+        showToast(
+          "The Item Already exist in Cart and quantity was incremented by one",
+          "success"
+        );
+      } else {
+        showToast("The Item Is Out Of Stock", "danger");
+      }
     } else {
-      user.cart.push({ productId, quantity: 1 });
-      showToast("The Item has been Added Cart", "success");
+      if (checkStock(1)) {
+        user.cart.push({ productId, quantity: 1 });
+        showToast("The Item has been Added To Cart", "success");
+      } else {
+        showToast("The Item Is Out Of Stock", "danger");
+      }
     }
 
     saveUsers();
@@ -73,4 +81,21 @@ function showToast(message, type = "danger") {
 
   let toast = new bootstrap.Toast(toastEl);
   toast.show();
+}
+
+function checkStock(quantity) {
+  let product = getProduct(productId);
+
+  if (product.stock - quantity >= 0) {
+    return true;
+  }
+  return false;
+}
+
+//get product from all products
+function getProduct(id) {
+  let product = productsList.filter((el) => {
+    return el.id == id;
+  })[0];
+  return product;
 }

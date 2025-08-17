@@ -66,7 +66,7 @@ function renderFavorites() {
                 </h3>
                 <p class="product-price">$${currentProduct.price}</p>
                 <div>
-                  <button class="btn btn-primary">Buy Now</button>
+                  <button class="btn btn-primary" id="cartBtn" onclick="addToCart(${currentProduct.id});">Buy Now</button>
                 </div>
               </div>
           `;
@@ -75,4 +75,56 @@ function renderFavorites() {
     favoriteContainer.style.display = "block";
     favoriteContainer.innerHTML = `<p class="py-2 text-secondary h3 fw-light" >There is No Favorite Items </p>`;
   }
+}
+
+function checkStock(quantity, id) {
+  let product = getProduct(id);
+
+  if (product.stock - quantity >= 0) {
+    return true;
+  }
+  return false;
+}
+
+function addToCart(id) {
+  event.stopPropagation();
+  const user = getCurrentUser();
+  if (!user) {
+    window.location.href = "../../pages/auth/login.html";
+    return;
+  }
+
+  user.cart = user.cart || [];
+  const existingItem = user.cart.find((item) => item.productId === id);
+  if (existingItem) {
+    if (checkStock(existingItem.quantity + 1, id)) {
+      existingItem.quantity += Number(1);
+      showToast(
+        "The Item Already exist in Cart and quantity was incremented by one",
+        "success"
+      );
+    } else {
+      showToast("The Item Is Out Of Stock", "danger");
+    }
+  } else {
+    if (checkStock(1, id)) {
+      user.cart.push({ productId: id, quantity: 1 });
+      showToast("The Item has been Added To Cart", "success");
+    } else {
+      showToast("The Item Is Out Of Stock", "danger");
+    }
+  }
+
+  saveUsers();
+}
+
+function showToast(message, type = "danger") {
+  let toastEl = document.getElementById("toastMessage");
+
+  toastEl.className = `toast align-items-center text-bg-${type} border-0`;
+
+  toastEl.querySelector(".toast-body").textContent = message;
+
+  let toast = new bootstrap.Toast(toastEl);
+  toast.show();
 }

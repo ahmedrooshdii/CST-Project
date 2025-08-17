@@ -111,9 +111,13 @@ function getProduct(id) {
 function incrementQuantity(id) {
   cartItem = user.cart.find((el) => el.productId == id);
   if (+cartItem.quantity < 50) {
-    cartItem.quantity++;
-    saveUsers();
-    renderCart();
+    if (checkStock(id, cartItem.quantity)) {
+      cartItem.quantity++;
+      saveUsers();
+      renderCart();
+    } else {
+      showToast("The Product Is Out Of Stock");
+    }
   }
 }
 //increement the quantity
@@ -130,4 +134,24 @@ function deleteCartItem(id) {
   user.cart = user.cart.filter((el) => el.productId != id);
   saveUsers();
   renderCart();
+}
+
+function checkStock(id, quantity) {
+  let product = getProduct(id);
+
+  if (product.stock > quantity) {
+    return true;
+  }
+  return false;
+}
+
+function showToast(message, type = "danger") {
+  let toastEl = document.getElementById("toastMessage");
+
+  toastEl.className = `toast align-items-center text-bg-${type} border-0`;
+
+  toastEl.querySelector(".toast-body").textContent = message;
+
+  let toast = new bootstrap.Toast(toastEl);
+  toast.show();
 }
