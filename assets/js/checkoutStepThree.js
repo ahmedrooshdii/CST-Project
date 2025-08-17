@@ -85,7 +85,7 @@ form.addEventListener("submit", (e) => {
     orderProcessing.id = Date.now();
     orderProcessing.time = new Date(Date.now()).toLocaleString();
     orderProcessing.totalPrice = totalPrice.innerHTML;
-    orderProcessing.userId = currentUserLocal.id;
+    orderProcessing.userId = currentUserLocal.email;
     form.reset();
     orders.push(orderProcessing);
     user.cart = [];
