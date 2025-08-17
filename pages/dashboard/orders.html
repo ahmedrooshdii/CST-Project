@@ -82,16 +82,16 @@
               <thead>
                 <tr>
                   <th>Order ID</th>
-                  <th>Customer</th>
+                  <th>User name</th>
                   <th>Date</th>
                   <th>Total</th>
                   <th>Status</th>
-                  <th>Actions</th>
+                  <th>Detailes</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody id="ordersTableBody">
                 <tr>
-                  <td>#1001</td>
+                  <!-- <td>#1001</td>
                   <td>yasser</td>
                   <td>2025-08-10</td>
                   <td>$150.00</td>
@@ -99,27 +99,27 @@
                   <td>
                     <button class="btn btn-sm btn-info" data-bs-toggle="offcanvas" data-bs-target="#orderDetails" onclick="loadOrderDetails('1001')">View</button>
                     <button class="btn btn-sm btn-success">Mark Shipped</button>
-                  </td>
+                  </td> -->
                 </tr>
                 <tr>
-                  <td>#1002</td>
+                  <!-- <td>#1002</td>
                   <td>ahmed</td>
                   <td>2025-08-09</td>
                   <td>$240.00</td>
                   <td><span class="badge bg-success status-badge">Completed</span></td>
                   <td>
                     <button class="btn btn-sm btn-info" data-bs-toggle="offcanvas" data-bs-target="#orderDetails" onclick="loadOrderDetails('1002')">View</button>
-                  </td>
+                  </td> -->
                 </tr>
                 <tr>
-                  <td>#1003</td>
+                  <!-- <td>#1003</td>
                   <td>mohamed</td>
                   <td>2025-08-08</td>
                   <td>$99.00</td>
                   <td><span class="badge bg-danger status-badge">Cancelled</span></td>
                   <td>
                     <button class="btn btn-sm btn-info" data-bs-toggle="offcanvas" data-bs-target="#orderDetails" onclick="loadOrderDetails('1003')">View</button>
-                  </td>
+                  </td> -->
                 </tr>
               </tbody>
             </table>
@@ -136,8 +136,8 @@
     </div>
     <div class="offcanvas-body">
       <p><strong>Order ID:</strong> <span id="detailOrderId"></span></p>
-      <p><strong>Customer:</strong> <span id="detailCustomer"></span></p>
-      <p><strong>Date:</strong> <span id="detailDate"></span></p>
+      <p><strong>User name:</strong> <span id="detailCustomer"></span></p>
+      <p><strong>Date-Time:</strong> <span id="detailDate"></span></p>
       <p><strong>Total:</strong> <span id="detailTotal"></span></p>
       <p><strong>Status:</strong> <span id="detailStatus"></span></p>
       <hr />
@@ -148,74 +148,133 @@
  
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const searchInput = document.querySelector('input[placeholder="Search by customer or order ID"]');
-      const statusSelect = document.querySelector('select');
-      const dateInput = document.querySelector('input[type="date"]');
-      const tableRows = document.querySelectorAll("tbody tr");
+  //search
+  document.addEventListener("DOMContentLoaded", () => {
+  const searchInput = document.querySelector('input[placeholder="Search by customer or order ID"]');
+  const statusSelect = document.querySelector('select');
+  const dateInput = document.querySelector('input[type="date"]');
+  const pad = n => String(n).padStart(2, "0");
+  // Convert table date (e.g. "8/17/2025" or "8/17/2025, 6:46:12 PM") -> "YYYY-MM-DD"
+  function tableDateToYMD(raw) {
+    if (!raw) return "";
+    raw = raw.split(",")[0].trim(); // drop time if present
+    // already yyyy-mm-dd
+    if (/^\d{4}-\d{2}-\d{2}$/.test(raw)) return raw;
+    // match M/D/YYYY or MM/DD/YYYY
+    const m = raw.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);
+    if (m) {
+      const month = pad(m[1]);
+      const day = pad(m[2]);
+      const year = m[3];
+      return `${year}-${month}-${day}`;
+    }
+    // fallback: try Date parse
+    const d = new Date(raw);
+    if (!isNaN(d)) {
+      return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
+    }
+    return "";
+  }
+  function filterOrders() {
+    const q = (searchInput?.value || "").trim().toLowerCase();
+    const statusFilter = (statusSelect?.value || "all").toLowerCase();
+    const dateFilter = (dateInput?.value || ""); // YYYY-MM-DD or ""
 
-      function filterOrders() {
-        const searchValue = searchInput.value.trim().toLowerCase();
-        const statusValue = statusSelect.value.trim().toLowerCase();
-        const dateValue = dateInput.value;
+    const rows = document.querySelectorAll("#ordersTableBody tr");
+    rows.forEach(row => {
+      const cells = row.querySelectorAll("td");
+      if (cells.length === 0) return; // skip empty placeholder rows
 
-        tableRows.forEach(row => {
-          const orderId = row.cells[0].textContent.toLowerCase().replace('#', '');
-          const customer = row.cells[1].textContent.toLowerCase();
-          const date = row.cells[2].textContent;
-          const status = row.cells[4].textContent.toLowerCase();
-
-          const matchesSearch = !searchValue || orderId.includes(searchValue) || customer.includes(searchValue);
-          const matchesStatus = statusValue === "all" || status === statusValue;
-          const matchesDate = !dateValue || date === dateValue;
-
-          row.style.display = (matchesSearch && matchesStatus && matchesDate) ? "" : "none";
-        });
-      }
-
-      // Instant filtering on input or select changes
-      searchInput.addEventListener("input", filterOrders);
-      statusSelect.addEventListener("change", filterOrders);
-      dateInput.addEventListener("change", filterOrders);
-
-      // Initial filter to show all rows on page load
-      filterOrders();
+      const orderId = (cells[0].textContent || "").trim().replace(/^#/, "").toLowerCase();
+      const customer = (cells[1].textContent || "").trim().toLowerCase();
+      const rawDate = (cells[2].textContent || "").trim(); // e.g. "8/17/2025" or "8/17/2025, 6:46:12 PM"
+      const normalized = tableDateToYMD(rawDate); // "2025-08-17"
+      const status = (cells[4].textContent || "").trim().toLowerCase();
+      const matchesSearch = !q || orderId.includes(q) || customer.includes(q);
+      const matchesStatus = statusFilter === "all" || status.includes(statusFilter);
+      const matchesDate = !dateFilter || (normalized === dateFilter);
+      row.style.display = (matchesSearch && matchesStatus && matchesDate) ? "" : "none";
     });
+  }
+  searchInput?.addEventListener("input", filterOrders);
+  statusSelect?.addEventListener("change", filterOrders);
+  dateInput?.addEventListener("input", filterOrders);
+  dateInput?.addEventListener("change", filterOrders);
+  filterOrders();
+  window._filterOrders = filterOrders;
+});
 
-    function loadOrderDetails(orderId) {
-  // Find the table row with this orderId
-  const row = Array.from(document.querySelectorAll("tbody tr")).find(r =>
-    r.cells[0].textContent.replace('#', '') === orderId
-  );
-  if (!row) return;
+//war of scripts 
+document.addEventListener("DOMContentLoaded", function () {
+  const orders = JSON.parse(localStorage.getItem("orders")) || [];
+  const products = JSON.parse(localStorage.getItem("products")) || [];
+  const users = JSON.parse(localStorage.getItem("users")) || [];
+  const currentUser = JSON.parse(sessionStorage.getItem("currentUser")) || {};
 
-  // Get order info from the row cells
-  const customer = row.cells[1].textContent;
-  const date = row.cells[2].textContent;
-  const total = row.cells[3].textContent;
-  const status = row.cells[4].textContent;
+  const tbody = document.getElementById("ordersTableBody");
+  tbody.innerHTML = ""; // clear demo rows
 
-  // Populate the offcanvas details fields
-  document.getElementById("detailOrderId").textContent = "#" + orderId;
-  document.getElementById("detailCustomer").textContent = customer;
-  document.getElementById("detailDate").textContent = date;
-  document.getElementById("detailTotal").textContent = total;
-  document.getElementById("detailStatus").textContent = status;
+  orders.forEach((order, index) => {
+    // Customer (fall back to session user if needed)
+    let customer = currentUser.name || "Unknown";
+    const userMatch = users.find(u => u.addresses?.some(a => a.id === order.address?.id));
+    if (userMatch) customer = userMatch.name;
 
-  // For demo: clear existing items and add a placeholder
-  const itemsList = document.getElementById("detailItems");
-  itemsList.innerHTML = "";
-  // Example static items, replace with real data if you have it
-  const exampleItems = [
-    "Item 1 - Quantity: 2",
-    "Item 2 - Quantity: 1",
-  ];
-  exampleItems.forEach(item => {
-    const li = document.createElement("li");
-    li.textContent = item;
-    itemsList.appendChild(li);
+    // Format date from order.time
+    const date = order.time ? new Date(order.time).toLocaleDateString() : "-";
+
+    // Total
+    const total = order.totalPrice || "$0.00";
+
+    // Default status (you can extend this logic later)
+    let status = order.status || "completed";
+    let badgeClass = "bg-success";
+    if (status === "pending") badgeClass = "bg-warning";
+    else if (status === "cancelled") badgeClass = "bg-danger";
+    else if (status === "shipped") badgeClass = "bg-primary";
+
+    // Build row
+    const tr = document.createElement("tr");
+    tr.innerHTML = `
+      <td>#${order.id || index + 1}</td>
+      <td>${customer}</td>
+      <td>${date}</td>
+      <td>${total}</td>
+      <td><span class="badge ${badgeClass} status-badge">${status}</span></td>
+      <td>
+        <button class="btn btn-sm btn-info" data-bs-toggle="offcanvas" 
+                data-bs-target="#orderDetails" 
+                onclick="loadOrderDetails('${order.id || index + 1}')">View</button>
+      </td>
+    `;
+    tbody.appendChild(tr);
   });
-}
+
+  // Details loader
+  window.loadOrderDetails = function (orderId) {
+    const order = orders.find(o => String(o.id) === String(orderId));
+    if (!order) return;
+
+    let customer = currentUser.name || "Unknown";
+    const userMatch = users.find(u => u.addresses?.some(a => a.id === order.address?.id));
+    if (userMatch) customer = userMatch.name;
+
+    document.getElementById("detailOrderId").textContent = "#" + order.id;
+    document.getElementById("detailCustomer").textContent = customer;
+    document.getElementById("detailDate").textContent = order.time;
+    document.getElementById("detailTotal").textContent = order.totalPrice;
+    document.getElementById("detailStatus").textContent = order.status || "completed";
+
+    const itemsUl = document.getElementById("detailItems");
+    itemsUl.innerHTML = "";
+    order.items.forEach(it => {
+      const product = products.find(p => String(p.id) === String(it.productId));
+      const li = document.createElement("li");
+      li.textContent = `${product ? product.name : "Unknown Product"} - Qty: ${it.quantity} - Price: $${product ? product.price : "0"}`;
+      itemsUl.appendChild(li);
+    });
+  };
+});
 
   </script>
 </body>
