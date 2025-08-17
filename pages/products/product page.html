@@ -37,25 +37,35 @@
         </div>
     </header>
     <!-- Main Navigation/Categories -->
-    <nav class="container-fluid navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="../../Home.html"><img style=" height: 50px; margin-right:20vw;" src="../../assets\images\logo.svg" alt=""></a>
-    
+<nav class="container-fluid navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container gap-2 gap-xl-5">
+
+    <div class="col-2">
+    <a class="navbar-brand" href="../../Home.html"><img src="../../assets/images/logo.svg" alt=""></a>
+    </div>
+
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <form class="position-relative d-md-flex justify-content-center align-item w-50">
+   
+
+    <div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
+       
+       <form class="col-12 col-md-12 col-lg-5 col-xl-6 position-relative">
+       
         <i class="fa-solid fa-magnifying-glass position-absolute top-50 start-0 translate-middle-y ms-3 text-muted"></i>
         <input type="search" class="form-control ps-5" placeholder="Search" aria-label="Search">
+       
         </form>
+
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="../../Home.html">Home</a>
+
+       <li class="nav-item">
+          <a class="nav-link " aria-current="page" href="../../Home.html">Home</a>
         </li>
         <li class="nav-item">
           <li class="nav-item">
-              <a class="nav-link" href="../../pages/products/product page.html">All Products</a>
+              <a class="nav-link active" href="../../pages/products/product page.html">All Products</a>
             </li>
           <a class="nav-link " href="../about.html">About</a>
         </li>
@@ -71,10 +81,14 @@
          <li class="nav-item">
           <a class="nav-link active"  href="../cart/shopping-cart.html"><i class="fa-solid fa-cart-shopping"></i></a>
         </li>
+
       </ul>
     </div>
+
   </div>
 </nav>
+
+
 <nav id="subnav" class="container-fluid d-none d-md-flex justify-content-evenly gap-2">
     <p><i class="fa-solid fa-mobile"></i>Phones</p>
     <p>|</p>
