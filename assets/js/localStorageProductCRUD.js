@@ -7,17 +7,26 @@ window.addEventListener("load", function () {
     return;
   }
 
-  //   if (user.role !== "admin") {
-  //     window.location.href = "../../Home.html";
-  //   }
+  if (user.role !== "admin" && user.role !== "seller") {
+    window.location.href = "../../Home.html";
+  }
 
   let products = JSON.parse(localStorage.getItem("products")) || [];
   const userProducts = products.filter(
     (product) => product.sellerEmail === user.email
   );
-  userProducts.forEach((product) => {
-    renderProduct(product);
-  });
+
+  if (user.role === "admin") {
+    products.forEach((product) => {
+      renderProduct(product);
+    });
+  }
+
+  if (user.role === "seller") {
+    userProducts.forEach((product) => {
+      renderProduct(product);
+    });
+  }
 
   loadCategoriesIntoSelect();
 });

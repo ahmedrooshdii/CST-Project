@@ -7,6 +7,10 @@ window.addEventListener("load", function () {
     return;
   }
 
+  if (user.role !== "admin" && user.role !== "seller") {
+    window.location.href = "../../Home.html";
+  }
+
   // if (user.role !== "admin") {
   //   window.location.href = "../../Home.html";
   // }
