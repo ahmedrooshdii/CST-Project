@@ -471,3 +471,7 @@ body {
 }
 
 
+button#nextBtn[disabled] {
+    background-color: grey;
+    cursor: not-allowed;
+}
