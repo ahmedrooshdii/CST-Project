@@ -51,12 +51,10 @@
 
     <div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
        
-       <form class="col-12 col-md-12 col-lg-5 col-xl-6 position-relative">
-       
-        <i class="fa-solid fa-magnifying-glass position-absolute top-50 start-0 translate-middle-y ms-3 text-muted"></i>
-        <input type="search" id="productSearch" class="form-control ps-5" placeholder="Search" aria-label="Search">
-       
-        </form>
+       <form id="homeSearchForm" class="col-12 col-md-12 col-lg-5 col-xl-6 position-relative">
+          <i class="fa-solid fa-magnifying-glass position-absolute top-50 start-0 translate-middle-y ms-3 text-muted"></i>
+          <input type="search" id="productSearch" class="form-control ps-5" placeholder="Search" aria-label="Search">
+      </form>
 
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
@@ -654,6 +652,34 @@ searchInput.addEventListener("input", () => {
   });
 });
 
+//search in head
+document.addEventListener("DOMContentLoaded", () => {
+  const searchInput = document.getElementById("productSearch");
+  if (!searchInput) return; // safety check
+  // Filter logic
+  function filterProductsBySearch(query) {
+    const searchText = query.trim().toLowerCase();
+    document.querySelectorAll(".product-card").forEach(card => {
+      const productName = (card.dataset.name || "").toLowerCase();
+      const productCategory = (card.dataset.category || "").toLowerCase();
+      const matches = !searchText || productName.includes(searchText) || productCategory.includes(searchText);
+      card.style.display = matches ? "" : "none";
+    });
+  }
+
+  // When typing in search bar
+  searchInput.addEventListener("input", () => {
+    filterProductsBySearch(searchInput.value);
+  });
+
+  //  Prefill from URL (when redirected from home page)
+  const urlParams = new URLSearchParams(window.location.search);
+  const searchQuery = urlParams.get("search");
+  if (searchQuery) {
+    searchInput.value = searchQuery;     
+    filterProductsBySearch(searchQuery); // ✅ run filter immediately
+  }
+});
 </script>
 </body>
 </html>
