@@ -158,6 +158,10 @@ function deleteAddress(index) {
   renderAddress();
 }
 function navigateToSteptwo() {
-    saveOrder()
-    window.location.href="../../pages/cart/checkout-step-2.html"
-};
+  saveOrder();
+  window.location.href = "../../pages/cart/checkout-step-2.html";
+}
+
+function goBack() {
+  window.location.href = "../../pages/cart/shopping-cart.html";
+}
