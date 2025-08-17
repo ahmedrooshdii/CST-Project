@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
   renderProductCards();
   attachCardListeners();
   renderCategoryCards();
+  updateCartCount();
 });
 
 function renderProductCards() {
@@ -47,8 +48,13 @@ function renderProductCards() {
                 <div class="product-price">$${parseFloat(product.price).toFixed(
                   2
                 )}</div>
-                <button class="btn btn--buy" 
-                >Add To Cart</button>
+                ${
+                  product.status === "Out of Stock"
+                    ? ``
+                    : `<button class="btn btn--buy" 
+                >Add To Cart</button>`
+                }
+                
             </div>
         `;
     newArrivalContainer.appendChild(card);
@@ -156,6 +162,17 @@ function renderCategoryCards() {
   });
 }
 
+function updateCartCount() {
+  const currentUser = JSON.parse(sessionStorage.getItem("currentUser"))?.email;
+  let users = JSON.parse(localStorage.getItem("users")) || [];
+
+  let user = users.find((u) => u.email === currentUser);
+
+  let count = user?.cart?.reduce((acc, item) => acc + item.quantity, 0) || 0;
+
+  document.getElementById("cartCount").textContent = count;
+}
+
 function addToCart(e) {
   const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
   if (!currentUser) {
@@ -185,4 +202,5 @@ function addToCart(e) {
 
   // Save to localStorage
   localStorage.setItem("users", JSON.stringify(users));
+  updateCartCount();
 }
