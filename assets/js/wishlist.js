@@ -66,7 +66,7 @@ function renderFavorites() {
                 </h3>
                 <p class="product-price">$${currentProduct.price}</p>
                 <div>
-                  <button class="btn btn-primary" id="cartBtn" onclick="addToCart(${currentProduct.id});">Buy Now</button>
+                  <button class="btn btn-primary" id="cartBtn" onclick="addToCart('${currentProduct.id}');">Buy Now</button>
                 </div>
               </div>
           `;
