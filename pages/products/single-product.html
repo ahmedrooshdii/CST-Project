@@ -24,7 +24,7 @@
 
     <!-- main style -->
     <link rel="stylesheet" href="../../assets/css/single-product-style.css" />
-    <script src="./assets/js/home.js"></script>
+    <script src="../../assets/js/home.js"></script>
   </head>
   <body>
     <!-- nav start -->
@@ -43,65 +43,49 @@
         id="navbartop"
         class="d-flex flex-row-reverse justify-content-center text-uppercase gap-2"
       >
-        <a href="./pages/auth/Register.html"
+        <a href="../../pages/auth/Register.html"
           ><i class="fa-solid fa-user-plus"></i> Register</a
         >
         <span>|</span>
-        <a href="./pages/auth/login.html"
+        <a href="../../pages/auth/login.html"
           ><i class="fa-solid fa-arrow-right-to-bracket"></i> Login</a
         >
         <span>|</span>
-        <a href="./pages/auth/SellerRegister.html">Be a seller</a>
+        <a href="../../pages/auth/SellerRegister.html">Be a seller</a>
       </div>
     </header>
 
     <nav class="container-fluid navbar navbar-expand-lg navbar-light bg-light">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="Home.html"
-          ><img
-            style="width: 150px; height: 50px; margin-right: 30vw"
-            src="../../assets/images/logo.svg"
-            alt=""
-        /></a>
+  <div class="container gap-2 gap-xl-5">
 
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
+    <div class="col-2">
+    <a class="navbar-brand" href="../../Home.html"><img src="../../assets/images/logo.svg" alt=""></a>
+    </div>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <form
-            class="position-relative d-md-flex justify-content-center align-item w-50"
-          >
-            <i
-              class="fa-solid fa-magnifying-glass position-absolute top-50 start-0 translate-middle-y ms-3 text-muted"
-            ></i>
-            <input
-              type="search"
-              class="form-control ps-5"
-              placeholder="Search"
-              aria-label="Search"
-            />
-          </form>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+   
 
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
+    <div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
+       
+       <form id="homeSearchForm" class="col-12 col-md-12 col-lg-5 col-xl-6 position-relative">
+          <i class="fa-solid fa-magnifying-glass position-absolute top-50 start-0 translate-middle-y ms-3 text-muted"></i>
+          <input type="search" id="productSearch" class="form-control ps-5" placeholder="Search" aria-label="Search">
+      </form>
+
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+       <li class="nav-item">
               <a
-                class="nav-link active"
+                class="nav-link "
                 aria-current="page"
                 href="../../Home.html"
                 >Home</a
               >
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="../../pages/products/product page.html"
+              <a class="nav-link active" href="product page.html"
                 >All Products</a
               >
             </li>
@@ -126,14 +110,15 @@
             </li>
 
             <li class="nav-item">
-              <a class="nav-link active" href="#"
+              <a class="nav-link active" href="../cart/shopping-cart.html"
                 ><i class="fa-solid fa-cart-shopping"></i
               ></a>
             </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+      </ul>
+    </div>
+
+  </div>
+</nav>
 
     <nav
       id="subnav"
@@ -207,7 +192,7 @@
           </div>
           <div class="col-12 col-lg-5 pt-4 pt-lg-0">
             <div class="product-info">
-              <h1 class="product-title" id="product-title"></h1>
+              <h1 class="product-title text-capitalize" id="product-title"></h1>
 
               <div class="product-price">
                 <span class="current-price" id="price"></span>
@@ -861,5 +846,24 @@
     <script src="../../assets/js/single-product-render.js"></script>
     <script src="../../assets/js/comments.js"></script>
     <script src="../../assets/js/SPWAC.js"></script>
+    <script>
+          document.addEventListener("DOMContentLoaded", function () {
+  handleHomeSearch("homeSearchForm", "productSearch", "product page.html"); //handle search
+});
+function handleHomeSearch(formId, inputId, targetPage) {
+  const form = document.getElementById(formId);
+  if (!form) return;
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    const query = document.getElementById(inputId)?.value.trim();
+    if (query) {
+      window.location.href = `${targetPage}?search=${encodeURIComponent(query)}`;
+    } else {
+      window.location.href = targetPage;
+    }
+  });
+}
+        </script>
   </body>
 </html>

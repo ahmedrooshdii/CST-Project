@@ -204,6 +204,9 @@ body {
     color: #000000;
     flex-shrink: 0;
 }
+.plus-icon:hover{
+    cursor: pointer;
+}
 
 .add-address-text {
     font-size: 14px;

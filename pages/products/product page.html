@@ -37,25 +37,33 @@
         </div>
     </header>
     <!-- Main Navigation/Categories -->
-    <nav class="container-fluid navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="../../Home.html"><img style=" height: 50px; margin-right:20vw;" src="../../assets\images\logo.svg" alt=""></a>
-    
+<nav class="container-fluid navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container gap-2 gap-xl-5">
+
+    <div class="col-2">
+    <a class="navbar-brand" href="../../Home.html"><img src="../../assets/images/logo.svg" alt=""></a>
+    </div>
+
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <form class="position-relative d-md-flex justify-content-center align-item w-50">
-        <i class="fa-solid fa-magnifying-glass position-absolute top-50 start-0 translate-middle-y ms-3 text-muted"></i>
-        <input type="search" class="form-control ps-5" placeholder="Search" aria-label="Search">
-        </form>
+   
+
+    <div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
+       
+       <form id="homeSearchForm" class="col-12 col-md-12 col-lg-5 col-xl-6 position-relative">
+          <i class="fa-solid fa-magnifying-glass position-absolute top-50 start-0 translate-middle-y ms-3 text-muted"></i>
+          <input type="search" id="productSearch" class="form-control ps-5" placeholder="Search" aria-label="Search">
+      </form>
+
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="../../Home.html">Home</a>
+
+       <li class="nav-item">
+          <a class="nav-link " aria-current="page" href="../../Home.html">Home</a>
         </li>
         <li class="nav-item">
           <li class="nav-item">
-              <a class="nav-link" href="../../pages/products/product page.html">All Products</a>
+              <a class="nav-link active" href="../../pages/products/product page.html">All Products</a>
             </li>
           <a class="nav-link " href="../about.html">About</a>
         </li>
@@ -71,10 +79,14 @@
          <li class="nav-item">
           <a class="nav-link active"  href="../cart/shopping-cart.html"><i class="fa-solid fa-cart-shopping"></i></a>
         </li>
+
       </ul>
     </div>
+
   </div>
 </nav>
+
+
 <nav id="subnav" class="container-fluid d-none d-md-flex justify-content-evenly gap-2">
     <p><i class="fa-solid fa-mobile"></i>Phones</p>
     <p>|</p>
@@ -501,6 +513,7 @@ document.addEventListener("DOMContentLoaded", () => {
     products.forEach(product => {
       const col = document.createElement("div");
       col.className = "col product-card";
+      col.setAttribute("data-id", product.id);
       col.setAttribute("data-name", product.name);
       col.setAttribute("data-price", product.price);
       col.setAttribute("data-img", product.image);
@@ -527,34 +540,40 @@ document.addEventListener("DOMContentLoaded", () => {
         if (e.target.classList.contains("add-to-cart")) return;
         window.location.href = `single-product.html?id=${product.id}`;
       });
-
       productsContainer.appendChild(col);
     });
   }
-
   // Attach Buy Now buttons
   document.querySelectorAll(".add-to-cart").forEach(button => {
-    button.addEventListener("click", () => {
-      const card = button.closest(".product-card");
-      const product = {
-        name: card.dataset.name,
-        price: parseFloat(card.dataset.price),
-        img: card.dataset.img,
-        quantity: 1
-      };
-
-      const existing = cart.find(item => item.name === product.name);
-      if (existing) existing.quantity += 1;
-      else cart.push(product);
-
-      localStorage.setItem(cartKey, JSON.stringify(cart));
-      alert(`${product.name} added to cart!`);
+  button.addEventListener("click", (e) => {
+    const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
+    if (!currentUser) {
+      window.location.href = "../../pages/auth/login.html";
+      return;
+    }
+    let users = JSON.parse(localStorage.getItem("users")) || [];
+    const card = e.target.closest(".product-card");
+    const productId = card.dataset.id;  
+    const productName = card.dataset.name;
+    const quantity = 1;
+    users.forEach(user => {
+      if (user.email === currentUser.email) {
+        if (!user.cart) user.cart = [];
+        const existingItem = user.cart.find(item => item.productId === productId);
+        if (existingItem) {
+          existingItem.quantity += 1;
+        } else {
+          user.cart.push({ productId, quantity });
+        }
+      }
     });
+    // Save back to localStorage
+    localStorage.setItem("users", JSON.stringify(users));
+    alert(`Product ${productName} added to your cart!`);
   });
+});
 
-  
   // CATEGORY FILTER (dynamic)
- 
   const filterContainer = document.getElementById("categoryFilters");
   const searchInput = document.getElementById("searchCategoryFilter");
   const categories = JSON.parse(localStorage.getItem("categories")) || [];
@@ -620,7 +639,47 @@ document.addEventListener("DOMContentLoaded", () => {
   // Run filter on page load
   filterProducts();
 });
-</script>
+//search in head
+const searchInput = document.getElementById("productSearch");
+searchInput.addEventListener("input", () => {
+  const searchText = searchInput.value.toLowerCase();
+  document.querySelectorAll(".product-card").forEach(card => {
+    const productName = card.dataset.name?.toLowerCase() || "";
+    const productCategory = card.dataset.category?.toLowerCase() || "";
+    // Show product if name OR category matches search
+    const matches = productName.includes(searchText) || productCategory.includes(searchText);
+    card.style.display = matches ? "" : "none";
+  });
+});
 
+//search in head
+document.addEventListener("DOMContentLoaded", () => {
+  const searchInput = document.getElementById("productSearch");
+  if (!searchInput) return; // safety check
+  // Filter logic
+  function filterProductsBySearch(query) {
+    const searchText = query.trim().toLowerCase();
+    document.querySelectorAll(".product-card").forEach(card => {
+      const productName = (card.dataset.name || "").toLowerCase();
+      const productCategory = (card.dataset.category || "").toLowerCase();
+      const matches = !searchText || productName.includes(searchText) || productCategory.includes(searchText);
+      card.style.display = matches ? "" : "none";
+    });
+  }
+
+  // When typing in search bar
+  searchInput.addEventListener("input", () => {
+    filterProductsBySearch(searchInput.value);
+  });
+
+  //  Prefill from URL (when redirected from home page)
+  const urlParams = new URLSearchParams(window.location.search);
+  const searchQuery = urlParams.get("search");
+  if (searchQuery) {
+    searchInput.value = searchQuery;     
+    filterProductsBySearch(searchQuery); // ✅ run filter immediately
+  }
+});
+</script>
 </body>
 </html>
