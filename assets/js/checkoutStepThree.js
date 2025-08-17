@@ -86,13 +86,16 @@ form.addEventListener("submit", (e) => {
     orderProcessing.time = new Date(Date.now()).toLocaleString();
     orderProcessing.totalPrice = totalPrice.innerHTML;
     orderProcessing.userId = currentUserLocal.id;
+    form.reset();
     orders.push(orderProcessing);
     user.cart = [];
     updateStock();
     saveOrder();
     saveUsers();
-    form.reset();
-    location.href = "../../pages/dashboard/orders.html";
+
+    setTimeout(() => {
+      location.href = "../../pages/dashboard/orders.html";
+    }, 500);
   }
 });
 
@@ -108,6 +111,11 @@ function saveUsers() {
 //save order
 function saveOrder() {
   localStorage.setItem("orders", JSON.stringify(orders));
+  localStorage.removeItem("orderProcessing");
+}
+//save order
+function saveProducts() {
+  localStorage.setItem("products", JSON.stringify(products));
   localStorage.removeItem("orderProcessing");
 }
 //------------------show toast----------------------
@@ -135,7 +143,7 @@ function goBack() {
 function getProduct(id) {
   let product = products.find((el) => {
     return el.id == id;
-  })[0];
+  });
   return product;
 }
 
@@ -173,4 +181,38 @@ function renderItems() {
   }`;
 }
 
+function updateStock() {
+  orderProcessing.items.forEach((element) => {
+    let product = getProduct(element.productId);
+    console.log(product);
+
+    product.stock -= element.quantity;
+    console.log(product.stock);
+
+    if (+product.stock == 0) {
+      product.status = "Out of Stock";
+    }
+    updateUsersCart(product);
+    saveProducts();
+  });
+}
+
+function updateUsersCart(product) {
+  users.forEach((user) => {
+    let currentUser = users.find((u) => u.email == user.email);
+    for (let i = 0; i < currentUser.cart.length; i++) {
+      if (currentUser.cart[i].productId == product.id) {
+        if (currentUser.cart[i].quantity > product.stock) {
+          currentUser.cart[i].quantity = product.stock;
+        }
+        if (product.stock == 0) {
+          currentUser.cart = currentUser.cart.filter(
+            (el) => el.productId != product.id
+          );
+        }
+      }
+    }
+  });
+  saveUsers();
+}
 renderItems();
