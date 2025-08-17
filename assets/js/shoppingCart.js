@@ -98,6 +98,9 @@ function renderCart() {
   } else {
     cartContainer.innerHTML = `<p class="p-2 lead h3">No Items To Display</p>`;
     checkoutBtn.disabled = true;
+    subTotalPrice.innerHTML = `$ 0`;
+    taxPrice.innerHTML = `$0`;
+    totalPrice.innerHTML = `$0`;
   }
 }
 //get product from all products
@@ -154,4 +157,13 @@ function showToast(message, type = "danger") {
 
   let toast = new bootstrap.Toast(toastEl);
   toast.show();
+}
+
+function proceedToCheckout() {
+  console.log("proceeding....");
+  let orderProcessing = {
+    items: user.cart,
+  };
+  localStorage.setItem("orderProcessing", JSON.stringify(orderProcessing));
+  window.location.href = "../../pages/cart/checkout-step-1.html";
 }
