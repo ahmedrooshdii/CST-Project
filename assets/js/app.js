@@ -51,6 +51,9 @@ window.addEventListener("load", function () {
 
   function saveUsers() {
     localStorage.setItem("users", JSON.stringify(users));
+
+    let user = users.find((u) => u.email === currentUser.email);
+    sessionStorage.setItem("currentUser", JSON.stringify(user));
   }
 
   function renderFavorites() {

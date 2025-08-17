@@ -316,20 +316,34 @@ window.addEventListener("load", function () {
       let product = products.find((p) => p.id == currentProductId);
       let user = users.find((u) => u.email === currentUser.email);
 
+      const today = new Date();
+      const newFormattedDate = today.toLocaleDateString("en-US", {
+        day: "numeric",
+        month: "long",
+        year: "numeric",
+      });
+
       if (product?.reviews) {
         const productReview = product.reviews.find(
           (r) => r.id === selectedReview.id
         );
-        if (productReview) productReview.text = newText;
+        if (productReview) {
+          productReview.text = newText;
+          productReview.date = newFormattedDate;
+        }
       }
 
       if (user?.reviews) {
         const userReview = user.reviews.find(
           (r) => r.id === selectedReview.id && r.productId == currentProductId
         );
-        if (userReview) userReview.text = newText;
+        if (userReview) {
+          userReview.text = newText;
+          userReview.date = newFormattedDate;
+        }
       }
 
+      document.querySelector(".review-date").textContent = newFormattedDate;
       localStorage.setItem("products", JSON.stringify(products));
       localStorage.setItem("users", JSON.stringify(users));
 

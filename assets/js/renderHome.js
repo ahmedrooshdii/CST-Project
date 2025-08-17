@@ -95,8 +95,6 @@ function renderProductCards() {
 function attachCardListeners() {
   document.querySelectorAll(".product-card").forEach((card) => {
     card.addEventListener("click", function (e) {
-      console.log("added");
-
       if (e.target.closest(".favorite")) return;
       if (e.target.closest(".btn")) {
         addToCart(e);
@@ -179,6 +177,7 @@ function addToCart(e) {
     window.location.href = "../../pages/auth/login.html";
     return;
   }
+
   let users = JSON.parse(localStorage.getItem("users"));
 
   const card = e.target.closest(".product-card");
@@ -189,11 +188,29 @@ function addToCart(e) {
   users.forEach((user) => {
     if (user.email === currentUser.email) {
       if (!user.cart) user.cart = [];
+
+      let products = JSON.parse(localStorage.getItem("products")) || [];
+      let product = products.find((p) => p.id === +productId);
+
+      if (!product) {
+        showToast("May be product has been deleted!", "danger");
+        return;
+      }
+
+      if (product.stock <= 0) {
+        showToast("No more in the stock!", "warning");
+        return;
+      }
+
       const existingItem = user.cart.find(
         (item) => item.productId === productId
       );
       if (existingItem) {
-        existingItem.quantity += Number(1);
+        if (existingItem.quantity < product.stock) {
+          existingItem.quantity += 1;
+        } else {
+          showToast("You reached the limit of available stock!", "warning");
+        }
       } else {
         user.cart.push({ productId, quantity });
       }
@@ -202,5 +219,22 @@ function addToCart(e) {
 
   // Save to localStorage
   localStorage.setItem("users", JSON.stringify(users));
+  let user = users.find((u) => u.email === currentUser.email);
+  sessionStorage.setItem("currentUser", JSON.stringify(user));
   updateCartCount();
+}
+
+function toIPhone() {
+  window.location.href = `/pages/products/single-product.html?id=1755345267287`;
+}
+
+function showToast(message, type = "danger") {
+  let toastEl = document.getElementById("toastMessage");
+
+  toastEl.className = `toast align-items-center text-bg-${type} border-0`;
+
+  toastEl.querySelector(".toast-body").textContent = message;
+
+  let toast = new bootstrap.Toast(toastEl);
+  toast.show();
 }
