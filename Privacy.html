@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy</title>
+        <link rel="stylesheet" href="../assets/css/bs/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+        <link rel="stylesheet" href="../assets/css/home.css">
+
+    <style>
+        .accordion-button:focus {
+     z-index: 3;
+     outline: 0;
+     color: black;
+     text-transform: none;
+     border: 1px solid  rgba(46, 46, 46, 1);
+      box-shadow: inset 0 -1px 0  rgba(46, 46, 46, 1);
+      }
+
+  .accordion-button {
+    background-color: #f8f9fa;
+    color: #333;
+    font-size: 1.1rem;
+    padding: 1rem;
+    transition: all 0.3s ease;
+  }
+  .accordion-button:hover {
+    background-color: #e9ecef;
+  }
+  .accordion-button:not(.collapsed) {
+    background-color:  rgba(46, 46, 46, 1);
+    color: #fff;
+     box-shadow: inset 0 -1px 0 aliceblue;
+       text-transform: uppercase;
+  }
+  .accordion-body {
+    background-color: #ffffff;
+    color: #555;
+    line-height: 1.7;
+    padding: 1.5rem;
+  }
+  .accordion-body p, .accordion-body ul {
+    margin-bottom: 1rem;
+  }
+  .accordion-body ul li {
+    margin-bottom: 0.5rem;
+    list-style: none;
+  }
+  .accordion-body ul li::before {
+    content: "\f00c";
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    color:  rgba(46, 46, 46, 1);
+    margin-right: 8px;
+  }
+
+  .accordion-button:not(.collapsed)::after {
+  filter: brightness(0) invert(1);
+}
+    </style>
+</head>
+<body>
+    <header class="container-fluid d-md-flex justify-content-md-between mt-1">
+       
+        <div class="d-none d-md-flex gap-2">
+             <a href="mailto:Mohamedbasiouny111@gmail.com"><i class="fa-solid fa-envelope"></i>Mohamedbasiouny111@gmail.com</a>
+            <span>|</span>
+            <a href="tel:01111514032"><i class="fa-solid fa-phone"></i></i>01111514032</a>
+        </div>
+
+        <div id="navbartop" class="d-flex flex-row-reverse justify-content-center text-uppercase gap-2 ">
+            <a href="../pages/auth/Register.html"><i class="fa-solid fa-user-plus"></i> Register</a>
+            <span>|</span>
+            <a href="../pages/auth/login.html"><i class="fa-solid fa-arrow-right-to-bracket"></i> Login</a>
+             <span>|</span>
+            <a href="../pages/auth/SellerRegister.html">Be a seller</a>
+        </div>
+    </header>
+
+<nav class="container-fluid navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container gap-2 gap-xl-5">
+
+    <div class="col-2">
+    <a class="navbar-brand" href="../Home.html"><img src="./assets/images/logo.svg" alt=""></a>
+    </div>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+   
+
+    <div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
+       
+       <form id="homeSearchForm" class="col-12 col-md-12 col-lg-5 col-xl-6 position-relative">
+          <i class="fa-solid fa-magnifying-glass position-absolute top-50 start-0 translate-middle-y ms-3 text-muted"></i>
+          <input type="search" id="productSearch" class="form-control ps-5" placeholder="Search" aria-label="Search">
+      </form>
+
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+        <li class="nav-item">
+          <a class="nav-link " aria-current="page" href="./Home.html">Home</a>
+        </li>
+        <li class="nav-item">
+              <a class="nav-link" href="./pages/products/product page.html">All Products</a>
+            </li>
+        <li class="nav-item">
+          <a class="nav-link " href="./pages/about.html">About</a>
+        </li>
+     
+        <li class="nav-item">
+          <a class="nav-link "  href="./pages/ContactUs.html">Contact Us</a>
+        </li>
+
+         <li class="nav-item">
+          <a class="nav-link "  href="./pages/blog.html">Blog</a>
+        </li>
+
+         <li class="nav-item">
+          <a class="nav-link active"  href="./pages/cart/wishlist.html"><i class="fa-regular fa-heart"></i></a>
+        </li>
+
+         <li class="nav-item">
+          <a class="nav-link active"  href="./pages/cart/shopping-cart.html"><i class="fa-solid fa-cart-shopping"></i></a>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+</nav>
+
+<nav id="subnav" class="container-fluid d-none d-md-flex justify-content-evenly gap-2">
+   <p><i class="fa-solid fa-mobile"></i>Phones</p>
+   <p>|</p>
+   <p><i class="fa-solid fa-desktop"></i>Computers</p>
+      <p>|</p>
+   <p><i class="fa-solid fa-clock"></i>Smart Watches</p>
+      <p>|</p>
+   <p><i class="fa-solid fa-camera"></i>Cameras</p>
+      <p>|</p>
+   <p><i class="fa-solid fa-headset"></i>Headphones</p>
+   <p>|</p>
+   <p><i class="fa-solid fa-gamepad"></i>Gaming</p>
+</nav>
+
+    <section class="container-fluid my-5">
+
+      <p class="h2 text-center mb-2 text-uppercase fw-bolder">Privacy</p>
+
+      <p class="text-center text-capitalize fw-normal">At Cyber Shop, we believe online shopping should be easy, safe, and inspiring.
+         We offer the best deals on a wide range of products from the latest electronics to home essentials along with exceptional customer service and 24/7 support. 
+         Our goal is to provide everything you need in one place, with high quality and competitive prices.</p>
+
+<div class="accordion" id="accordionExample">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingOne">
+      <button class="accordion-button fw-bolder" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+        <i class="fas fa-users me-2"></i> Who We Are
+      </button>
+    </h2>
+    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        <p>
+          We are a passionate team of <strong>marketing professionals</strong> and <strong>technology experts</strong> dedicated to transforming the way people shop online.
+          Our platform connects customers with top-quality products from trusted sellers, ensuring a smooth, secure, and enjoyable shopping journey.
+        </p>
+        <p>
+          From fashion to electronics, we aim to offer an all-in-one online shopping destination with hand-picked deals and exclusive offers.
+        </p>
+        <p>
+          Our mission is to build trust and create a lasting relationship with our customers through innovation, transparency, and exceptional service.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingTwo">
+      <button class="accordion-button collapsed fw-bolder" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+        <i class="fas fa-lightbulb me-2"></i> Our Vision
+      </button>
+    </h2>
+    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        <p>
+          Our vision is to revolutionize e-commerce in the Arab world by becoming the <strong>most trusted</strong> and <strong>customer-focused</strong> platform in the region.
+        </p>
+        <p>
+          We aim to empower local sellers and small businesses, giving them the tools to compete globally while keeping their cultural identity intact.
+        </p>
+        <p>
+          Every day, we strive to improve our platform, enhance our services, and deliver value to every customer.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingThree">
+      <button class="accordion-button collapsed fw-bolder" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+        <i class="fas fa-heart me-2"></i> Our Values
+      </button>
+    </h2>
+    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        <ul>
+          <li><strong>Quality:</strong> Only the best products make it to our store.</li>
+          <li><strong>Transparency:</strong> Clear and honest product descriptions.</li>
+          <li><strong>Innovation:</strong> Using technology to improve your shopping experience.</li>
+          <li><strong>Customer Satisfaction:</strong> Your happiness is our priority.</li>
+          <li><strong>Community Support:</strong> Supporting local businesses and initiatives.</li>
+          <li><strong>Sustainability:</strong> Promoting eco-friendly products.</li>
+        </ul>
+        <p>
+          These principles define who we are and shape everything we do.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+    </section>
+
+
+    <footer>
+
+        <div id="foot" class="d-flex flex-sm-column flex-md-row justify-content-sm-evenly flex-wrap p-5">
+            <div class="d-flex flex-column gap-5">
+
+             <a href="Home.html"><img style="width: 150px; height: 50px;" src="../assets/images/logoLight.svg" alt=""></a>
+             <p>We are a residential interior design firm located in Portland. </p>
+
+             
+            </div>
+
+             <div>
+                <h5>Services</h5>
+               <p>Bonus program </p> 
+                <p>Gift cards</p>
+                <p>Credit and payment</p>
+                <p>Service contracts</p>
+                <p>Non-cash</p> 
+                <p>accountPayment</p>
+            </div>
+
+              <div>
+                <h5>Assistance to the buyer</h5>
+                <p>Find an order</p>
+                <p>Terms of delivery</p>
+                <p>Exchange and return of goods</p>
+                <p>Guarantee</p>
+                <p>Frequently asked questions</p>
+                <p>Terms of use of the site</p>
+            </div>
+
+            <div class="d-flex flex-column gap-3">              
+             <h5>Social Media</h5>
+              <div id="social" class="d-flex gap-3 flex-wrap">
+              <a href="#"><i class="fa-brands fa-facebook"></i></a>
+              <a href="#"><i class="fa-brands fa-instagram"></i></a>
+              <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+              <a href="#"><i class="fa-brands fa-youtube"></i></a>
+            
+                </div>
+             </div>
+        </div>
+
+     
+
+    </footer>
+
+    <script src="./assets/js/home.js"></script>
+        <script src="./assets/js/bs/bootstrap.bundle.js"></script>
+        <script>
+          document.addEventListener("DOMContentLoaded", function () {
+  handleHomeSearch("homeSearchForm", "productSearch", "./pages/products/product page.html"); //handle search
+});
+function handleHomeSearch(formId, inputId, targetPage) {
+  const form = document.getElementById(formId);
+  if (!form) return;
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    const query = document.getElementById(inputId)?.value.trim();
+    if (query) {
+      window.location.href = `${targetPage}?search=${encodeURIComponent(query)}`;
+    } else {
+      window.location.href = targetPage;
+    }
+  });
+}
+        </script>
+</body>
+</html>
