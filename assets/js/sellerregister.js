@@ -7,6 +7,9 @@ let passError = document.getElementById("passError");
 
 confirmInput.addEventListener("input", checkconfirmpass)
 
+
+passInput.addEventListener("input", checkpass);
+
 function checkconfirmpass() {
     if (confirmInput.value && confirmInput.value !== passInput.value) {
         confirmInput.classList.add("is-invalid");
@@ -15,8 +18,9 @@ function checkconfirmpass() {
         confirmInput.classList.remove("is-invalid");
         confirmInput.classList.add("is-valid");
     } else {
-        confirmInput.classList.remove("is-invalid", "is-valid");
-    }
+        confirmInput.classList.add("is-invalid");
+        confirmInput.classList.remove("is-valid");
+          }
 };
 
 passInput.addEventListener("input", checkpass);
