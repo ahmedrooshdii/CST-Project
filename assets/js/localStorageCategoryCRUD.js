@@ -11,10 +11,6 @@ window.addEventListener("load", function () {
     window.location.href = "../../Home.html";
   }
 
-  // if (user.role !== "admin") {
-  //   window.location.href = "../../Home.html";
-  // }
-
   // Query Elements -----------------------
   const categoryTbody = document.getElementById("categoryTbody");
   const imageInput = document.getElementById("categoryImage");

@@ -46,14 +46,14 @@
         />
       </a>
       <ul>
-        <li><a href="dashboard.html" class="nav-link">📊 Dashboard</a></li>
+        <li><a id ="dash" href="dashboard.html" class="nav-link">📊 Dashboard</a></li>
         <li><a href="profile.html" class="nav-link">👤 profile</a></li>
         <li><a id="usersPage" href="users.html" class="nav-link ">👤 Users</a></li>
         <li><a href="orders.html" class="nav-link">🛒 Orders</a></li>
-        <li><a href="products.html" class="nav-link">🛒 Products</a></li>
-        <li><a href="customers.html" class="nav-link">👥 Customers</a></li>
-        <li><a href="categories.html" class="nav-link active">👥 Categories</a></li>
-        <li><a href="contactus.html" class="nav-link">👥 Contact us</a></li>
+        <li><a id="product" href="products.html" class="nav-link">🛒 Products</a></li>
+        <li><a id="customer" href="customers.html" class="nav-link">👥 Customers</a></li>
+        <li><a id="cat" href="categories.html" class="nav-link active">👥 Categories</a></li>
+        <li><a id ="contact" href="contactus.html" class="nav-link">👥 Contact us</a></li>
       </ul>
       </div>
       <!-- Main Content -->
@@ -82,22 +82,7 @@
           </tr>
         </thead>
         <tbody id="categoryTbody">
-          <!-- Example Row -->
-          <!-- <tr>
-            <td>1</td>
-            <td>Smartphones</td>
-            <td>All kinds of mobile phones</td>
-            <td><span class="badge bg-success">Active</span></td>
-            <td>
-              <button class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editCategoryModal">
-                <i class="fa-solid fa-pen"></i>
-              </button>
-              <button class="btn btn-danger btn-sm">
-                <i class="fa-solid fa-trash"></i>
-              </button>
-            </td>
-          </tr> -->
-          <!-- End Example Row -->
+         
         </tbody>
       </table>
     </div>
@@ -208,148 +193,7 @@
 </div>
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-     <!-- <script>
-document.addEventListener("DOMContentLoaded", function () {
-  let categoryId = 1; // ID counter
-
-  document.querySelector("#addCategoryModal .btn-primary").addEventListener("click", function () {
-    const name = document.getElementById("categoryName").value.trim();
-    const desc = document.getElementById("categoryDescription").value.trim();
-    const status = document.getElementById("categoryStatus").value;
-
-    if (!name || !desc) {
-      alert("Please fill in all fields");
-      return;
-    }
-
-    // Create new row
-    const tableBody = document.getElementById("categoryTbody");
-    const row = document.createElement("tr");
-    row.innerHTML = `
-      <td>${categoryId++}</td>
-      <td>${name}</td>
-      <td>${desc}</td>
-      <td>
-        <span class="badge ${status === "active" ? "bg-success" : "bg-secondary"}">
-          ${status.charAt(0).toUpperCase() + status.slice(1)}
-        </span>
-      </td>
-      <td>
-        <button class="btn btn-warning btn-sm edit-btn" data-id="1">
-  <i class="fa-solid fa-pen"></i>
-</button>
-<button class="btn btn-danger btn-sm delete-btn" data-id="1">
-  <i class="fa-solid fa-trash"></i>
-</button>
-      </td>
-    `;
-
-    tableBody.appendChild(row);
-
-    // Clear form
-    document.getElementById("categoryName").value = "";
-    document.getElementById("categoryDescription").value = "";
-    document.getElementById("categoryStatus").value = "active";
-
-    // Close modal
-    const modal = bootstrap.Modal.getInstance(document.getElementById("addCategoryModal"));
-    modal.hide();
-  });
-});
-
-document.addEventListener("DOMContentLoaded", function () {
-  const searchInput = document.getElementById("searchCategory");
-  const tableBody = document.getElementById("categoryTbody");
-
-  searchInput.addEventListener("keyup", function () {
-    const searchText = this.value.toLowerCase();
-    const rows = tableBody.getElementsByTagName("tr");
-
-    for (let row of rows) {
-      const cells = row.getElementsByTagName("td");
-      let match = false;
-
-      for (let cell of cells) {
-        if (cell.textContent.toLowerCase().includes(searchText)) {
-          match = true;
-          break;
-        }
-      }
-
-      row.style.display = match ? "" : "none";
-    }
-  });
-});
-document.addEventListener("DOMContentLoaded", () => {
-  const categoryTbody = document.getElementById("categoryTbody");
-  const editModal = new bootstrap.Modal(document.getElementById("editCategoryModal"));
-  
-  let currentEditRow = null; // To track which row is being edited
-
-  // Delegate click event on tbody for buttons (edit & delete)
-  categoryTbody.addEventListener("click", function(event) {
-    const target = event.target.closest("button");
-    if (!target) return;
-
-    const row = target.closest("tr");
-
-    if (target.classList.contains("delete-btn")) {
-      // Delete row
-      if (confirm("Are you sure you want to delete this category?")) {
-        row.remove();
-      }
-    }
-    else if (target.classList.contains("edit-btn")) {
-      // Edit row: Fill modal with row data and show modal
-      currentEditRow = row;
-      
-      const cells = row.querySelectorAll("td");
-      const name = cells[1].textContent;
-      const description = cells[2].textContent;
-      const statusText = cells[3].textContent.trim().toLowerCase();
-
-      document.querySelector("#editCategoryModal input.form-control").value = name;
-      document.querySelector("#editCategoryModal textarea.form-control").value = description;
-      
-      const statusSelect = document.querySelector("#editCategoryModal select.form-select");
-      statusSelect.value = statusText === "active" ? "active" : "inactive";
-
-      editModal.show();
-    }
-  });
-
-  // Save changes button in modal
-  document.querySelector("#editCategoryModal .btn-primary").addEventListener("click", () => {
-    if (!currentEditRow) return;
-
-    const nameInput = document.querySelector("#editCategoryModal input.form-control");
-    const descInput = document.querySelector("#editCategoryModal textarea.form-control");
-    const statusSelect = document.querySelector("#editCategoryModal select.form-select");
-
-    // Update table row cells
-    const cells = currentEditRow.querySelectorAll("td");
-    cells[1].textContent = nameInput.value;
-    cells[2].textContent = descInput.value;
-
-    // Update status badge with color
-    const statusCell = cells[3];
-    statusCell.innerHTML = '';
-    const span = document.createElement("span");
-    span.classList.add("badge");
-    if (statusSelect.value === "active") {
-      span.classList.add("bg-success");
-      span.textContent = "Active";
-    } else {
-      span.classList.add("bg-secondary");
-      span.textContent = "Inactive";
-    }
-    statusCell.appendChild(span);
-    editModal.hide();
-  });
-});
-
-</script> -->
-<script src="/assets/js/localStorageCategoryCRUD.js"></script>
+   <script src="/assets/js/localStorageCategoryCRUD.js"></script>
 <script src="/assets/js/seedCategories.js"></script>
 
 </body>
