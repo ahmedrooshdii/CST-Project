@@ -51,7 +51,7 @@
 
     <div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
        
-       <form id="homeSearchForm" class="col-12 col-md-12 col-lg-5 col-xl-6 position-relative">
+       </form> <form id="homeSearchForm" class="col-12 col-md-12 col-lg-5 col-xl-6 position-relative">
           <i class="fa-solid fa-magnifying-glass position-absolute top-50 start-0 translate-middle-y ms-3 text-muted"></i>
           <input type="search" id="productSearch" class="form-control ps-5" placeholder="Search" aria-label="Search">
       </form>
@@ -327,7 +327,25 @@
             <script src="../../assets/js/bs/bootstrap.bundle.js"></script>
             <script src="../../assets/js/checkoutStepThree.js"></script>
 
+<script>
+          document.addEventListener("DOMContentLoaded", function () {
+  handleHomeSearch("homeSearchForm", "productSearch", "../products/product page.html"); //handle search
+});
+function handleHomeSearch(formId, inputId, targetPage) {
+  const form = document.getElementById(formId);
+  if (!form) return;
 
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    const query = document.getElementById(inputId)?.value.trim();
+    if (query) {
+      window.location.href = `${targetPage}?search=${encodeURIComponent(query)}`;
+    } else {
+      window.location.href = targetPage;
+    }
+  });
+}
+        </script>
    
   </body>
 </html>
