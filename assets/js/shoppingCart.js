@@ -10,6 +10,9 @@ let subTotalPrice;
 let taxPrice;
 let totalPrice;
 
+if (!currentUserLocal) {
+  location.href = "/pages/auth/login.html";
+}
 // document load
 window.addEventListener("load", () => {
   //query elements

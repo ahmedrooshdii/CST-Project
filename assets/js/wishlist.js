@@ -4,6 +4,10 @@ let users = JSON.parse(localStorage.getItem("users"));
 let user = getCurrentUser();
 const products = JSON.parse(localStorage.getItem("products"));
 let favoriteContainer;
+
+if (!currentUserLocal) {
+  location.href = "/pages/auth/login.html";
+}
 //document load
 window.addEventListener("load", () => {
   //query elements
