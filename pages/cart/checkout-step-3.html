@@ -7,7 +7,13 @@
     <link rel="stylesheet" href="../../assets/css/checkout-3.css" />
     <link rel="stylesheet" href="../../assets/css/home.css">
         <link rel="stylesheet" href="../../assets/css/bs/bootstrap.min.css">
-
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
+      integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <script src="../../assets/js/home.js"></script>
     <link
       href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@400;500;600&display=swap"
@@ -112,81 +118,48 @@
         <div class="card">
           <h2 class="section-title">Summary</h2>
 
-          <div class="products-list">
-            <div class="product-item">
-              <div
-                class="product-image"
-                style="
-                  background-image: url('https://images.pexels.com/photos/788946/pexels-photo-788946.jpeg?auto=compress&cs=tinysrgb&w=40&h=40');
-                "
-              ></div>
-              <div class="product-details">
-                <div class="product-name">Apple iPhone 14 Pro Max 128Gb</div>
-                <div class="product-price">$1399</div>
-              </div>
-            </div>
-
-            <div class="product-item">
-              <div
-                class="product-image"
-                style="
-                  background-image: url('https://images.pexels.com/photos/3394650/pexels-photo-3394650.jpeg?auto=compress&cs=tinysrgb&w=40&h=40');
-                "
-              ></div>
-              <div class="product-details">
-                <div class="product-name">AirPods Max Silver</div>
-                <div class="product-price">$549</div>
-              </div>
-            </div>
-
-            <div class="product-item">
-              <div
-                class="product-image"
-                style="
-                  background-image: url('https://images.pexels.com/photos/437037/pexels-photo-437037.jpeg?auto=compress&cs=tinysrgb&w=40&h=40');
-                "
-              ></div>
-              <div class="product-details">
-                <div class="product-name">Apple Watch Series 9 GPS 41mm</div>
-                <div class="product-price">$399</div>
-              </div>
-            </div>
+          <div class="products-list" id="itemsContainer">
+           
           </div>
 
           <div class="summary-details">
             <div class="address-section">
               <div class="detail-group">
                 <div class="detail-label">Address</div>
-                <div class="detail-value">
+                <div class="detail-value" id="address">
                   1131 Dusty Townline, Jacksonville, TX 40322
                 </div>
               </div>
 
               <div class="detail-group">
                 <div class="detail-label">Shipment method</div>
-                <div class="detail-value">Free</div>
+                <div class="detail-value" id="shipmentMethod">Free</div>
               </div>
             </div>
 
             <div class="pricing-section">
               <div class="pricing-row">
                 <span class="pricing-label">Subtotal</span>
-                <span class="pricing-value">$2347</span>
+                <span class="pricing-value" id="subTotalPrice"></span>
               </div>
 
               <div class="pricing-row secondary">
                 <span class="pricing-label">Estimated Tax</span>
-                <span class="pricing-value">$50</span>
+                <span class="pricing-value" id="taxPrice"></span>
               </div>
 
               <div class="pricing-row secondary">
                 <span class="pricing-label">Estimated shipping & Handling</span>
-                <span class="pricing-value">$29</span>
+                <span class="pricing-value">$15</span>
+              </div>
+              <div class="pricing-row secondary">
+                <span class="pricing-label">shipment Method</span>
+                <span class="pricing-value" id="shipmentMethodPrice"></span>
               </div>
 
               <div class="pricing-row total">
                 <span class="pricing-label">Total</span>
-                <span class="pricing-value">$2426</span>
+                <span class="pricing-value" id="totalPrice"></span>
               </div>
             </div>
           </div>
@@ -210,69 +183,85 @@
               <img src="../../assets/icons/card-details-icon.svg" alt="">
             </div>
 
-            <div class="form-group">
-              <input
-                type="text"
-                class="form-input"
-                placeholder="Cardholder Name"
-                id="cardholder-name"
-              />
-            </div>
+            <form id="payment-form">
+  <div class="form-group">
+    <input
+      type="text"
+      class="form-input"
+      placeholder="Cardholder Name"
+      id="cardholder-name"
+    />
+    <small class="error-msg"></small>
+  </div>
 
-            <div class="form-group">
-              <input
-                type="text"
-                class="form-input"
-                placeholder="Card Number"
-                id="card-number"
-                maxlength="19"
-              />
-            </div>
+  <div class="form-group">
+    <input
+      type="text"
+      class="form-input"
+      placeholder="Card Number"
+      id="card-number"
+      maxlength="19"
+    />
+    <small class="error-msg"></small>
+  </div>
 
-            <div class="form-row">
-              <div class="form-group">
-                <input
-                  type="text"
-                  class="form-input"
-                  placeholder="Exp.Date"
-                  id="exp-date"
-                  maxlength="5"
-                />
-              </div>
-              <div class="form-group">
-                <input
-                  type="text"
-                  class="form-input"
-                  placeholder="CVV"
-                  id="cvv"
-                  maxlength="3"
-                />
-              </div>
-            </div>
+  <div class="form-row">
+    <div class="form-group">
+      <input
+        type="text"
+        class="form-input"
+        placeholder="Exp.Date (MM/YY)"
+        id="exp-date"
+        maxlength="5"
+      />
+      <small class="error-msg"></small>
+    </div>
+    <div class="form-group">
+      <input
+        type="text"
+        class="form-input"
+        placeholder="CVV"
+        id="cvv"
+        maxlength="3"
+      />
+      <small class="error-msg"></small>
+    </div>
+  </div>
+
+  <div class="button-group">
+          <button onclick="goBack()" class="btn-3 btn-3-outline">Back</button>
+          <button type="submit" class="btn-3 btn-3-primary">Pay</button>
+        </div>
+</form>
           </div>
         </div>
 
         
 
-        <div class="checkbox-group">
-          <label class="checkbox-label">
-            <input type="checkbox" class="checkbox-input" />
-            <span class="checkbox-custom"></span>
-            Same as billing address
-          </label>
-        </div>
 
-        <div class="button-group">
-          <button class="btn-3 btn-3-outline">Back</button>
-          <button class="btn-3 btn-3-primary">Pay</button>
-        </div>
+        
       </div>
     </div>
 
                 
             
             
-        
+        <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+      <div
+        id="toastMessage"
+        class="toast align-items-center text-bg-danger border-0"
+        role="alert"
+      >
+        <div class="d-flex">
+          <div class="toast-body"></div>
+          <button
+            type="button"
+            class="btn-close btn-close-white me-2 m-auto"
+            data-bs-dismiss="toast"
+          ></button>
+        </div>
+      </div>
+    </div>
             
     
     
@@ -324,6 +313,7 @@
     </footer>
 
             <script src="../../assets/js/bs/bootstrap.bundle.js"></script>
+            <script src="../../assets/js/checkoutStepThree.js"></script>
 
 
    

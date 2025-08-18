@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Order | </title>
+    <title>Order | Shipment Method</title>
     <link rel="stylesheet" href="../../assets/css/checkout-2.css" />
     <link rel="stylesheet" href="../../assets/css/home.css">
         <link rel="stylesheet" href="../../assets/css/bs/bootstrap.min.css">
@@ -110,7 +110,7 @@
         <div class="content">
             <h2 class="title">Shipment Method</h2>
             
-            <form class="shipment-form">
+            <form class="shipment-form" id="shipment-form">
                 <div class="radio-group">
                     <div class="radio-option">
                         <div class="radio-content">
@@ -122,7 +122,6 @@
                                 </div>
                             </label>
                         </div>
-                        <div class="radio-date">17 Oct, 2023</div>
                     </div>
                     
                     <div class="radio-option ">
@@ -135,32 +134,14 @@
                                 </div>
                             </label>
                         </div>
-                        <div class="radio-date">1 Oct, 2023</div>
                     </div>
                     
-                    <div class="radio-option ">
-                        <div class="radio-content">
-                            <input type="radio" id="schedule" name="shipment" value="schedule" >
-                            <label for="schedule" class="radio-label">
-                                <div class="radio-info">
-                                    <span class="radio-price">Schedule</span>
-                                    <span class="radio-description">Pick a date when you want to get your delivery</span>
-                                </div>
-                            </label>
-                        </div>
-                        <div class="radio-date">
-                            Select Date
-                            <svg class="chevron-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="6,9 12,15 18,9"></polyline>
-                            </svg>
-                        </div>
-                    </div>
                 </div>
             </form>
             
             <div class="button-group">
-                <button type="button" class="btn-ship btn-outline-ship">Back</button>
-                <button type="button" class="btn-ship btn-primary-ship">Next</button>
+                <button type="button" class="btn-ship btn-outline-ship" onclick="goBack()">Back</button>
+                <button type="button" class="btn-ship btn-primary-ship" onclick="proceedToStepThree()">Next</button>
             </div>
         </div>
     </div>
@@ -212,6 +193,33 @@
     </footer>
 
             <script src="../../assets/js/bs/bootstrap.bundle.js"></script>
+            <script>
+              //declare var
+              const form = document.getElementById("shipment-form")
+              let orderProcessing = JSON.parse(localStorage.getItem("orderProcessing"));
+              orderProcessing.shipment="free"
 
+              if (!orderProcessing) {
+  location.href = "../../pages/cart/shopping-cart.html";
+}
+
+              // even listener for form 
+              form.addEventListener("change",()=>{
+                const data = new FormData(form).get("shipment")
+                orderProcessing.shipment=data
+                console.log(orderProcessing);
+              })
+              //save order details
+              function saveOrder() {
+              localStorage.setItem("orderProcessing", JSON.stringify(orderProcessing));
+}
+              function proceedToStepThree(){
+                saveOrder()
+                window.location.href="../../pages/cart/checkout-step-3.html"
+              }
+              function goBack(){
+                window.location.href="../../pages/cart/checkout-step-1.html"
+              }
+            </script>
   </body>
 </html>

@@ -548,3 +548,32 @@ body {
         font-size: 14px;
     }
 }
+
+
+
+
+.form-group {
+    margin-bottom: 16px;
+    /* space below each input */
+}
+
+.form-row {
+    display: flex;
+    gap: 16px;
+    /* space between Exp.Date and CVV */
+}
+
+.form-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+}
+.invalid {
+    border: 1px solid red;
+}
+.error-msg {
+    color: red;
+    font-size: 12px;
+}
