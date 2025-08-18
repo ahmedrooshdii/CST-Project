@@ -238,3 +238,21 @@ function showToast(message, type = "danger") {
   let toast = new bootstrap.Toast(toastEl);
   toast.show();
 }
+
+function goToWishList() {
+  const user = JSON.parse(sessionStorage.getItem("currentUser"));
+  if (!user) {
+    window.location.href = "../../pages/auth/login.html";
+    return;
+  }
+  window.location.href = `/pages/cart/wishlist.html`;
+}
+
+function goToCart() {
+  const user = JSON.parse(sessionStorage.getItem("currentUser"));
+  if (!user) {
+    window.location.href = "../../pages/auth/login.html";
+    return;
+  }
+  window.location.href = `/pages/cart/shopping-cart.html`;
+}
