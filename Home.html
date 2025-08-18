@@ -12,12 +12,27 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+    <link rel="stylesheet" href="./assets/css/main2.css" />
     <link rel="stylesheet" href="./assets/css/home.css" />
-    <link rel="stylesheet" href="assets/css/main2.css" />
 
     <script src="./assets/js/home.js"></script>
+
+    <style>
+      #productSearch{
+            height: 35px;
+            font-size: large !important;
+      }
+      #subnav {
+  color: aliceblue;
+  background-color: rgba(46, 46, 46, 1);
+  padding: 10px !important;
+  margin-top: 5px;
+}
+
+    </style>
   </head>
   <body>
+ 
     <header class="container-fluid d-md-flex justify-content-md-between mt-1">
       <div class="d-none d-md-flex gap-2">
         <a href="mailto:Mohamedbasiouny111@gmail.com"
@@ -45,14 +60,13 @@
       </div>
     </header>
 
-    <nav class="container-fluid navbar navbar-expand-lg navbar-light bg-light">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="Home.html"
-          ><img
-            style="width: 150px; height: 50px; margin-right: 30vw"
-            src="./assets/images/logo.svg"
-            alt=""
-        /></a>
+   <nav class="container-fluid navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container gap-2 gap-xl-5">
+        <div class="col-2">
+          <a class="navbar-brand" href="../Home.html"
+            ><img src="../assets/images/logo.svg" alt=""
+          /></a>
+        </div>
 
         <button
           class="navbar-toggler"
@@ -67,14 +81,13 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <form
-            class="position-relative d-md-flex justify-content-center align-item w-50"
-          >
+          <form id="homeSearchForm" class="position-relative d-md-flex justify-content-center align-item w-50">
             <i
-              class="fa-solid fa-magnifying-glass position-absolute top-50 start-0 translate-middle-y ms-3 text-muted"
+              class="fa-solid fa-magnifying-glass position-absolute top-50 start-0 translate-middle-y ms-3 pe-5 text-muted "
             ></i>
             <input
               type="search"
+               id="productSearch"
               class="form-control ps-5"
               placeholder="Search"
               aria-label="Search"
@@ -124,9 +137,7 @@
     </nav>
 
     <nav
-      id="subnav"
-      class="container-fluid d-none d-md-flex justify-content-evenly gap-2"
-    >
+      id="subnav" class="container-fluid d-none d-md-flex justify-content-evenly gap-2">
       <p><i class="fa-solid fa-mobile"></i>Phones</p>
       <p>|</p>
       <p><i class="fa-solid fa-desktop"></i>Computers</p>
@@ -139,6 +150,7 @@
       <p>|</p>
       <p><i class="fa-solid fa-gamepad"></i>Gaming</p>
     </nav>
+
 
     <main>
       <section class="wrapper block block--dark hero overflow--clip">
