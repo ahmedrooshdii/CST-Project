@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
         <link rel="stylesheet" href="../../assets/css/home.css">
-
     <script src="../../assets/js/home.js"></script>
 <style>
   .card-img-top {
@@ -39,25 +38,18 @@
     <!-- Main Navigation/Categories -->
 <nav class="container-fluid navbar navbar-expand-lg navbar-light bg-light">
   <div class="container gap-2 gap-xl-5">
-
     <div class="col-2">
     <a class="navbar-brand" href="../../Home.html"><img src="../../assets/images/logo.svg" alt=""></a>
     </div>
-
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-   
-
     <div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
-       
        <form id="homeSearchForm" class="col-12 col-md-12 col-lg-5 col-xl-6 position-relative">
           <i class="fa-solid fa-magnifying-glass position-absolute top-50 start-0 translate-middle-y ms-3 text-muted"></i>
           <input type="search" id="productSearch" class="form-control ps-5" placeholder="Search" aria-label="Search">
       </form>
-
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-
        <li class="nav-item">
           <a class="nav-link " aria-current="page" href="../../Home.html">Home</a>
         </li>
@@ -79,14 +71,10 @@
          <li class="nav-item">
           <a class="nav-link active"  href="../cart/shopping-cart.html"><i class="fa-solid fa-cart-shopping"></i></a>
         </li>
-
       </ul>
     </div>
-
   </div>
 </nav>
-
-
 <nav id="subnav" class="container-fluid d-none d-md-flex justify-content-evenly gap-2">
     <p><i class="fa-solid fa-mobile"></i>Phones</p>
     <p>|</p>
@@ -108,11 +96,8 @@
                 <li class="breadcrumb-item">
                 <a href="../../Home.html" class="text-secondary text-decoration-none">Home</a>
                 </li>
-                <li class="breadcrumb-item">
-                <a href="#" class="text-secondary text-decoration-none">Catalog</a>
-                </li>
                 <li class="breadcrumb-item active text-dark fw-semibold" aria-current="page">
-                Smartphones
+                All products
                 </li>
                 </ol>
             </nav>
@@ -141,7 +126,6 @@
         </div>
       </div>
     </div>
-
     <!-- categories Filter -->
      <div class="accordion-item mb-3">
   <h2 class="accordion-header" id="headingCategory">
@@ -160,280 +144,13 @@
     </div>
   </div>
 </div>
-
-    <!-- <div class="accordion-item mb-3">
-      <h2 class="accordion-header" id="headingBrand">
-        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseBrand" aria-expanded="true" aria-controls="collapseBrand">
-          Categories
-        </button>
-      </h2>
-      <div id="collapseBrand" class="accordion-collapse collapse show" aria-labelledby="headingBrand">
-        <div class="accordion-body">
-          <div class="mb-3">
-            <input type="text" class="form-control" placeholder="Search brand...">
-          </div> -->
-          <!-- Brand checkboxes as before -->
-          <!-- <div class="filter-check mb-2">
-            <input class="form-check-input" type="checkbox" id="catphone" >
-            <label class="form-check-label d-flex justify-content-between w-100" for="catphone">
-              <span>phones</span><span class="text-muted">110</span>
-            </label>
-          </div>
-          <div class="filter-check mb-2">
-            <input class="form-check-input" type="checkbox" id="catcomputers">
-            <label class="form-check-label d-flex justify-content-between w-100" for="catcomputers">
-              <span>computers</span><span class="text-muted">125</span>
-            </label>
-          </div>
-          <div class="filter-check mb-2">
-            <input class="form-check-input" type="checkbox" id="catwatch">
-            <label class="form-check-label d-flex justify-content-between w-100" for="catwatch">
-              <span>smart watch</span><span class="text-muted">68</span>
-            </label>
-          </div>
-          <div class="filter-check mb-2">
-            <input class="form-check-input" type="checkbox" id="catcamera">
-            <label class="form-check-label d-flex justify-content-between w-100" for="catcamera">
-              <span>camera</span><span class="text-muted">44</span>
-            </label>
-          </div>
-          <div class="filter-check mb-2">
-            <input class="form-check-input" type="checkbox" id="catheadphones">
-            <label class="form-check-label d-flex justify-content-between w-100" for="catheadphones">
-              <span>headphones</span><span class="text-muted">36</span>
-            </label>
-          </div>
-          <div class="filter-check mb-2">
-            <input class="form-check-input" type="checkbox" id="catgaming">
-            <label class="form-check-label d-flex justify-content-between w-100" for="catgaming">
-              <span>gaming</span><span class="text-muted">10</span>
-            </label>
-          </div> -->
-          
-        <!-- </div>
-      </div>
-    </div> -->
-
-    <!-- Built-in Memory Filter -->
-    <div class="accordion-item" style="display: none;">  <!--style="display: none;"-->
-      <h2 class="accordion-header" id="headingMemory">
-        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMemory" aria-expanded="true" aria-controls="collapseMemory">
-          Built-in memory
-        </button>
-      </h2>
-      <div id="collapseMemory" class="accordion-collapse collapse show" aria-labelledby="headingMemory">
-        <div class="accordion-body">
-          <div class="mb-3">
-            <input type="text" class="form-control" placeholder="Search memory...">
-          </div>
-          <!-- Memory checkboxes as before -->
-          <div class="filter-check mb-2">
-            <input class="form-check-input" type="checkbox" id="memory16">
-            <label class="form-check-label d-flex justify-content-between w-100" for="memory16">
-              <span>16GB</span><span class="text-muted">65</span>
-            </label>
-          </div>
-          <div class="filter-check mb-2">
-            <input class="form-check-input" type="checkbox" id="memory32">
-            <label class="form-check-label d-flex justify-content-between w-100" for="memory32">
-              <span>32GB</span><span class="text-muted">123</span>
-            </label>
-          </div>
-          <div class="filter-check mb-2">
-            <input class="form-check-input" type="checkbox" id="memory64">
-            <label class="form-check-label d-flex justify-content-between w-100" for="memory64">
-              <span>64GB</span><span class="text-muted">48</span>
-            </label>
-          </div>
-          <div class="filter-check mb-2">
-            <input class="form-check-input" type="checkbox" id="memory128">
-            <label class="form-check-label d-flex justify-content-between w-100" for="memory128">
-              <span>128GB</span><span class="text-muted">50</span>
-            </label>
-          </div>
-          <div class="filter-check mb-2">
-            <input class="form-check-input" type="checkbox" id="memory256">
-            <label class="form-check-label d-flex justify-content-between w-100" for="memory256">
-              <span>256GB</span><span class="text-muted">24</span>
-            </label>
-          </div>
-          <div class="filter-check">
-            <input class="form-check-input" type="checkbox" id="memory512">
-            <label class="form-check-label d-flex justify-content-between w-100" for="memory512">
-              <span>512GB</span><span class="text-muted">8</span>
-            </label>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 </aside>
             <!-- Right Content (Product Listing) -->
             <main class="col-md-9">
                 <div class="d-flex justify-content-between align-items-center mb-3">
-                    <div>Selected Products: <span class="fw-bold">85</span></div>
-                    <div class="dropdown">
-                        <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                            By rating
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                            <li><a class="dropdown-item" href="#">5 </a></li>
-                            <li><a class="dropdown-item" href="#">4 </a></li>
-                            <li><a class="dropdown-item" href="#">3</a></li>
-                            <li><a class="dropdown-item" href="#">2</a></li>
-                            <li><a class="dropdown-item" href="#">1</a></li>
-                        </ul>
-                    </div>
+                    <div>Products: <span id="productCount" class="fw-bold">0</span></div>
                 </div>
-
                 <div class="row row-cols-1 row-cols-md-3 g-4">
-                    <!-- Product Card 1 -->
-                    <!-- <div class="col product-card"
-                      data-name="Apple iPhone 14 Pro 512GB Gold"
-                      data-price="1437"
-                      data-img="../../assets/images/1.png"
-                      data-id="1"
-                      data-category="Smartphones"
-                      >
-                        <div class="card h-100 text-center position-relative">
-                            <div class="position-absolute top-0 end-0 p-2">
-                                <i class="far fa-heart text-muted"></i>
-                            </div>
-                            <div class="card-body">
-                                <img src="../../assets\images\1.png" class="card-img-top mb-3" alt="iPhone 14 Pro">
-                                <h5 class="card-title">Apple iPhone 14 Pro 512GB Gold </h5>
-                                <p class="card-text fs-4 fw-bold">$1437</p>
-                                <button class="btn btn-dark w-100 add-to-cart" data-name="Apple iPhone 14 Pro 512GB Gold" data-price="1437" data-img="../../assets/images/1.png">
-                                  Buy Now
-                                </button>
-                            </div>
-                        </div>
-                    </div> -->
-                    <!-- Product Card 2 -->
-                    <!-- <div class="col">
-                        <div class="card h-100 text-center position-relative">
-                            <div class="position-absolute top-0 end-0 p-2">
-                                <i class="far fa-heart text-muted"></i>
-                            </div>
-                            <div class="card-body">
-                                <img src="../../assets\images\2.png" class="card-img-top mb-3" alt="iPhone 11">
-                                <h5 class="card-title">Apple iPhone 11 128GB White </h5>
-                                <p class="card-text fs-4 fw-bold">$510</p>
-                                <button class="btn btn-dark w-100 add-to-cart" data-name="Apple iPhone 11 128GB White " data-price="510" data-img="../../assets/images/2.png">
-                                  Buy Now
-                                </button>
-                            </div>
-                        </div>
-                    </div> -->
-                    <!-- Product Card 3 -->
-                    <!-- <div class="col">
-                        <div class="card h-100 text-center position-relative">
-                            <div class="position-absolute top-0 end-0 p-2">
-                                <i class="far fa-heart text-muted"></i>
-                            </div>
-                            <div class="card-body">
-                                <img src="../../assets\images\3.png" class="card-img-top mb-3" alt="iPhone 11">
-                                <h5 class="card-title">Apple iPhone 11 128GB White </h5>
-                                <p class="card-text fs-4 fw-bold">$550</p>
-                                <button class="btn btn-dark w-100 add-to-cart" data-name="Apple iPhone 11 128GB White" data-price="550" data-img="../../assets/images/4.png">
-                                  Buy Now
-                                </button>
-                            </div>
-                        </div>
-                    </div> -->
-                    <!-- Product Card 4 -->
-                    <!-- <div class="col">
-                        <div class="card h-100 text-center position-relative">
-                            <div class="position-absolute top-0 end-0 p-2">
-                                <i class="far fa-heart text-muted"></i>
-                            </div>
-                            <div class="card-body">
-                                <img src="../../assets\images\4.png" class="card-img-top mb-3" alt="iPhone 14 Pro">
-                                <h5 class="card-title">Apple iPhone 14 Pro 512GB Gold </h5>
-                                <p class="card-text fs-4 fw-bold">$1437</p>
-                                <button class="btn btn-dark w-100 add-to-cart" data-name="Apple iPhone 14 Pro 512GB Gold" data-price="1437" data-img="../../assets/images/4.png">
-                                  Buy Now
-                                </button>
-                            </div>
-                        </div>
-                    </div> -->
-                    <!-- Product Card 5 -->
-                    <!-- <div class="col">
-                        <div class="card h-100 text-center position-relative">
-                            <div class="position-absolute top-0 end-0 p-2">
-                                <i class="far fa-heart text-muted"></i>
-                            </div>
-                            <div class="card-body">
-                                <img src="../../assets\images\5.png" class="card-img-top mb-3" alt="iPhone 11">
-                                <h5 class="card-title">Apple iPhone 11 128GB White </h5>
-                                <p class="card-text fs-4 fw-bold">$510</p>
-                                <button class="btn btn-dark w-100 add-to-cart" data-name="Apple iPhone 11 128GB White" data-price="$510" data-img="../../assets/images/5.png">
-                                  Buy Now
-                                </button>
-                            </div>
-                        </div>
-                    </div> -->
-                    <!-- Product Card 6 -->
-                    <!-- <div class="col">
-                        <div class="card h-100 text-center position-relative">
-                            <div class="position-absolute top-0 end-0 p-2">
-                                <i class="far fa-heart text-muted"></i>
-                            </div>
-                            <div class="card-body">
-                                <img src="../../assets\images\6.png" class="card-img-top mb-3" alt="iPhone 14 Pro">
-                                <h5 class="card-title">Apple iPhone 14 Pro Max 1TB Purple </h5>
-                                <p class="card-text fs-4 fw-bold">$1899</p>
-                                <button class="btn btn-dark w-100 add-to-cart" data-name="Apple iPhone 14 Pro Max 1TB Purple" data-price="1899" data-img="../../assets/images/6.png">
-                                  Buy Now
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card h-100 text-center position-relative">
-                            <div class="position-absolute top-0 end-0 p-2">
-                                <i class="far fa-heart text-muted"></i>
-                            </div>
-                            <div class="card-body">
-                                <img src="../../assets\images\7.png" class="card-img-top mb-3" alt="iPhone 11">
-                                <h5 class="card-title">Apple iPhone 11 128GB White </h5>
-                                <p class="card-text fs-4 fw-bold">$510</p>
-                                <button class="btn btn-dark w-100 add-to-cart" data-name="Apple iPhone 11 128GB White " data-price="510" data-img="../../assets/images/7.png">
-                                  Buy Now
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card h-100 text-center position-relative">
-                            <div class="position-absolute top-0 end-0 p-2">
-                                <i class="far fa-heart text-muted"></i>
-                            </div>
-                            <div class="card-body">
-                                <img src="../../assets\images\8.png" class="card-img-top mb-3" alt="iPhone 11">
-                                <h5 class="card-title">Apple iPhone 11 128GB White </h5>
-                                <p class="card-text fs-4 fw-bold">$510</p>
-                                <button class="btn btn-dark w-100 add-to-cart" data-name="Apple iPhone 11 128GB White" data-price="510" data-img="../../assets/images/8.png">
-                                  Buy Now
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card h-100 text-center position-relative">
-                            <div class="position-absolute top-0 end-0 p-2">
-                                <i class="far fa-heart text-muted"></i>
-                            </div>
-                            <div class="card-body">
-                                <img src="../../assets\images\9.png" class="card-img-top mb-3" alt="iPhone 11">
-                                <h5 class="card-title">Apple iPhone 11 128GB White </h5>
-                                <p class="card-text fs-4 fw-bold">$510</p>
-                                <button class="btn btn-dark w-100 add-to-cart" data-name="Apple iPhone 11 128GB White" data-price="510" data-img="../../assets/images/9.png">
-                                  Buy Now
-                                </button>
-                            </div>
-                        </div>
-                    </div> -->
                     <nav aria-label="Page navigation" class="d-flex justify-content-center mt-4">
                         <ul class="pagination pagination-lg justify-content-center">
                             <li class="page-item disabled">
@@ -496,17 +213,13 @@
     <script>
 document.addEventListener("DOMContentLoaded", () => {
   const cartKey = "cartItems"; // localStorage key
-
   // Load existing cart from localStorage or start empty
   let cart = JSON.parse(localStorage.getItem(cartKey)) || [];
-
   // Get product container
   const productsContainer = document.querySelector(".row.row-cols-1.row-cols-md-3.g-4");
   productsContainer.innerHTML = "";
-
   // Load products from localStorage
   const products = JSON.parse(localStorage.getItem("products")) || [];
-
   if (products.length === 0) {
     productsContainer.innerHTML = `<p class="text-center w-100">No products available.</p>`;
   } else {
@@ -520,7 +233,6 @@ document.addEventListener("DOMContentLoaded", () => {
       col.setAttribute("data-description", product.description);
       col.setAttribute("data-category", product.category);
       col.setAttribute("data-stock", product.stock);
-
       col.innerHTML = `
         <div class="card h-100 text-center position-relative product-link">
           <div class="position-absolute top-0 end-0 p-2">
@@ -534,7 +246,6 @@ document.addEventListener("DOMContentLoaded", () => {
           </div>
         </div>
       `;
-
       // Go to single product page if card clicked (not Buy Now)
       col.querySelector(".product-link").addEventListener("click", (e) => {
         if (e.target.classList.contains("add-to-cart")) return;
@@ -542,6 +253,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
       productsContainer.appendChild(col);
     });
+    updateProductCount();
   }
   // Attach Buy Now buttons
   document.querySelectorAll(".add-to-cart").forEach(button => {
@@ -572,12 +284,10 @@ document.addEventListener("DOMContentLoaded", () => {
     alert(`Product ${productName} added to your cart!`);
   });
 });
-
   // CATEGORY FILTER (dynamic)
   const filterContainer = document.getElementById("categoryFilters");
   const searchInput = document.getElementById("searchCategoryFilter");
   const categories = JSON.parse(localStorage.getItem("categories")) || [];
-
   function renderCategories(list) {
     filterContainer.innerHTML = "";
     list.forEach(cat => {
@@ -591,16 +301,13 @@ document.addEventListener("DOMContentLoaded", () => {
       `;
       filterContainer.appendChild(div);
     });
-
     // Attach filter event to new checkboxes
     document.querySelectorAll('#collapseCategory input[type="checkbox"]').forEach(cb => {
       cb.addEventListener("change", filterProducts);
     });
   }
-
   // Initial render
   renderCategories(categories);
-
   // Search inside categories
   searchInput.addEventListener("keyup", function () {
     const searchText = this.value.toLowerCase();
@@ -609,33 +316,25 @@ document.addEventListener("DOMContentLoaded", () => {
     );
     renderCategories(filtered);
   });
-
-
   // COMBINED FILTER (Category + Price)
-
   function filterProducts() {
     const priceFrom = parseFloat(document.getElementById("priceFrom").value) || 0;
     const priceTo = parseFloat(document.getElementById("priceTo").value) || Infinity;
-
     const selectedCategories = Array.from(
       document.querySelectorAll('#collapseCategory input[type="checkbox"]:checked')
     ).map(cb => cb.value.toLowerCase());
-
     document.querySelectorAll(".product-card").forEach(card => {
       const productCategory = card.dataset.category?.toLowerCase();
       const productPrice = parseFloat(card.dataset.price);
-
       const matchCategory = selectedCategories.length === 0 || selectedCategories.includes(productCategory);
       const matchPrice = productPrice >= priceFrom && productPrice <= priceTo;
-
       card.style.display = (matchCategory && matchPrice) ? "" : "none";
     });
+    updateProductCount();
   }
-
   // Price filter events
   document.getElementById("priceFrom").addEventListener("input", filterProducts);
   document.getElementById("priceTo").addEventListener("input", filterProducts);
-
   // Run filter on page load
   filterProducts();
 });
@@ -651,7 +350,6 @@ searchInput.addEventListener("input", () => {
     card.style.display = matches ? "" : "none";
   });
 });
-
 //search in head
 document.addEventListener("DOMContentLoaded", () => {
   const searchInput = document.getElementById("productSearch");
@@ -665,13 +363,12 @@ document.addEventListener("DOMContentLoaded", () => {
       const matches = !searchText || productName.includes(searchText) || productCategory.includes(searchText);
       card.style.display = matches ? "" : "none";
     });
+    updateProductCount();
   }
-
   // When typing in search bar
   searchInput.addEventListener("input", () => {
     filterProductsBySearch(searchInput.value);
   });
-
   //  Prefill from URL (when redirected from home page)
   const urlParams = new URLSearchParams(window.location.search);
   const searchQuery = urlParams.get("search");
@@ -680,6 +377,12 @@ document.addEventListener("DOMContentLoaded", () => {
     filterProductsBySearch(searchQuery); // ✅ run filter immediately
   }
 });
+//number of product
+function updateProductCount() {
+  const count = Array.from(document.querySelectorAll(".product-card"))
+    .filter(card => card.style.display !== "none").length;
+  document.getElementById("productCount").textContent = count;
+}
 </script>
 </body>
 </html>
