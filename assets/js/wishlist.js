@@ -32,6 +32,7 @@ function getProduct(id) {
   return product;
 }
 function deleteFavorite(id) {
+  event.stopPropagation();
   user.favorites = user.favorites.filter((el) => el != id);
   saveUsers();
   renderFavorites();
