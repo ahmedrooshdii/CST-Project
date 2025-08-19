@@ -210,15 +210,12 @@
         </div>
     </footer>
     <script src="../../assets\js/bootstrap.bundle.min.js"></script>
-    <script>
+<script>
 document.addEventListener("DOMContentLoaded", () => {
   const cartKey = "cartItems"; // localStorage key
-  // Load existing cart from localStorage or start empty
   let cart = JSON.parse(localStorage.getItem(cartKey)) || [];
-  // Get product container
   const productsContainer = document.querySelector(".row.row-cols-1.row-cols-md-3.g-4");
   productsContainer.innerHTML = "";
-  // Load products from localStorage
   const products = JSON.parse(localStorage.getItem("products")) || [];
   if (products.length === 0) {
     productsContainer.innerHTML = `<p class="text-center w-100">No products available.</p>`;
@@ -236,7 +233,7 @@ document.addEventListener("DOMContentLoaded", () => {
       col.innerHTML = `
         <div class="card h-100 text-center position-relative product-link">
           <div class="position-absolute top-0 end-0 p-2">
-            <i class="far fa-heart text-muted"></i>
+            <i class="far fa-heart text-muted favorite-btn" style="cursor:pointer;"></i>
           </div>
           <div class="card-body">
             <img src="${product.image}" class="card-img-top mb-3" alt="${product.name}">
@@ -246,10 +243,52 @@ document.addEventListener("DOMContentLoaded", () => {
           </div>
         </div>
       `;
-      // Go to single product page if card clicked (not Buy Now)
+      // Card click → go to single product page (exclude Buy Now)
       col.querySelector(".product-link").addEventListener("click", (e) => {
-        if (e.target.classList.contains("add-to-cart")) return;
+        if (e.target.classList.contains("add-to-cart") || e.target.classList.contains("favorite-btn")) return;
         window.location.href = `single-product.html?id=${product.id}`;
+      });
+      // Favorite button logic
+      const favBtn = col.querySelector(".favorite-btn");
+      // Set initial state if product is already favorited
+      const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
+      if (currentUser) {
+        const users = JSON.parse(localStorage.getItem("users")) || [];
+        const user = users.find(u => u.email === currentUser.email);
+        if (user?.favorites?.includes(product.id)) {
+          favBtn.classList.remove("text-muted");
+          favBtn.classList.add("text-danger");
+          favBtn.classList.replace("far", "fas");
+        }
+      }
+
+      // Click handler to toggle favorite
+      favBtn.addEventListener("click", (e) => {
+        e.stopPropagation(); // prevent card click
+        if (!currentUser) {
+          window.location.href = "../../pages/auth/login.html";
+          return;
+        }
+        let users = JSON.parse(localStorage.getItem("users")) || [];
+        let user = users.find(u => u.email === currentUser.email);
+        if (!user.favorites) user.favorites = [];
+        const index = user.favorites.indexOf(product.id);
+        if (index > -1) {
+          // remove from favorites
+          user.favorites.splice(index, 1);
+          favBtn.classList.remove("text-danger");
+          favBtn.classList.add("text-muted");
+          favBtn.classList.replace("fas", "far");
+        } else {
+          // add to favorites
+          user.favorites.push(product.id);
+          favBtn.classList.remove("text-muted");
+          favBtn.classList.add("text-danger");
+          favBtn.classList.replace("far", "fas");
+        }
+        // Save updates
+        localStorage.setItem("users", JSON.stringify(users));
+        sessionStorage.setItem("currentUser", JSON.stringify(user));
       });
       productsContainer.appendChild(col);
     });
@@ -257,37 +296,34 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   // Attach Buy Now buttons
   document.querySelectorAll(".add-to-cart").forEach(button => {
-  button.addEventListener("click", (e) => {
-    const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
-    if (!currentUser) {
-      window.location.href = "../../pages/auth/login.html";
-      return;
-    }
-    let users = JSON.parse(localStorage.getItem("users")) || [];
-    const card = e.target.closest(".product-card");
-    const productId = card.dataset.id;  
-    const productName = card.dataset.name;
-    const quantity = 1;
-    users.forEach(user => {
-      if (user.email === currentUser.email) {
-        if (!user.cart) user.cart = [];
-        const existingItem = user.cart.find(item => item.productId === productId);
-        if (existingItem) {
-          existingItem.quantity += 1;
-        } else {
-          user.cart.push({ productId, quantity });
-        }
+    button.addEventListener("click", (e) => {
+      const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
+      if (!currentUser) {
+        window.location.href = "../../pages/auth/login.html";
+        return;
       }
+      let users = JSON.parse(localStorage.getItem("users")) || [];
+      const card = e.target.closest(".product-card");
+      const productId = card.dataset.id;
+      const productName = card.dataset.name;
+      const quantity = 1;
+      users.forEach(user => {
+        if (user.email === currentUser.email) {
+          if (!user.cart) user.cart = [];
+          const existingItem = user.cart.find(item => item.productId === productId);
+          if (existingItem) existingItem.quantity += 1;
+          else user.cart.push({ productId, quantity });
+        }
+      });
+      localStorage.setItem("users", JSON.stringify(users));
+      alert(`Product ${productName} added to your cart!`);
     });
-    // Save back to localStorage
-    localStorage.setItem("users", JSON.stringify(users));
-    alert(`Product ${productName} added to your cart!`);
   });
-});
-  // CATEGORY FILTER (dynamic)
+  // CATEGORY FILTER
   const filterContainer = document.getElementById("categoryFilters");
   const searchInput = document.getElementById("searchCategoryFilter");
   const categories = JSON.parse(localStorage.getItem("categories")) || [];
+
   function renderCategories(list) {
     filterContainer.innerHTML = "";
     list.forEach(cat => {
@@ -301,28 +337,25 @@ document.addEventListener("DOMContentLoaded", () => {
       `;
       filterContainer.appendChild(div);
     });
-    // Attach filter event to new checkboxes
     document.querySelectorAll('#collapseCategory input[type="checkbox"]').forEach(cb => {
       cb.addEventListener("change", filterProducts);
     });
   }
-  // Initial render
   renderCategories(categories);
-  // Search inside categories
   searchInput.addEventListener("keyup", function () {
     const searchText = this.value.toLowerCase();
-    const filtered = categories.filter(cat =>
-      cat.name.toLowerCase().includes(searchText)
-    );
+    const filtered = categories.filter(cat => cat.name.toLowerCase().includes(searchText));
     renderCategories(filtered);
   });
-  // COMBINED FILTER (Category + Price)
+
+  // COMBINED FILTER
   function filterProducts() {
     const priceFrom = parseFloat(document.getElementById("priceFrom").value) || 0;
     const priceTo = parseFloat(document.getElementById("priceTo").value) || Infinity;
     const selectedCategories = Array.from(
       document.querySelectorAll('#collapseCategory input[type="checkbox"]:checked')
     ).map(cb => cb.value.toLowerCase());
+
     document.querySelectorAll(".product-card").forEach(card => {
       const productCategory = card.dataset.category?.toLowerCase();
       const productPrice = parseFloat(card.dataset.price);
@@ -332,57 +365,26 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     updateProductCount();
   }
-  // Price filter events
   document.getElementById("priceFrom").addEventListener("input", filterProducts);
   document.getElementById("priceTo").addEventListener("input", filterProducts);
-  // Run filter on page load
   filterProducts();
-});
-//search in head
-const searchInput = document.getElementById("productSearch");
-searchInput.addEventListener("input", () => {
-  const searchText = searchInput.value.toLowerCase();
-  document.querySelectorAll(".product-card").forEach(card => {
-    const productName = card.dataset.name?.toLowerCase() || "";
-    const productCategory = card.dataset.category?.toLowerCase() || "";
-    // Show product if name OR category matches search
-    const matches = productName.includes(searchText) || productCategory.includes(searchText);
-    card.style.display = matches ? "" : "none";
-  });
-});
-//search in head
-document.addEventListener("DOMContentLoaded", () => {
-  const searchInput = document.getElementById("productSearch");
-  if (!searchInput) return; // safety check
-  // Filter logic
-  function filterProductsBySearch(query) {
-    const searchText = query.trim().toLowerCase();
+  // HEAD SEARCH
+  const headSearch = document.getElementById("productSearch");
+  headSearch.addEventListener("input", () => {
+    const searchText = headSearch.value.toLowerCase();
     document.querySelectorAll(".product-card").forEach(card => {
-      const productName = (card.dataset.name || "").toLowerCase();
-      const productCategory = (card.dataset.category || "").toLowerCase();
-      const matches = !searchText || productName.includes(searchText) || productCategory.includes(searchText);
-      card.style.display = matches ? "" : "none";
+      const name = card.dataset.name?.toLowerCase() || "";
+      const cat = card.dataset.category?.toLowerCase() || "";
+      card.style.display = name.includes(searchText) || cat.includes(searchText) ? "" : "none";
     });
-    updateProductCount();
-  }
-  // When typing in search bar
-  searchInput.addEventListener("input", () => {
-    filterProductsBySearch(searchInput.value);
   });
-  //  Prefill from URL (when redirected from home page)
-  const urlParams = new URLSearchParams(window.location.search);
-  const searchQuery = urlParams.get("search");
-  if (searchQuery) {
-    searchInput.value = searchQuery;     
-    filterProductsBySearch(searchQuery); // ✅ run filter immediately
+  // PRODUCT COUNT
+  function updateProductCount() {
+    const count = Array.from(document.querySelectorAll(".product-card"))
+      .filter(card => card.style.display !== "none").length;
+    document.getElementById("productCount").textContent = count;
   }
 });
-//number of product
-function updateProductCount() {
-  const count = Array.from(document.querySelectorAll(".product-card"))
-    .filter(card => card.style.display !== "none").length;
-  document.getElementById("productCount").textContent = count;
-}
 </script>
 </body>
 </html>
