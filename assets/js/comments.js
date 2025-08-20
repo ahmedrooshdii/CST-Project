@@ -3,6 +3,15 @@ window.addEventListener("load", function () {
   const reviewList = document.querySelector(".reviews-list");
   const addCommentBtn = document.getElementById("addCommentBtn");
   const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
+
+  //categories for stars
+   const categories = [
+     { label: "Excellent", stars: 5 },
+     { label: "Good", stars: 4 },
+     { label: "Average", stars: 3 },
+     { label: "Below Average", stars: 2 },
+     { label: "Poor", stars: 1 },
+   ];
   //get star form
   const form = document.getElementById("starsInputForm");
   // get number of stars every change
@@ -135,6 +144,8 @@ window.addEventListener("load", function () {
 
     reviewList.prepend(reviewItem);
     commentInput.value = "";
+    form.reset();
+    numberOfStars = undefined;
     showToast("Review added successfully!", "success");
   });
 
@@ -154,7 +165,7 @@ window.addEventListener("load", function () {
       const reviewItem = document.createElement("div");
       reviewItem.classList.add("review-item");
       reviewItem.innerHTML = `
-      <img src="${review.userAvatar}" alt="${
+      <img src="/assets/images/image.png" alt="${
         review.userName
       }'s avatar" class="reviewer-avatar" />
       <div class="review-content">
@@ -169,8 +180,8 @@ window.addEventListener("load", function () {
         ${
           isCurrentUserReview
             ? `<div class="text-end">
-            <button class="btn btn-sm btn-outline-primary edit-review-btn me-2">Edit</button>
-      <button class="btn btn-sm btn-outline-danger delete-review-btn">Delete</button>
+            <button class="btn btn-sm btn-outline-primary edit-review-btn me-2 p-2" style="min-width:0"><i class="fa-solid fa-pen-to-square"></i></button>
+      <button class="btn btn-sm btn-outline-danger delete-review-btn p-2" style="min-width:0"><i class="fa-solid fa-trash-can"></i></button>
     </div>`
             : ""
         }
@@ -287,6 +298,15 @@ window.addEventListener("load", function () {
 
   function editReview() {
     commentInput.value = selectedReview.text;
+    console.log(selectedReview);
+
+    const starToCheck = form.querySelector(
+      `input[name='star'][value='${selectedReview.stars}']`
+    );
+    if (starToCheck) {
+      starToCheck.checked = true;
+    }
+    numberOfStars = selectedReview.stars;
     commentInput.focus();
 
     addCommentBtn.style.display = "none";
@@ -330,6 +350,7 @@ window.addEventListener("load", function () {
         if (productReview) {
           productReview.text = newText;
           productReview.date = newFormattedDate;
+          productReview.stars = numberOfStars;
         }
       }
 
@@ -340,6 +361,7 @@ window.addEventListener("load", function () {
         if (userReview) {
           userReview.text = newText;
           userReview.date = newFormattedDate;
+          user.stars = numberOfStars;
         }
       }
 
@@ -352,10 +374,13 @@ window.addEventListener("load", function () {
       saveBtn.remove();
       addCommentBtn.style.display = "inline-block";
       commentInput.value = "";
+      form.reset();
+      numberOfStars = undefined;
       selectedReviewItem = null;
       selectedReview = null;
 
       showToast("Review updated successfully!", "success");
+      renderReviews();
     };
   }
 
@@ -367,4 +392,57 @@ window.addEventListener("load", function () {
       numberOfStars = +selectedStar.value;
     }
   });
+
+
+
+
+  //render total reviews
+   function renderTotalReviews(reviews) {
+     if (!reviews.length) return;
+
+     // Calculate average rating
+     const totalStars = reviews.reduce((sum, r) => sum + r.stars, 0);
+     const avgRating = (totalStars / reviews.length).toFixed(1);
+
+     // Update summary
+     document.getElementById("overallRating").textContent = avgRating;
+     document.getElementById(
+       "reviewCount"
+     ).textContent = `of ${reviews.length} reviews`;
+
+     // Render stars for average rating
+     const starsContainer = document.getElementById("starsContainer");
+     starsContainer.innerHTML = "";
+     for (let i = 1; i <= 5; i++) {
+       const span = document.createElement("span");
+       span.classList.add("star");
+       span.textContent = "★";
+       if (i <= Math.round(avgRating)) span.classList.add("filled");
+       starsContainer.appendChild(span);
+     }
+
+     // Breakdown counts
+     const breakdown = categories.map((c) => {
+       const count = reviews.filter((r) => r.stars === c.stars).length;
+       return { ...c, count };
+     });
+
+     // Render breakdown
+     const ratingBreakdown = document.getElementById("ratingBreakdown");
+     ratingBreakdown.innerHTML = "";
+     breakdown.forEach((b) => {
+       const percentage = ((b.count / reviews.length) * 100).toFixed(1);
+
+       ratingBreakdown.innerHTML += `
+        <div class="rating-row">
+          <span class="rating-label">${b.label}</span>
+          <div class="rating-bar">
+            <div class="rating-fill" style="width: ${percentage}%"></div>
+          </div>
+          <span class="rating-count">${b.count}</span>
+        </div>
+      `;
+     });
+   }
+
 });

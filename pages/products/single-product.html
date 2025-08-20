@@ -56,31 +56,48 @@
     </header>
 
     <nav class="container-fluid navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container gap-2 gap-xl-5">
+      <div class="container gap-2 gap-xl-5">
+        <div class="col-2">
+          <a class="navbar-brand" href="../../Home.html"
+            ><img src="../../assets/images/logo.svg" alt=""
+          /></a>
+        </div>
 
-    <div class="col-2">
-    <a class="navbar-brand" href="../../Home.html"><img src="../../assets/images/logo.svg" alt=""></a>
-    </div>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-   
+        <div
+          class="collapse navbar-collapse text-center"
+          id="navbarSupportedContent"
+        >
+          <form
+            id="homeSearchForm"
+            class="col-12 col-md-12 col-lg-5 col-xl-6 position-relative"
+          >
+            <i
+              class="fa-solid fa-magnifying-glass position-absolute top-50 start-0 translate-middle-y ms-3 text-muted"
+            ></i>
+            <input
+              type="search"
+              id="productSearch"
+              class="form-control ps-5"
+              placeholder="Search"
+              aria-label="Search"
+            />
+          </form>
 
-    <div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
-       
-       <form id="homeSearchForm" class="col-12 col-md-12 col-lg-5 col-xl-6 position-relative">
-          <i class="fa-solid fa-magnifying-glass position-absolute top-50 start-0 translate-middle-y ms-3 text-muted"></i>
-          <input type="search" id="productSearch" class="form-control ps-5" placeholder="Search" aria-label="Search">
-      </form>
-
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-
-       <li class="nav-item">
-              <a
-                class="nav-link "
-                aria-current="page"
-                href="../../Home.html"
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="../../Home.html"
                 >Home</a
               >
             </li>
@@ -114,25 +131,82 @@
                 ><i class="fa-solid fa-cart-shopping"></i
               ></a>
             </li>
-      </ul>
-    </div>
+          </ul>
+        </div>
+      </div>
+    </nav>
 
-  </div>
-</nav>
-
-    <nav id="subnav" class="container-fluid d-none d-md-flex justify-content-evenly gap-2" style="padding: 10px 0;">
-    <a href="product page.html?category=Phones" style="cursor:pointer; color:white; text-decoration:none;font-size:0.9rem;"><i class="fa-solid fa-mobile"></i>Phones</a>
-    <span>|</span>
-    <a href="product page.html?category=Computers" style="cursor:pointer; color:white; text-decoration:none;font-size:0.9rem;"><i class="fa-solid fa-desktop"></i>Computers</a>
-    <span>|</span>
-    <a href="product page.html?category=Smart Watch" style="cursor:pointer; color:white; text-decoration:none;font-size:0.9rem;"><i class="fa-solid fa-clock"></i>Smart Watch</a>
-    <span>|</span>
-    <a href="product page.html?category=Cameras" style="cursor:pointer; color:white; text-decoration:none;font-size:0.9rem;"><i class="fa-solid fa-camera"></i>Cameras</a>
-    <span>|</span>
-    <a href="product page.html?category=Headphones" style="cursor:pointer; color:white; text-decoration:none;font-size:0.9rem;"><i class="fa-solid fa-headset"></i>Headphones</a>
-    <span>|</span>
-    <a href="product page.html?category=Gaming" style="cursor:pointer; color:white; text-decoration:none;font-size:0.9rem;"><i class="fa-solid fa-gamepad"></i>Gaming</a>
-</nav>
+    <nav
+      id="subnav"
+      class="container-fluid d-none d-md-flex justify-content-evenly gap-2"
+      style="padding: 10px 0"
+    >
+      <a
+        href="product page.html?category=Phones"
+        style="
+          cursor: pointer;
+          color: white;
+          text-decoration: none;
+          font-size: 0.9rem;
+        "
+        ><i class="fa-solid fa-mobile"></i>Phones</a
+      >
+      <span>|</span>
+      <a
+        href="product page.html?category=Computers"
+        style="
+          cursor: pointer;
+          color: white;
+          text-decoration: none;
+          font-size: 0.9rem;
+        "
+        ><i class="fa-solid fa-desktop"></i>Computers</a
+      >
+      <span>|</span>
+      <a
+        href="product page.html?category=Smart Watch"
+        style="
+          cursor: pointer;
+          color: white;
+          text-decoration: none;
+          font-size: 0.9rem;
+        "
+        ><i class="fa-solid fa-clock"></i>Smart Watch</a
+      >
+      <span>|</span>
+      <a
+        href="product page.html?category=Cameras"
+        style="
+          cursor: pointer;
+          color: white;
+          text-decoration: none;
+          font-size: 0.9rem;
+        "
+        ><i class="fa-solid fa-camera"></i>Cameras</a
+      >
+      <span>|</span>
+      <a
+        href="product page.html?category=Headphones"
+        style="
+          cursor: pointer;
+          color: white;
+          text-decoration: none;
+          font-size: 0.9rem;
+        "
+        ><i class="fa-solid fa-headset"></i>Headphones</a
+      >
+      <span>|</span>
+      <a
+        href="product page.html?category=Gaming"
+        style="
+          cursor: pointer;
+          color: white;
+          text-decoration: none;
+          font-size: 0.9rem;
+        "
+        ><i class="fa-solid fa-gamepad"></i>Gaming</a
+      >
+    </nav>
     <!-- nav end -->
     <!-- main section start  -->
     <div class="container">
@@ -394,54 +468,12 @@
 
         <div class="reviews-overview">
           <div class="rating-summary">
-            <div class="overall-rating">4.8</div>
-            <div class="rating-subtitle">of 125 reviews</div>
-            <div class="stars">
-              <span class="star filled">★</span>
-              <span class="star filled">★</span>
-              <span class="star filled">★</span>
-              <span class="star filled">★</span>
-              <span class="star">★</span>
-            </div>
+            <div class="overall-rating" id="overallRating">0</div>
+            <div class="rating-subtitle" id="reviewCount">of 0 reviews</div>
+            <div class="stars" id="starsContainer"></div>
           </div>
 
-          <div class="rating-breakdown">
-            <div class="rating-row">
-              <span class="rating-label">Excellent</span>
-              <div class="rating-bar">
-                <div class="rating-fill" style="width: 82%"></div>
-              </div>
-              <span class="rating-count">100</span>
-            </div>
-            <div class="rating-row">
-              <span class="rating-label">Good</span>
-              <div class="rating-bar">
-                <div class="rating-fill" style="width: 9%"></div>
-              </div>
-              <span class="rating-count">11</span>
-            </div>
-            <div class="rating-row">
-              <span class="rating-label">Average</span>
-              <div class="rating-bar">
-                <div class="rating-fill" style="width: 2.5%"></div>
-              </div>
-              <span class="rating-count">3</span>
-            </div>
-            <div class="rating-row">
-              <span class="rating-label">Below Average</span>
-              <div class="rating-bar">
-                <div class="rating-fill" style="width: 6.5%"></div>
-              </div>
-              <span class="rating-count">8</span>
-            </div>
-            <div class="rating-row">
-              <span class="rating-label">Poor</span>
-              <div class="rating-bar">
-                <div class="rating-fill" style="width: 1%"></div>
-              </div>
-              <span class="rating-count">1</span>
-            </div>
-          </div>
+          <div class="rating-breakdown" id="ratingBreakdown"></div>
         </div>
 
         <!-- comment form -->
@@ -504,7 +536,7 @@
           Add Comment
         </button>
         <div class="reviews-list">
-          <div class="review-item">
+          <!-- <div class="review-item">
             <img
               src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=56&h=56"
               alt="Grace Carey"
@@ -625,11 +657,11 @@
                 entrance fee and get meals at cost price.
               </p>
             </div>
-          </div>
-          <div class="reviews-fade"></div>
+          </div> -->
+          <!-- <div class="reviews-fade"></div> -->
         </div>
 
-        <div class="d-flex justify-content-center">
+        <!-- <div class="d-flex justify-content-center">
           <div>
             <button class="btn btn-outline view-more">
               <span>View More</span>
@@ -645,7 +677,7 @@
               </svg>
             </button>
           </div>
-        </div>
+        </div> -->
       </div>
     </section>
 
@@ -844,23 +876,29 @@
     <script src="../../assets/js/comments.js"></script>
     <script src="../../assets/js/SPWAC.js"></script>
     <script>
-          document.addEventListener("DOMContentLoaded", function () {
-  handleHomeSearch("homeSearchForm", "productSearch", "product page.html"); //handle search
-});
-function handleHomeSearch(formId, inputId, targetPage) {
-  const form = document.getElementById(formId);
-  if (!form) return;
+      document.addEventListener("DOMContentLoaded", function () {
+        handleHomeSearch(
+          "homeSearchForm",
+          "productSearch",
+          "product page.html"
+        ); //handle search
+      });
+      function handleHomeSearch(formId, inputId, targetPage) {
+        const form = document.getElementById(formId);
+        if (!form) return;
 
-  form.addEventListener("submit", function (e) {
-    e.preventDefault();
-    const query = document.getElementById(inputId)?.value.trim();
-    if (query) {
-      window.location.href = `${targetPage}?search=${encodeURIComponent(query)}`;
-    } else {
-      window.location.href = targetPage;
-    }
-  });
-}
-        </script>
+        form.addEventListener("submit", function (e) {
+          e.preventDefault();
+          const query = document.getElementById(inputId)?.value.trim();
+          if (query) {
+            window.location.href = `${targetPage}?search=${encodeURIComponent(
+              query
+            )}`;
+          } else {
+            window.location.href = targetPage;
+          }
+        });
+      }
+    </script>
   </body>
 </html>
