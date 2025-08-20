@@ -17,17 +17,17 @@
     <link rel="stylesheet" href="../assets/css/home.css" />
 
     <style>
-        #productSearch{
-            height: 35px;
-            font-size: large !important;
+      #productSearch {
+        height: 35px;
+        font-size: large !important;
       }
 
-         #subnav {
-  color: aliceblue;
-  background-color: rgba(46, 46, 46, 1);
-  padding: 10px !important;
-  margin-top: 5px;
-}
+      #subnav {
+        color: aliceblue;
+        background-color: rgba(46, 46, 46, 1);
+        padding: 10px !important;
+        margin-top: 5px;
+      }
 
       .about-hero {
         background: var(--gradient);
@@ -405,9 +405,14 @@
               ></a>
             </li>
 
-            <li class="nav-item">
-              <a class="nav-link active" href="./cart/shopping-cart.html"
-                ><i class="fa-solid fa-cart-shopping"></i
+            <li class="nav-item position-relative" onclick="goToCart()">
+              <a class="nav-link active" href="#"
+                ><i class="fa-solid fa-cart-shopping"></i>
+                <span
+                  id="cartCount"
+                  class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                >
+                </span
               ></a>
             </li>
           </ul>
@@ -415,19 +420,47 @@
       </div>
     </nav>
 
-    <nav id="subnav" class="container-fluid d-none d-md-flex justify-content-evenly gap-2" style="padding: 10px 0;">
-    <a href="products/product page.html?category=Phones" style="cursor:pointer; color:white; text-decoration:none;"><i class="fa-solid fa-mobile"></i>Phones</a>
-    <span>|</span>
-    <a href="products/product page.html?category=Computers" style="cursor:pointer; color:white; text-decoration:none;"><i class="fa-solid fa-desktop"></i>Computers</a>
-    <span>|</span>
-    <a href="products/product page.html?category=Smart Watch" style="cursor:pointer; color:white; text-decoration:none;"><i class="fa-solid fa-clock"></i>Smart Watch</a>
-    <span>|</span>
-    <a href="products/product page.html?category=Cameras" style="cursor:pointer; color:white; text-decoration:none;"><i class="fa-solid fa-camera"></i>Cameras</a>
-    <span>|</span>
-    <a href="products/product page.html?category=Headphones" style="cursor:pointer; color:white; text-decoration:none;"><i class="fa-solid fa-headset"></i>Headphones</a>
-    <span>|</span>
-    <a href="products/product page.html?category=Gaming" style="cursor:pointer; color:white; text-decoration:none;"><i class="fa-solid fa-gamepad"></i>Gaming</a>
-</nav>
+    <nav
+      id="subnav"
+      class="container-fluid d-none d-md-flex justify-content-evenly gap-2"
+      style="padding: 10px 0"
+    >
+      <a
+        href="products/product page.html?category=Phones"
+        style="cursor: pointer; color: white; text-decoration: none"
+        ><i class="fa-solid fa-mobile"></i>Phones</a
+      >
+      <span>|</span>
+      <a
+        href="products/product page.html?category=Computers"
+        style="cursor: pointer; color: white; text-decoration: none"
+        ><i class="fa-solid fa-desktop"></i>Computers</a
+      >
+      <span>|</span>
+      <a
+        href="products/product page.html?category=Smart Watch"
+        style="cursor: pointer; color: white; text-decoration: none"
+        ><i class="fa-solid fa-clock"></i>Smart Watch</a
+      >
+      <span>|</span>
+      <a
+        href="products/product page.html?category=Cameras"
+        style="cursor: pointer; color: white; text-decoration: none"
+        ><i class="fa-solid fa-camera"></i>Cameras</a
+      >
+      <span>|</span>
+      <a
+        href="products/product page.html?category=Headphones"
+        style="cursor: pointer; color: white; text-decoration: none"
+        ><i class="fa-solid fa-headset"></i>Headphones</a
+      >
+      <span>|</span>
+      <a
+        href="products/product page.html?category=Gaming"
+        style="cursor: pointer; color: white; text-decoration: none"
+        ><i class="fa-solid fa-gamepad"></i>Gaming</a
+      >
+    </nav>
 
     <!-- Hero Section -->
     <section class="about-hero">
@@ -671,7 +704,7 @@
     </footer>
 
     <script src="../../assets/js/bs/bootstrap.bundle.js"></script>
-        <script src="../assets/js/home.js"></script>
+    <script src="../assets/js/home.js"></script>
 
     <script>
       document.addEventListener("DOMContentLoaded", function () {
@@ -696,6 +729,42 @@
             window.location.href = targetPage;
           }
         });
+      }
+    </script>
+    <script>
+      function updateCartCount() {
+        const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
+        const cartCount = document.getElementById("cartCount");
+
+        if (!currentUser) {
+          cartCount.style.display = "none";
+          return;
+        }
+
+        let users = JSON.parse(localStorage.getItem("users")) || [];
+
+        let user = users.find((u) => u.email === currentUser.email);
+
+        if (user && user.cart && user.cart.length > 0) {
+          cartCount.textContent = user?.cart?.length;
+
+          cartCount.style.display = "inline-block";
+        } else {
+          cartCount.style.display = "none";
+        }
+
+        // let count = user?.cart?.reduce((acc, item) => acc + item.quantity, 0) || 0;
+
+        // document.getElementById("cartCount").textContent = count;
+      }
+      window.addEventListener("load", updateCartCount);
+      function goToCart() {
+        const user = JSON.parse(sessionStorage.getItem("currentUser"));
+        if (!user) {
+          window.location.href = "../../pages/auth/login.html";
+          return;
+        }
+        window.location.href = `/pages/cart/shopping-cart.html`;
       }
     </script>
   </body>

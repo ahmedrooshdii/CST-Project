@@ -75,9 +75,16 @@
           <a class="nav-link active"  href="../../pages/cart/wishlist.html"><i class="fa-regular fa-heart"></i></a>
         </li>
 
-         <li class="nav-item">
-          <a class="nav-link active"  href="../../pages/cart/shopping-cart.html"><i class="fa-solid fa-cart-shopping"></i></a>
-        </li>
+         <li class="nav-item position-relative" onclick="goToCart()">
+              <a class="nav-link active" href="#"
+                ><i class="fa-solid fa-cart-shopping"></i>
+                <span
+                  id="cartCount"
+                  class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                >
+                </span
+              ></a>
+            </li>
 
       </ul>
     </div>
@@ -264,6 +271,43 @@ function handleHomeSearch(formId, inputId, targetPage) {
       window.location.href = targetPage;
     }
   });
+}
+
+          function updateCartCount() {
+  const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
+  const cartCount = document.getElementById("cartCount");
+
+  if (!currentUser) {
+    cartCount.style.display = "none";
+    return;
+  }
+
+  let users = JSON.parse(localStorage.getItem("users")) || [];
+
+  let user = users.find((u) => u.email === currentUser.email);
+
+  if (user && user.cart && user.cart.length > 0) {
+
+    cartCount.textContent = user?.cart?.length;
+
+    cartCount.style.display = "inline-block";
+
+  } else {
+    cartCount.style.display = "none";
+  }
+
+  // let count = user?.cart?.reduce((acc, item) => acc + item.quantity, 0) || 0;
+
+  // document.getElementById("cartCount").textContent = count;
+}
+window.addEventListener('load', updateCartCount);
+        function goToCart() {
+  const user = JSON.parse(sessionStorage.getItem("currentUser"));
+  if (!user) {
+    window.location.href = "../../pages/auth/login.html";
+    return;
+  }
+  window.location.href = `/pages/cart/shopping-cart.html`;
 }
         </script>
 </body>
