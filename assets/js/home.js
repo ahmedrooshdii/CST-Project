@@ -29,12 +29,12 @@ div.appendChild(newLink);
     }
 
     //  <li><a id ="dash" href="dashboard.html" class="nav-link">📊 Dashboard</a></li>
-    //     <li><a href="profile.html" class="nav-link">👤 profile</a></li>
+    //     <li><a href="profile.html" class="nav-link active">👤 profile</a></li>
     //     <li><a id="usersPage" href="users.html" class="nav-link ">👤 Users</a></li>
     //     <li><a href="orders.html" class="nav-link">🛒 Orders</a></li>
+    //     <li><a id="sellerord" href="seller_orders.html" class="nav-link">🛒 seller's Orders</a></li>
     //     <li><a id="product" href="products.html" class="nav-link">🛒 Products</a></li>
-    //     <li><a id="customer" href="customers.html" class="nav-link">👥 Customers</a></li>
-    //     <li><a id="cat" href="categories.html" class="nav-link active">👥 Categories</a></li>
+    //     <li><a id="cat" href="categories.html" class="nav-link">👥 Categories</a></li>
     //     <li><a id ="contact" href="contactus.html" class="nav-link">👥 Contact us</a></li>
 
 
@@ -43,8 +43,8 @@ div.appendChild(newLink);
    var contactspage = document.getElementById("contact");
    var productspage = document.getElementById("product");
    var catspage = document.getElementById("cat");
-   var customerpage = document.getElementById("customer");
    var dashpage = document.getElementById("dash");
+   var sellerorder = document.getElementById("sellerord");
 
       if (user.role !== "admin") {
        userspage.style.display = "none";        
@@ -54,7 +54,12 @@ div.appendChild(newLink);
       if(user.role == "user"){
          productspage.style.display ="none";
          catspage.style.display ="none";
-         customerpage.style.display ="none";
          dashpage.style.display ="none";
       }
+
+       if(user.role == "user")
+        {
+            sellerorder.style.display = "none";
+        }
+
 });
