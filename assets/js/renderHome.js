@@ -176,15 +176,13 @@ function updateCartCount() {
   if (user && user.cart && user.cart.length > 0) {
     console.log();
 
-    cartCount.textContent = user?.cart?.length;
+    let count = user?.cart?.reduce((acc, item) => acc + item.quantity, 0) || 0;
+
+    cartCount.textContent = count;
     cartCount.style.display = "inline-block";
   } else {
     cartCount.style.display = "none";
   }
-
-  // let count = user?.cart?.reduce((acc, item) => acc + item.quantity, 0) || 0;
-
-  // document.getElementById("cartCount").textContent = count;
 }
 
 function addToCart(e) {

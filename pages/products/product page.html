@@ -426,7 +426,10 @@ if (categoryFromUrl) {
 
   if (user && user.cart && user.cart.length > 0) {
 
-    cartCount.textContent = user?.cart?.length;
+    let count =
+            user?.cart?.reduce((acc, item) => acc + item.quantity, 0) || 0;
+
+          cartCount.textContent = count;
 
     cartCount.style.display = "inline-block";
 
@@ -434,9 +437,7 @@ if (categoryFromUrl) {
     cartCount.style.display = "none";
   }
 
-  // let count = user?.cart?.reduce((acc, item) => acc + item.quantity, 0) || 0;
-
-  // document.getElementById("cartCount").textContent = count;
+  
 }
 window.addEventListener('load', updateCartCount);
 function goToCart() {
