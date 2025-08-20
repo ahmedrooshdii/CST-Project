@@ -65,11 +65,9 @@
           <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <form
-            id="homeSearchForm"
-            class="col-12 col-md-12 col-lg-5 col-xl-6 position-relative"
-          >
+    <div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
+        
+            <form id="homeSearchForm" class="col-12 col-md-12 col-lg-5 col-xl-6 position-relative">
             <i
               class="fa-solid fa-magnifying-glass position-absolute top-50 start-0 translate-middle-y ms-3 text-muted"
             ></i>
@@ -116,31 +114,94 @@
               ></a>
             </li>
 
-            <li class="nav-item">
-              <a
-                class="nav-link active"
-                href="../../pages/cart/shopping-cart.html"
-                ><i class="fa-solid fa-cart-shopping"></i
-              ></a>
+            <li class="nav-item" onclick="goToCart()">
+              <a class="nav-link active" href="#">
+                <div class="position-relative d-inline-block">
+                  <i class="fa-solid fa-cart-shopping"></i>
+                  <span
+                    id="cartCount"
+                    class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                  >
+                  </span>
+                </div>
+              </a>
             </li>
           </ul>
         </div>
       </div>
     </nav>
 
-    <nav id="subnav" class="container-fluid d-none d-md-flex justify-content-evenly gap-2" style="padding: 10px 0;">
-    <a href="../../pages/products/product page.html?category=Phones" style="cursor:pointer; color:white; text-decoration:none;font-size:0.9rem;"><i class="fa-solid fa-mobile"></i>Phones</a>
-    <span>|</span>
-    <a href="../../pages/products/product page.html?category=Computers" style="cursor:pointer; color:white; text-decoration:none;font-size:0.9rem;"><i class="fa-solid fa-desktop"></i>Computers</a>
-    <span>|</span>
-    <a href="../../pages/products/product page.html?category=Smart Watch" style="cursor:pointer; color:white; text-decoration:none;font-size:0.9rem;"><i class="fa-solid fa-clock"></i>Smart Watch</a>
-    <span>|</span>
-    <a href="../../pages/products/product page.html?category=Cameras" style="cursor:pointer; color:white; text-decoration:none;font-size:0.9rem;"><i class="fa-solid fa-camera"></i>Cameras</a>
-    <span>|</span>
-    <a href="../../pages/products/product page.html?category=Headphones" style="cursor:pointer; color:white; text-decoration:none;font-size:0.9rem;"><i class="fa-solid fa-headset"></i>Headphones</a>
-    <span>|</span>
-    <a href="../../pages/products/product page.html?category=Gaming" style="cursor:pointer; color:white; text-decoration:none;font-size:0.9rem;"><i class="fa-solid fa-gamepad"></i>Gaming</a>
-</nav>
+    <nav
+      id="subnav"
+      class="container-fluid d-none d-md-flex justify-content-evenly gap-2"
+      style="padding: 10px 0"
+    >
+      <a
+        href="../../pages/products/product page.html?category=Phones"
+        style="
+          cursor: pointer;
+          color: white;
+          text-decoration: none;
+          font-size: 0.9rem;
+        "
+        ><i class="fa-solid fa-mobile"></i>Phones</a
+      >
+      <span>|</span>
+      <a
+        href="../../pages/products/product page.html?category=Computers"
+        style="
+          cursor: pointer;
+          color: white;
+          text-decoration: none;
+          font-size: 0.9rem;
+        "
+        ><i class="fa-solid fa-desktop"></i>Computers</a
+      >
+      <span>|</span>
+      <a
+        href="../../pages/products/product page.html?category=Smart Watch"
+        style="
+          cursor: pointer;
+          color: white;
+          text-decoration: none;
+          font-size: 0.9rem;
+        "
+        ><i class="fa-solid fa-clock"></i>Smart Watch</a
+      >
+      <span>|</span>
+      <a
+        href="../../pages/products/product page.html?category=Cameras"
+        style="
+          cursor: pointer;
+          color: white;
+          text-decoration: none;
+          font-size: 0.9rem;
+        "
+        ><i class="fa-solid fa-camera"></i>Cameras</a
+      >
+      <span>|</span>
+      <a
+        href="../../pages/products/product page.html?category=Headphones"
+        style="
+          cursor: pointer;
+          color: white;
+          text-decoration: none;
+          font-size: 0.9rem;
+        "
+        ><i class="fa-solid fa-headset"></i>Headphones</a
+      >
+      <span>|</span>
+      <a
+        href="../../pages/products/product page.html?category=Gaming"
+        style="
+          cursor: pointer;
+          color: white;
+          text-decoration: none;
+          font-size: 0.9rem;
+        "
+        ><i class="fa-solid fa-gamepad"></i>Gaming</a
+      >
+    </nav>
 
     <section>
       <div class="container">
@@ -245,6 +306,40 @@
             window.location.href = targetPage;
           }
         });
+      }
+
+      function updateCartCount() {
+        const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
+        const cartCount = document.getElementById("cartCount");
+
+        if (!currentUser) {
+          cartCount.style.display = "none";
+          return;
+        }
+
+        let users = JSON.parse(localStorage.getItem("users")) || [];
+
+        let user = users.find((u) => u.email === currentUser.email);
+
+        if (user && user.cart && user.cart.length > 0) {
+          let count =
+            user?.cart?.reduce((acc, item) => acc + item.quantity, 0) || 0;
+
+          cartCount.textContent = count;
+
+          cartCount.style.display = "inline-block";
+        } else {
+          cartCount.style.display = "none";
+        }
+      }
+      window.addEventListener("load", updateCartCount);
+      function goToCart() {
+        const user = JSON.parse(sessionStorage.getItem("currentUser"));
+        if (!user) {
+          window.location.href = "../../pages/auth/login.html";
+          return;
+        }
+        window.location.href = `/pages/cart/shopping-cart.html`;
       }
     </script>
   </body>

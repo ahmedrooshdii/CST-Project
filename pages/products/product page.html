@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
         <link rel="stylesheet" href="../../assets/css/home.css">
-    <script src="../../assets/js/home.js"></script>
 <style>
   .card-img-top {
     max-width: 200px;
@@ -68,9 +67,18 @@
          <li class="nav-item">
           <a class="nav-link active"  href="../cart/wishlist.html"><i class="fa-regular fa-heart"></i></a>
         </li>
-         <li class="nav-item">
-          <a class="nav-link active"  href="../cart/shopping-cart.html"><i class="fa-solid fa-cart-shopping"></i></a>
-        </li>
+         <li class="nav-item" onclick="goToCart()">
+              <a class="nav-link active" href="#">
+                <div class="position-relative d-inline-block">
+                  <i class="fa-solid fa-cart-shopping"></i>
+                  <span
+                    id="cartCount"
+                    class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                  >
+                  </span>
+                </div>
+              </a>
+            </li>
       </ul>
     </div>
   </div>
@@ -209,7 +217,9 @@
              </div>
         </div>
     </footer>
-    <script src="../../assets\js/bootstrap.bundle.min.js"></script>
+    
+        <script src="../../assets/js/home.js"></script>
+    <script src="../../assets/js/bs/bootstrap.bundle.js"></script>
 <script>
 document.addEventListener("DOMContentLoaded", () => {
   const cartKey = "cartItems"; // localStorage key
@@ -403,5 +413,44 @@ if (categoryFromUrl) {
 }
 });
 </script>
+ <script >
+          function updateCartCount() {
+  const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
+  const cartCount = document.getElementById("cartCount");
+
+  if (!currentUser) {
+    cartCount.style.display = "none";
+    return;
+  }
+
+  let users = JSON.parse(localStorage.getItem("users")) || [];
+
+  let user = users.find((u) => u.email === currentUser.email);
+
+  if (user && user.cart && user.cart.length > 0) {
+
+    let count =
+            user?.cart?.reduce((acc, item) => acc + item.quantity, 0) || 0;
+
+          cartCount.textContent = count;
+
+    cartCount.style.display = "inline-block";
+
+  } else {
+    cartCount.style.display = "none";
+  }
+
+  
+}
+window.addEventListener('load', updateCartCount);
+function goToCart() {
+  const user = JSON.parse(sessionStorage.getItem("currentUser"));
+  if (!user) {
+    window.location.href = "../../pages/auth/login.html";
+    return;
+  }
+  window.location.href = `/pages/cart/shopping-cart.html`;
+}
+        </script>
 </body>
 </html>

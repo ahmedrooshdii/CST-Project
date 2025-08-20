@@ -162,13 +162,27 @@ function renderCategoryCards() {
 
 function updateCartCount() {
   const currentUser = JSON.parse(sessionStorage.getItem("currentUser"))?.email;
+  const cartCount = document.getElementById("cartCount");
+
+  if (!currentUser) {
+    cartCount.style.display = "none";
+    return;
+  }
+
   let users = JSON.parse(localStorage.getItem("users")) || [];
 
   let user = users.find((u) => u.email === currentUser);
 
-  let count = user?.cart?.reduce((acc, item) => acc + item.quantity, 0) || 0;
+  if (user && user.cart && user.cart.length > 0) {
+    console.log();
 
-  document.getElementById("cartCount").textContent = count;
+    let count = user?.cart?.reduce((acc, item) => acc + item.quantity, 0) || 0;
+
+    cartCount.textContent = count;
+    cartCount.style.display = "inline-block";
+  } else {
+    cartCount.style.display = "none";
+  }
 }
 
 function addToCart(e) {
@@ -208,6 +222,7 @@ function addToCart(e) {
       if (existingItem) {
         if (existingItem.quantity < product.stock) {
           existingItem.quantity += 1;
+          showToast("Product add to cart successfully", "success");
         } else {
           showToast("You reached the limit of available stock!", "warning");
         }
