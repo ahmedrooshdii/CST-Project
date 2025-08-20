@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>orders</title>
+  <title>Sellers's orders</title>
   <link
     href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
     rel="stylesheet"/>
@@ -45,17 +45,18 @@
         <li><a id ="dash" href="dashboard.html" class="nav-link">📊 Dashboard</a></li>
         <li><a href="profile.html" class="nav-link">👤 profile</a></li>
         <li><a id="usersPage" href="users.html" class="nav-link ">👤 Users</a></li>
-        <li><a href="orders.html" class="nav-link active">🛒 Orders</a></li>
-        <li><a href="seller_orders.html" class="nav-link">🛒 seller's Orders</a></li>
+        <li><a href="orders.html" class="nav-link">🛒 Orders</a></li>
+        <li><a href="seller_orders.html" class="nav-link active">🛒 seller's Orders</a></li>
         <li><a id="product" href="products.html" class="nav-link">🛒 Products</a></li>
         <li><a id="customer" href="customers.html" class="nav-link">👥 Customers</a></li>
         <li><a id="cat" href="categories.html" class="nav-link">👥 Categories</a></li>
         <li><a id ="contact" href="contactus.html" class="nav-link">👥 Contact us</a></li>
       </ul>
       </div>
+
      <!-- Main Content -->
       <div class="col-md-10 content">
-        <h2 class="mb-4">Orders</h2>
+        <h2 class="mb-4">Seller's orders</h2>
         <!-- Filters -->
         <div class="row mb-3">
           <div class="col-md-4">
@@ -83,8 +84,9 @@
                   <th>Order ID</th>
                   <th>User name</th>
                   <th>Date</th>
-                  <th>Total</th>
+                  <th>Seller's Total</th>
                   <th>Status</th>
+                  <th>Availability</th>
                   <th>Detailes</th>
                 </tr>
               </thead>
@@ -147,12 +149,12 @@
   <script>
 window.addEventListener("load", function () {
   const user = JSON.parse(sessionStorage.getItem("currentUser"));
-  if (!user) {
+  if (!user || (user.role !== "seller" && user.role !== "admin")) {
     window.location.href = "../../pages/auth/login.html";
     return;
   }
 });
-// search + filters
+// === SEARCH FILTER ===
 document.addEventListener("DOMContentLoaded", () => {
   const searchInput = document.querySelector('input[placeholder="Search by customer or order ID"]');
   const statusSelect = document.querySelector('select');
@@ -163,9 +165,17 @@ document.addEventListener("DOMContentLoaded", () => {
     raw = raw.split(",")[0].trim();
     if (/^\d{4}-\d{2}-\d{2}$/.test(raw)) return raw;
     const m = raw.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);
-    if (m) return `${m[3]}-${pad(m[1])}-${pad(m[2])}`;
+    if (m) {
+      const month = pad(m[1]);
+      const day = pad(m[2]);
+      const year = m[3];
+      return `${year}-${month}-${day}`;
+    }
     const d = new Date(raw);
-    return !isNaN(d) ? `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}` : "";
+    if (!isNaN(d)) {
+      return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
+    }
+    return "";
   }
   function filterOrders() {
     const q = (searchInput?.value || "").trim().toLowerCase();
@@ -177,11 +187,13 @@ document.addEventListener("DOMContentLoaded", () => {
       if (cells.length === 0) return;
       const orderId = (cells[0].textContent || "").trim().replace(/^#/, "").toLowerCase();
       const customer = (cells[1].textContent || "").trim().toLowerCase();
-      const normalized = tableDateToYMD(cells[2].textContent.trim());
-      const status = (cells[4].textContent || "").trim().toLowerCase();
+      const rawDate = (cells[2].textContent || "").trim();
+      const normalized = tableDateToYMD(rawDate);
+      const status = (cells[4]?.textContent || "").trim().toLowerCase();
       const matchesSearch = !q || orderId.includes(q) || customer.includes(q);
       const matchesStatus = statusFilter === "all" || status.includes(statusFilter);
-      const matchesDate = !dateFilter || normalized === dateFilter;
+      const matchesDate = !dateFilter || (normalized === dateFilter);
+
       row.style.display = (matchesSearch && matchesStatus && matchesDate) ? "" : "none";
     });
   }
@@ -189,9 +201,10 @@ document.addEventListener("DOMContentLoaded", () => {
   statusSelect?.addEventListener("change", filterOrders);
   dateInput?.addEventListener("input", filterOrders);
   dateInput?.addEventListener("change", filterOrders);
+  filterOrders();
   window._filterOrders = filterOrders;
 });
-// main orders rendering
+// === ORDERS TABLE ===
 document.addEventListener("DOMContentLoaded", function () {
   const orders = JSON.parse(localStorage.getItem("orders")) || [];
   const products = JSON.parse(localStorage.getItem("products")) || [];
@@ -199,31 +212,136 @@ document.addEventListener("DOMContentLoaded", function () {
   const currentUser = JSON.parse(sessionStorage.getItem("currentUser")) || {};
   const tbody = document.getElementById("ordersTableBody");
   tbody.innerHTML = "";
-  const role = currentUser.role || "guest";
-  let visibleOrders = [];
-  if (role === "admin") {
-    visibleOrders = orders; // all
-  } else if (role === "user" || role === "seller") {
-    // both user and seller see only their own placed orders
-    visibleOrders = orders.filter(o =>
-      users.find(u => u.addresses?.some(a => a.id === o.address?.id))?.email === currentUser.email
-    );
-  } else {
-    document.body.innerHTML = "<h2 class='text-danger text-center mt-5'>Access Denied</h2>";
-    return;
-  }
-  // render table rows
+  // get seller products if seller
+  const sellerProducts = currentUser.role === "seller"
+    ? products.filter(p => p.sellerEmail === currentUser.email)
+    : [];
+  const sellerProductIds = sellerProducts.map(p => String(p.id));
+  // filter orders depending on role
+  const visibleOrders = currentUser.role === "admin"
+    ? orders
+    : orders.filter(order =>
+        order.items?.some(it => sellerProductIds.includes(String(it.productId)))
+      );
   visibleOrders.forEach((order, index) => {
+  let customer = "Unknown";
+  const userMatch = users.find(u => u.addresses?.some(a => a.id === order.address?.id));
+  if (userMatch) customer = userMatch.name;
+  const date = order.time ? new Date(order.time).toLocaleDateString() : "-";
+  // === Seller/Admin total ===
+  let sellerTotal = 0;
+  const sellerItems = currentUser.role === "admin"
+    ? order.items
+    : order.items.filter(it => sellerProductIds.includes(String(it.productId)));
+
+  sellerItems.forEach(it => {
+    const product = products.find(p => String(p.id) === String(it.productId));
+    sellerTotal += (product?.price || 0) * it.quantity;
+  });
+
+  const displayTotal = "$" + sellerTotal.toFixed(2);
+
+  // === Order status ===
+  const status = order.status || "completed";
+  let badgeClass = "bg-success";
+  if (status === "pending") badgeClass = "bg-warning";
+  else if (status === "cancelled") badgeClass = "bg-danger";
+  else if (status === "shipped") badgeClass = "bg-primary";
+
+  // === Product status (if multiple, join them) ===
+  const productStatuses = sellerItems.map(it => {
+    const product = products.find(p => String(p.id) === String(it.productId));
+    return product?.status || "Unknown";
+  });
+
+  // For display → if many products, show all statuses separated by commas
+  const statusLabels = productStatuses.length
+    ? productStatuses.map(st => {
+        const cls = st === "Active" ? "bg-success" : "bg-danger";
+        return `<span class="badge ${cls}">${st}</span>`;
+      }).join(" ")
+    : `<span class="badge bg-secondary">Unknown</span>`;
+
+  // === Build row ===
+  const tr = document.createElement("tr");
+  tr.innerHTML = `
+    <td>#${order.id || index + 1}</td>
+    <td>${customer}</td>
+    <td>${date}</td>
+    <td>${displayTotal}</td>
+    <td><span class="badge ${badgeClass} status-badge">${status}</span></td>
+    <td>${statusLabels}</td>
+    <td>
+      <button class="btn btn-sm btn-info" data-bs-toggle="offcanvas" 
+              data-bs-target="#orderDetails" 
+              onclick="loadOrderDetails('${order.id || index + 1}')">View</button>
+    </td>
+  `;
+  tbody.appendChild(tr);
+});
+  // === Order details loader ===
+  window.loadOrderDetails = function (orderId) {
+    const order = orders.find(o => String(o.id) === String(orderId));
+    if (!order) return;
     let customer = "Unknown";
     const userMatch = users.find(u => u.addresses?.some(a => a.id === order.address?.id));
     if (userMatch) customer = userMatch.name;
+    document.getElementById("detailOrderId").textContent = "#" + order.id;
+    document.getElementById("detailCustomer").textContent = customer;
+    document.getElementById("detailDate").textContent = order.time;
+    document.getElementById("detailStatus").textContent = order.status || "completed";
+    const itemsUl = document.getElementById("detailItems");
+    itemsUl.innerHTML = "";
+    let detailTotal = 0;
+    const filteredItems = currentUser.role === "admin"
+      ? order.items
+      : order.items.filter(it => sellerProductIds.includes(String(it.productId)));
+    filteredItems.forEach(it => {
+      const product = products.find(p => String(p.id) === String(it.productId));
+      const linePrice = (product?.price || 0) * it.quantity;
+      detailTotal += linePrice;
+      const li = document.createElement("li");
+      li.textContent = `${product ? product.name : "Unknown Product"} - Qty: ${it.quantity} - $${linePrice.toFixed(2)}`;
+      itemsUl.appendChild(li);
+    });
+    document.getElementById("detailTotal").textContent = "$" + detailTotal.toFixed(2);
+  };
+});
+</script>
+</body>
+</html>
+
+
+<!--old code 
+document.addEventListener("DOMContentLoaded", function () {
+  const orders = JSON.parse(localStorage.getItem("orders")) || [];
+  const products = JSON.parse(localStorage.getItem("products")) || [];
+  const users = JSON.parse(localStorage.getItem("users")) || [];
+  const currentUser = JSON.parse(sessionStorage.getItem("currentUser")) || {};
+
+  const tbody = document.getElementById("ordersTableBody");
+  tbody.innerHTML = ""; // clear demo rows
+
+  orders.forEach((order, index) => {
+    // Customer (fall back to session user if needed)
+    let customer = currentUser.name || "Unknown";
+    const userMatch = users.find(u => u.addresses?.some(a => a.id === order.address?.id));
+    if (userMatch) customer = userMatch.name;
+
+    // Format date from order.time
     const date = order.time ? new Date(order.time).toLocaleDateString() : "-";
+
+    // Total
     const total = order.totalPrice || "$0.00";
+
+    // Default status (you can extend this logic later)
     let status = order.status || "completed";
     let badgeClass = "bg-success";
     if (status === "pending") badgeClass = "bg-warning";
     else if (status === "cancelled") badgeClass = "bg-danger";
     else if (status === "shipped") badgeClass = "bg-primary";
+
+    // Build row
     const tr = document.createElement("tr");
     tr.innerHTML = `
       <td>#${order.id || index + 1}</td>
@@ -239,198 +357,22 @@ document.addEventListener("DOMContentLoaded", function () {
     `;
     tbody.appendChild(tr);
   });
-  // order details drawer
+
+  // Details loader
   window.loadOrderDetails = function (orderId) {
     const order = orders.find(o => String(o.id) === String(orderId));
     if (!order) return;
-    let customer = "Unknown";
-    const userMatch = users.find(u => u.addresses?.some(a => a.id === order.address?.id));
-    if (userMatch) customer = userMatch.name;
-    document.getElementById("detailOrderId").textContent = "#" + order.id;
-    document.getElementById("detailCustomer").textContent = customer;
-    document.getElementById("detailDate").textContent = order.time;
-    document.getElementById("detailTotal").textContent = order.totalPrice;
-    document.getElementById("detailStatus").textContent = order.status || "completed";
-    const itemsUl = document.getElementById("detailItems");
-    itemsUl.innerHTML = "";
-    order.items.forEach(it => {
-      const product = products.find(p => String(p.id) === String(it.productId));
-      const li = document.createElement("li");
-      li.textContent = `${product ? product.name : "Unknown Product"} - Qty: ${it.quantity} - Price: $${product ? product.price : "0"} - Status: ${product ? product.status : "N/A"}`;
-      itemsUl.appendChild(li);
-    });
-  };
 
-  // trigger initial filter
-  if (typeof window._filterOrders === "function") {
-    window._filterOrders();
-  }
-});
-</script>
-</body>
-</html>
-
-
-<!--old code 
-//admin see all
-//user see his orders 
-//seller see orders from his products 
-window.addEventListener("load", function () {
-  const user = JSON.parse(sessionStorage.getItem("currentUser"));
-  if (!user) {
-    window.location.href = "../../pages/auth/login.html";
-    return;
-  }
-})
-  //search
-  document.addEventListener("DOMContentLoaded", () => {
-  const searchInput = document.querySelector('input[placeholder="Search by customer or order ID"]');
-  const statusSelect = document.querySelector('select');
-  const dateInput = document.querySelector('input[type="date"]');
-  const pad = n => String(n).padStart(2, "0");
-  // Convert table date (e.g. "8/17/2025" or "8/17/2025, 6:46:12 PM") -> "YYYY-MM-DD"
-  function tableDateToYMD(raw) {
-    if (!raw) return "";
-    raw = raw.split(",")[0].trim(); // drop time if present
-    // already yyyy-mm-dd
-    if (/^\d{4}-\d{2}-\d{2}$/.test(raw)) return raw;
-    // match M/D/YYYY or MM/DD/YYYY
-    const m = raw.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);
-    if (m) {
-      const month = pad(m[1]);
-      const day = pad(m[2]);
-      const year = m[3];
-      return `${year}-${month}-${day}`;
-    }
-    // fallback: try Date parse
-    const d = new Date(raw);
-    if (!isNaN(d)) {
-      return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
-    }
-    return "";
-  }
-  function filterOrders() {
-    const q = (searchInput?.value || "").trim().toLowerCase();
-    const statusFilter = (statusSelect?.value || "all").toLowerCase();
-    const dateFilter = (dateInput?.value || ""); // YYYY-MM-DD or ""
-    const rows = document.querySelectorAll("#ordersTableBody tr");
-    rows.forEach(row => {
-      const cells = row.querySelectorAll("td");
-      if (cells.length === 0) return; // skip empty placeholder rows
-      const orderId = (cells[0].textContent || "").trim().replace(/^#/, "").toLowerCase();
-      const customer = (cells[1].textContent || "").trim().toLowerCase();
-      const rawDate = (cells[2].textContent || "").trim(); // e.g. "8/17/2025" or "8/17/2025, 6:46:12 PM"
-      const normalized = tableDateToYMD(rawDate); // "2025-08-17"
-      const status = (cells[4].textContent || "").trim().toLowerCase();
-      const matchesSearch = !q || orderId.includes(q) || customer.includes(q);
-      const matchesStatus = statusFilter === "all" || status.includes(statusFilter);
-      const matchesDate = !dateFilter || (normalized === dateFilter);
-      row.style.display = (matchesSearch && matchesStatus && matchesDate) ? "" : "none";
-    });
-  }
-  searchInput?.addEventListener("input", filterOrders);
-  statusSelect?.addEventListener("change", filterOrders);
-  dateInput?.addEventListener("input", filterOrders);
-  dateInput?.addEventListener("change", filterOrders);
-  filterOrders();
-  window._filterOrders = filterOrders;
-});
-//war of scripts 
-document.addEventListener("DOMContentLoaded", function () {
-  const orders = JSON.parse(localStorage.getItem("orders")) || [];
-  const products = JSON.parse(localStorage.getItem("products")) || [];
-  const users = JSON.parse(localStorage.getItem("users")) || [];
-  const currentUser = JSON.parse(sessionStorage.getItem("currentUser")) || {};
-  const tbody = document.getElementById("ordersTableBody");
-  tbody.innerHTML = "";
-  const role = currentUser.role || "user";
-  if (role === "user") {
-    // show only his orders
-    const userOrders = orders.filter(o =>
-      users.find(u => u.addresses?.some(a => a.id === o.address?.id))?.email === currentUser.email
-    );
-    userOrders.forEach((order, index) => {
-      let customer = currentUser.name || "Unknown";
-      const userMatch = users.find(u => u.addresses?.some(a => a.id === order.address?.id));
-      if (userMatch) customer = userMatch.name;
-      const date = order.time ? new Date(order.time).toLocaleDateString() : "-";
-      const total = order.totalPrice || "$0.00";
-      let status = order.status || "completed";
-      let badgeClass = "bg-success";
-      if (status === "pending") badgeClass = "bg-warning";
-      else if (status === "cancelled") badgeClass = "bg-danger";
-      else if (status === "shipped") badgeClass = "bg-primary";
-      const tr = document.createElement("tr");
-      tr.innerHTML = `
-        <td>#${order.id || index + 1}</td>
-        <td>${customer}</td>
-        <td>${date}</td>
-        <td>${total}</td>
-        <td><span class="badge ${badgeClass} status-badge">${status}</span></td>
-        <td>
-          <button class="btn btn-sm btn-info" data-bs-toggle="offcanvas" 
-                  data-bs-target="#orderDetails" 
-                  onclick="loadOrderDetails('${order.id || index + 1}')">View</button>
-        </td>
-      `;
-      tbody.appendChild(tr);
-    });
-  } else if (role === "admin") {
-    // show all orders
-    orders.forEach((order, index) => {
-      let customer = "Unknown";
-      const userMatch = users.find(u => u.addresses?.some(a => a.id === order.address?.id));
-      if (userMatch) customer = userMatch.name;
-      const date = order.time ? new Date(order.time).toLocaleDateString() : "-";
-      const total = order.totalPrice || "$0.00";
-      let status = order.status || "completed";
-      let badgeClass = "bg-success";
-      if (status === "pending") badgeClass = "bg-warning";
-      else if (status === "cancelled") badgeClass = "bg-danger";
-      else if (status === "shipped") badgeClass = "bg-primary";
-      const tr = document.createElement("tr");
-      tr.innerHTML = `
-        <td>#${order.id || index + 1}</td>
-        <td>${customer}</td>
-        <td>${date}</td>
-        <td>${total}</td>
-        <td><span class="badge ${badgeClass} status-badge">${status}</span></td>
-        <td>
-          <button class="btn btn-sm btn-info" data-bs-toggle="offcanvas" 
-                  data-bs-target="#orderDetails" 
-                  onclick="loadOrderDetails('${order.id || index + 1}')">View</button>
-        </td>
-      `;
-      tbody.appendChild(tr);
-    });
-  } else if (role === "seller") {
-    // show seller's products
-    const sellerProducts = products.filter(p => p.sellerEmail === currentUser.email);
-    sellerProducts.forEach((product, index) => {
-      const tr = document.createElement("tr");
-      tr.innerHTML = `
-        <td>#${product.id || index + 1}</td>
-        <td>${product.sellerEmail}</td>
-        <td>-</td>
-        <td>-</td>  
-        <td>${product.stock}</td>
-        <td><span class="badge ${product.status === "Active" ? "bg-success" : "bg-danger"}">${product.status}</span></td>
-      `;
-      tbody.appendChild(tr);
-    });
-  }
-  // keep your order details loader for users/admin
-  window.loadOrderDetails = function (orderId) {
-    const order = orders.find(o => String(o.id) === String(orderId));
-    if (!order) return;
     let customer = currentUser.name || "Unknown";
     const userMatch = users.find(u => u.addresses?.some(a => a.id === order.address?.id));
     if (userMatch) customer = userMatch.name;
+
     document.getElementById("detailOrderId").textContent = "#" + order.id;
     document.getElementById("detailCustomer").textContent = customer;
     document.getElementById("detailDate").textContent = order.time;
     document.getElementById("detailTotal").textContent = order.totalPrice;
     document.getElementById("detailStatus").textContent = order.status || "completed";
+
     const itemsUl = document.getElementById("detailItems");
     itemsUl.innerHTML = "";
     order.items.forEach(it => {

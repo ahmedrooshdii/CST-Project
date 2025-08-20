@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Add User - Profit Pulse</title>
+    <title>Profile</title>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -24,28 +24,74 @@
     <script src="../../assets/js/home.js" defer></script>
 
     <script>
-      window.addEventListener("load", function () {
-        var name = document.getElementById("name");
-        var storenamediv = document.getElementById("storenamediv");
-        var storename = document.getElementById("storename");
-        var email = document.getElementById("email");
-        var role = document.getElementById("role");
+window.addEventListener("load", function () {
+  const user = JSON.parse(sessionStorage.getItem("currentUser"));
+  const users = JSON.parse(localStorage.getItem("users")) || [];
+  const products = JSON.parse(localStorage.getItem("products")) || [];
+  const orders = JSON.parse(localStorage.getItem("orders")) || [];
 
-        var user = JSON.parse(sessionStorage.getItem("currentUser"));
-        if (user) {
-          name.innerText = user.name;
-          email.innerText = user.email;
-          role.innerText = user.role;
+  if (!user) {
+    window.location.href = "../../pages/auth/login.html";
+    return;
+  }
 
-          if (user.role == "seller") {
-            storenamediv.style.display = "flex";
-            storename.innerText = user.storename;
-          }
-        } else {
-          window.location.href = "../../pages/auth/login.html";
-        }
-      });
-    </script>
+  // Basic
+  document.getElementById("name").innerText = user.name;
+  document.getElementById("email").innerText = user.email;
+  document.getElementById("role").innerText = user.role;
+
+  // Seller
+  if (user.role === "seller") {
+    document.getElementById("sellerSection").style.display = "block";
+    document.getElementById("storename").innerText = user.storename || "-";
+
+    const sellerProducts = products.filter(p => p.sellerEmail === user.email);
+    const sellerOrders = orders.filter(o => o.items.some(i => {
+      const prod = products.find(p => p.id == i.productId);
+      return prod && prod.sellerEmail === user.email;
+    }));
+
+    const totalRevenue = sellerOrders.reduce((sum, o) => {
+      return sum + o.items.reduce((s, i) => {
+        const prod = products.find(p => p.id == i.productId);
+        return prod && prod.sellerEmail === user.email ? s + (prod.price * i.quantity) : s;
+      }, 0);
+    }, 0);
+
+    document.getElementById("sellerProductsCount").innerText = sellerProducts.length;
+    document.getElementById("sellerOrdersCount").innerText = sellerOrders.length;
+    document.getElementById("sellerRevenue").innerText = `$${totalRevenue.toFixed(2)}`;
+  }
+
+  // User
+  if (user.role === "user") {
+    document.getElementById("userSection").style.display = "block";
+
+    const userOrders = orders.filter(o => 
+      users.find(u => u.addresses?.some(a => a.id === o.address?.id))?.email === user.email
+    );
+
+    const totalSpent = userOrders.reduce((sum, o) => sum + (o.totalPrice || 0), 0);
+
+    document.getElementById("userOrdersCount").innerText = userOrders.length;
+    document.getElementById("userTotalSpent").innerText = `$${totalSpent.toFixed(2)}`;
+  }
+
+  // Admin
+  if (user.role === "admin") {
+    document.getElementById("adminSection").style.display = "block";
+
+    const sellers = users.filter(u => u.role === "seller");
+    const normalUsers = users.filter(u => u.role === "user");
+
+    document.getElementById("adminUsersCount").innerText = normalUsers.length;
+    document.getElementById("adminSellersCount").innerText = sellers.length;
+    document.getElementById("adminProductsCount").innerText = products.length;
+    document.getElementById("adminOrdersCount").innerText = orders.length;
+  }
+});
+</script>
+
   </head>
   <body class="bg-light">
     <!-- Add bg-light like users page for consistent background -->
@@ -75,7 +121,6 @@
         <a href="../../pages/auth/SellerRegister.html">Be a seller</a>
       </div>
     </header>
-
     <div class="row">
       <!-- Sidebar -->
       <div class="col-md-2 sidebar">
@@ -91,39 +136,94 @@
         <li><a href="profile.html" class="nav-link active">👤 profile</a></li>
         <li><a id="usersPage" href="users.html" class="nav-link ">👤 Users</a></li>
         <li><a href="orders.html" class="nav-link">🛒 Orders</a></li>
+        <li><a href="seller_orders.html" class="nav-link">🛒 seller's Orders</a></li>
         <li><a id="product" href="products.html" class="nav-link">🛒 Products</a></li>
         <li><a id="customer" href="customers.html" class="nav-link">👥 Customers</a></li>
         <li><a id="cat" href="categories.html" class="nav-link">👥 Categories</a></li>
         <li><a id ="contact" href="contactus.html" class="nav-link">👥 Contact us</a></li>
         </ul>
       </div>
-
       <!-- Main Content -->
       <div class="content">
-        <h2 class="mb-4"><i class="fa-solid fa-user"></i>Your Profile</h2>
-        <div class="profile-card">
-          <div class="row mb-3">
-            <div class="col-md-4 profile-label">Name :</div>
-            <div id="name" class="col-md-8 profile-value">Yasser Ahmed</div>
-          </div>
+  <h2 class="mb-4"><i class="fa-solid fa-user"></i> Your Profile</h2>
+  <div class="profile-card p-4 shadow rounded bg-white">
+    
+    <!-- Basic Info -->
+    <h4 class="mb-3">👤 Account Information</h4>
+    <div class="row mb-2">
+      <div class="col-md-4 profile-label">Name :</div>
+      <div id="name" class="col-md-8 profile-value"></div>
+    </div>
+    <div class="row mb-2">
+      <div class="col-md-4 profile-label">Email :</div>
+      <div id="email" class="col-md-8 profile-value"></div>
+    </div>
+    <div class="row mb-2">
+      <div class="col-md-4 profile-label">Role :</div>
+      <div id="role" class="col-md-8 profile-value"></div>
+    </div>
 
-          <div id="storenamediv" style="display: none" class="row mb-3">
-            <div class="col-md-4 profile-label">Store Name :</div>
-            <div id="storename" class="col-md-8 profile-value">Store name</div>
-          </div>
-
-          <div class="row mb-3">
-            <div class="col-md-4 profile-label">Email :</div>
-            <div id="email" class="col-md-8 profile-value">yas@example.com</div>
-          </div>
-          <div class="row mb-3">
-            <div class="col-md-4 profile-label">Role :</div>
-            <div id="role" class="col-md-8 profile-value">Admin</div>
-          </div>
-        </div>
+    <!-- Seller Specific -->
+    <div id="sellerSection" style="display:none;">
+      <h4 class="mt-4">🏪 Store Information</h4>
+      <div class="row mb-2">
+        <div class="col-md-4 profile-label">Store Name :</div>
+        <div id="storename" class="col-md-8 profile-value"></div>
+      </div>
+      <div class="row mb-2">
+        <div class="col-md-4 profile-label">Products :</div>
+        <div id="sellerProductsCount" class="col-md-8 profile-value"></div>
+      </div>
+      <div class="row mb-2">
+        <div class="col-md-4 profile-label">Orders :</div>
+        <div id="sellerOrdersCount" class="col-md-8 profile-value"></div>
+      </div>
+      <div class="row mb-2">
+        <div class="col-md-4 profile-label">Total Revenue :</div>
+        <div id="sellerRevenue" class="col-md-8 profile-value"></div>
       </div>
     </div>
 
+    <!-- User Specific -->
+    <div id="userSection" style="display:none;">
+      <h4 class="mt-4">📦 My Orders</h4>
+      <div class="row mb-2">
+        <div class="col-md-4 profile-label">Total Orders :</div>
+        <div id="userOrdersCount" class="col-md-8 profile-value"></div>
+      </div>
+      <div class="row mb-2">
+        <div class="col-md-4 profile-label">Total Spent :</div>
+        <div id="userTotalSpent" class="col-md-8 profile-value"></div>
+      </div>
+
+      
+    </div>
+
+    <!-- Admin Specific -->
+    <div id="adminSection" style="display:none;">
+      <h4 class="mt-4">🛠️ Admin Dashboard</h4>
+      <div class="row mb-2">
+        <div class="col-md-4 profile-label">Total Users :</div>
+        <div id="adminUsersCount" class="col-md-8 profile-value"></div>
+      </div>
+      <div class="row mb-2">
+        <div class="col-md-4 profile-label">Total Sellers :</div>
+        <div id="adminSellersCount" class="col-md-8 profile-value"></div>
+      </div>
+      <div class="row mb-2">
+        <div class="col-md-4 profile-label">Total Products :</div>
+        <div id="adminProductsCount" class="col-md-8 profile-value"></div>
+      </div>
+      <div class="row mb-2">
+        <div class="col-md-4 profile-label">Total Orders :</div>
+        <div id="adminOrdersCount" class="col-md-8 profile-value"></div>
+      </div>
+    </div>
+    
+  </div>
+</div>
+
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>
