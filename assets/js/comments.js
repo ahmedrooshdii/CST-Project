@@ -5,13 +5,13 @@ window.addEventListener("load", function () {
   const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
 
   //categories for stars
-   const categories = [
-     { label: "Excellent", stars: 5 },
-     { label: "Good", stars: 4 },
-     { label: "Average", stars: 3 },
-     { label: "Below Average", stars: 2 },
-     { label: "Poor", stars: 1 },
-   ];
+  const categories = [
+    { label: "Excellent", stars: 5 },
+    { label: "Good", stars: 4 },
+    { label: "Average", stars: 3 },
+    { label: "Below Average", stars: 2 },
+    { label: "Poor", stars: 1 },
+  ];
   //get star form
   const form = document.getElementById("starsInputForm");
   // get number of stars every change
@@ -124,6 +124,8 @@ window.addEventListener("load", function () {
 
     const deleteBtn = reviewItem.querySelector(".delete-review-btn");
     deleteBtn.addEventListener("click", () => {
+      console.log("deleted");
+
       // remove from product reviews
       product.reviews = product.reviews.filter((r) => r.id !== review.id);
 
@@ -140,12 +142,14 @@ window.addEventListener("load", function () {
       // remove from UI
       reviewItem.remove();
       showToast("Review deleted successfully!", "success");
+      renderReviews();
     });
 
     reviewList.prepend(reviewItem);
     commentInput.value = "";
     form.reset();
     numberOfStars = undefined;
+    renderReviews();
     showToast("Review added successfully!", "success");
   });
 
@@ -157,7 +161,7 @@ window.addEventListener("load", function () {
 
     const product = products.find((p) => p.id == currentProductId);
     if (!product?.reviews) return;
-
+    renderTotalReviews(product.reviews);
     product.reviews.forEach((review, index) => {
       // check if this review belongs to current user
       const isCurrentUserReview = review.userEmail === currentUser.email;
@@ -197,7 +201,11 @@ window.addEventListener("load", function () {
         });
 
         const deleteBtn = reviewItem.querySelector(".delete-review-btn");
+        console.log(deleteBtn);
+
         deleteBtn.addEventListener("click", () => {
+          console.log("deleted");
+
           // remove from product reviews
           product.reviews.splice(index, 1);
 
@@ -215,6 +223,7 @@ window.addEventListener("load", function () {
 
           // remove from UI
           reviewItem.remove();
+          renderReviews();
         });
       }
 
@@ -393,47 +402,44 @@ window.addEventListener("load", function () {
     }
   });
 
-
-
-
   //render total reviews
-   function renderTotalReviews(reviews) {
-     if (!reviews.length) return;
+  function renderTotalReviews(reviews) {
+    if (!reviews.length) return;
 
-     // Calculate average rating
-     const totalStars = reviews.reduce((sum, r) => sum + r.stars, 0);
-     const avgRating = (totalStars / reviews.length).toFixed(1);
+    // Calculate average rating
+    const totalStars = reviews.reduce((sum, r) => sum + r.stars, 0);
+    const avgRating = (totalStars / reviews.length).toFixed(1);
 
-     // Update summary
-     document.getElementById("overallRating").textContent = avgRating;
-     document.getElementById(
-       "reviewCount"
-     ).textContent = `of ${reviews.length} reviews`;
+    // Update summary
+    document.getElementById("overallRating").textContent = avgRating;
+    document.getElementById(
+      "reviewCount"
+    ).textContent = `of ${reviews.length} reviews`;
 
-     // Render stars for average rating
-     const starsContainer = document.getElementById("starsContainer");
-     starsContainer.innerHTML = "";
-     for (let i = 1; i <= 5; i++) {
-       const span = document.createElement("span");
-       span.classList.add("star");
-       span.textContent = "★";
-       if (i <= Math.round(avgRating)) span.classList.add("filled");
-       starsContainer.appendChild(span);
-     }
+    // Render stars for average rating
+    const starsContainer = document.getElementById("starsContainer");
+    starsContainer.innerHTML = "";
+    for (let i = 1; i <= 5; i++) {
+      const span = document.createElement("span");
+      span.classList.add("star");
+      span.textContent = "★";
+      if (i <= Math.round(avgRating)) span.classList.add("filled");
+      starsContainer.appendChild(span);
+    }
 
-     // Breakdown counts
-     const breakdown = categories.map((c) => {
-       const count = reviews.filter((r) => r.stars === c.stars).length;
-       return { ...c, count };
-     });
+    // Breakdown counts
+    const breakdown = categories.map((c) => {
+      const count = reviews.filter((r) => r.stars === c.stars).length;
+      return { ...c, count };
+    });
 
-     // Render breakdown
-     const ratingBreakdown = document.getElementById("ratingBreakdown");
-     ratingBreakdown.innerHTML = "";
-     breakdown.forEach((b) => {
-       const percentage = ((b.count / reviews.length) * 100).toFixed(1);
+    // Render breakdown
+    const ratingBreakdown = document.getElementById("ratingBreakdown");
+    ratingBreakdown.innerHTML = "";
+    breakdown.forEach((b) => {
+      const percentage = ((b.count / reviews.length) * 100).toFixed(1);
 
-       ratingBreakdown.innerHTML += `
+      ratingBreakdown.innerHTML += `
         <div class="rating-row">
           <span class="rating-label">${b.label}</span>
           <div class="rating-bar">
@@ -442,7 +448,6 @@ window.addEventListener("load", function () {
           <span class="rating-count">${b.count}</span>
         </div>
       `;
-     });
-   }
-
+    });
+  }
 });
