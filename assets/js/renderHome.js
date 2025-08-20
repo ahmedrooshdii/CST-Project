@@ -222,6 +222,7 @@ function addToCart(e) {
       if (existingItem) {
         if (existingItem.quantity < product.stock) {
           existingItem.quantity += 1;
+          showToast("Product add to cart successfully", "success");
         } else {
           showToast("You reached the limit of available stock!", "warning");
         }
