@@ -473,54 +473,12 @@
 
         <div class="reviews-overview">
           <div class="rating-summary">
-            <div class="overall-rating">4.8</div>
-            <div class="rating-subtitle">of 125 reviews</div>
-            <div class="stars">
-              <span class="star filled">★</span>
-              <span class="star filled">★</span>
-              <span class="star filled">★</span>
-              <span class="star filled">★</span>
-              <span class="star">★</span>
-            </div>
+            <div class="overall-rating" id="overallRating">0</div>
+            <div class="rating-subtitle" id="reviewCount">of 0 reviews</div>
+            <div class="stars" id="starsContainer"></div>
           </div>
 
-          <div class="rating-breakdown">
-            <div class="rating-row">
-              <span class="rating-label">Excellent</span>
-              <div class="rating-bar">
-                <div class="rating-fill" style="width: 82%"></div>
-              </div>
-              <span class="rating-count">100</span>
-            </div>
-            <div class="rating-row">
-              <span class="rating-label">Good</span>
-              <div class="rating-bar">
-                <div class="rating-fill" style="width: 9%"></div>
-              </div>
-              <span class="rating-count">11</span>
-            </div>
-            <div class="rating-row">
-              <span class="rating-label">Average</span>
-              <div class="rating-bar">
-                <div class="rating-fill" style="width: 2.5%"></div>
-              </div>
-              <span class="rating-count">3</span>
-            </div>
-            <div class="rating-row">
-              <span class="rating-label">Below Average</span>
-              <div class="rating-bar">
-                <div class="rating-fill" style="width: 6.5%"></div>
-              </div>
-              <span class="rating-count">8</span>
-            </div>
-            <div class="rating-row">
-              <span class="rating-label">Poor</span>
-              <div class="rating-bar">
-                <div class="rating-fill" style="width: 1%"></div>
-              </div>
-              <span class="rating-count">1</span>
-            </div>
-          </div>
+          <div class="rating-breakdown" id="ratingBreakdown"></div>
         </div>
 
         <!-- comment form -->
@@ -583,7 +541,7 @@
           Add Comment
         </button>
         <div class="reviews-list">
-          <div class="review-item">
+          <!-- <div class="review-item">
             <img
               src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=56&h=56"
               alt="Grace Carey"
@@ -704,11 +662,11 @@
                 entrance fee and get meals at cost price.
               </p>
             </div>
-          </div>
-          <div class="reviews-fade"></div>
+          </div> -->
+          <!-- <div class="reviews-fade"></div> -->
         </div>
 
-        <div class="d-flex justify-content-center">
+        <!-- <div class="d-flex justify-content-center">
           <div>
             <button class="btn btn-outline view-more">
               <span>View More</span>
@@ -724,7 +682,7 @@
               </svg>
             </button>
           </div>
-        </div>
+        </div> -->
       </div>
     </section>
 
@@ -945,40 +903,6 @@
             window.location.href = targetPage;
           }
         });
-      }
-      function updateCartCount() {
-        const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
-        const cartCount = document.getElementById("cartCount");
-
-        if (!currentUser) {
-          cartCount.style.display = "none";
-          return;
-        }
-
-        let users = JSON.parse(localStorage.getItem("users")) || [];
-
-        let user = users.find((u) => u.email === currentUser.email);
-
-        if (user && user.cart && user.cart.length > 0) {
-          cartCount.textContent = user?.cart?.length;
-
-          cartCount.style.display = "inline-block";
-        } else {
-          cartCount.style.display = "none";
-        }
-
-        // let count = user?.cart?.reduce((acc, item) => acc + item.quantity, 0) || 0;
-
-        // document.getElementById("cartCount").textContent = count;
-      }
-      window.addEventListener("load", updateCartCount);
-      function goToCart() {
-        const user = JSON.parse(sessionStorage.getItem("currentUser"));
-        if (!user) {
-          window.location.href = "../../pages/auth/login.html";
-          return;
-        }
-        window.location.href = `/pages/cart/shopping-cart.html`;
       }
     </script>
   </body>
