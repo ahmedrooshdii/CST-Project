@@ -85,8 +85,10 @@ window.addEventListener("load", function () {
 
       if (user.favorites.includes(productId)) {
         user.favorites = user.favorites.filter((id) => id !== productId);
+        showToast("Removed from wishlist", "success");
       } else {
         user.favorites.push(productId);
+        showToast("Added to wishlist", "success");
       }
 
       saveUsers();
