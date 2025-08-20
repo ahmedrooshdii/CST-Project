@@ -75,15 +75,17 @@
           <a class="nav-link active"  href="../../pages/cart/wishlist.html"><i class="fa-regular fa-heart"></i></a>
         </li>
 
-         <li class="nav-item position-relative" onclick="goToCart()">
-              <a class="nav-link active" href="#"
-                ><i class="fa-solid fa-cart-shopping"></i>
-                <span
-                  id="cartCount"
-                  class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
-                >
-                </span
-              ></a>
+         <li class="nav-item" onclick="goToCart()">
+              <a class="nav-link active" href="./pages/cart/shopping-cart.html">
+                <div class="position-relative d-inline-block">
+                  <i class="fa-solid fa-cart-shopping"></i>
+                  <span
+                    id="cartCount"
+                    class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                  >
+                  </span>
+                </div>
+              </a>
             </li>
 
       </ul>
@@ -288,7 +290,8 @@ function handleHomeSearch(formId, inputId, targetPage) {
 
   if (user && user.cart && user.cart.length > 0) {
 
-    cartCount.textContent = user?.cart?.length;
+    let count = user?.cart?.reduce((acc, item) => acc + item.quantity, 0) || 0;
+    cartCount.textContent = count;
 
     cartCount.style.display = "inline-block";
 
@@ -296,9 +299,7 @@ function handleHomeSearch(formId, inputId, targetPage) {
     cartCount.style.display = "none";
   }
 
-  // let count = user?.cart?.reduce((acc, item) => acc + item.quantity, 0) || 0;
-
-  // document.getElementById("cartCount").textContent = count;
+  
 }
 window.addEventListener('load', updateCartCount);
         function goToCart() {
