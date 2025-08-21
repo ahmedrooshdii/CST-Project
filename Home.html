@@ -16,6 +16,12 @@
     <link rel="stylesheet" href="./assets/css/home.css" />
 
     <style>
+      .header {
+        position: sticky;
+        top: 0;
+        background-color: white;
+        z-index: 10000000000;
+      }
       #productSearch {
         height: 35px;
         font-size: large !important;
@@ -29,155 +35,162 @@
     </style>
   </head>
   <body>
-    <header class="container-fluid d-md-flex justify-content-md-between mt-1">
-      <div class="d-none d-md-flex gap-2">
-        <a href="mailto:Mohamedbasiouny111@gmail.com"
-          ><i class="fa-solid fa-envelope"></i>Mohamedbasiouny111@gmail.com</a
-        >
-        <span>|</span>
-        <a href="tel:01111514032"
-          ><i class="fa-solid fa-phone"></i>01111514032</a
-        >
-      </div>
-
-      <div
-        id="navbartop"
-        class="d-flex flex-row-reverse justify-content-center text-uppercase gap-2"
-      >
-        <a href="./pages/auth/Register.html"
-          ><i class="fa-solid fa-user-plus"></i> Register</a
-        >
-        <span>|</span>
-        <a href="./pages/auth/login.html"
-          ><i class="fa-solid fa-arrow-right-to-bracket"></i> Login</a
-        >
-        <span>|</span>
-        <a href="./pages/auth/SellerRegister.html">Be a seller</a>
-      </div>
-    </header>
-
-<nav class="container-fluid navbar navbar-expand-lg navbar-light bg-light">
-      <div class="container gap-2 gap-xl-5">
-        <div class="col-2">
-          <a class="navbar-brand" href="Home.html">
-            <img src="assets/images/logo.svg" alt="Logo" />
-          </a>
-        </div>
-
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-
-            <div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
-
-          <form id="homeSearchForm"
-      class="col-12 col-md-12 col-lg-5 col-xl-6 position-relative"
+    <div class="header">
+      <header class="container-fluid d-md-flex justify-content-md-between mt-1">
+        <div class="d-none d-md-flex gap-2">
+          <a href="mailto:Mohamedbasiouny111@gmail.com"
+            ><i class="fa-solid fa-envelope"></i>Mohamedbasiouny111@gmail.com</a
           >
-            <i
-              class="fa-solid fa-magnifying-glass position-absolute top-50 start-0 translate-middle-y ms-3 pe-5 text-muted"
-            ></i>
-            <input
-              type="search"
-              id="productSearch"
-              class="form-control ps-5"
-              placeholder="Search"
-              aria-label="Search"
-            />
-          </form>
-
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="pages/products/product page.html"
-                >All Products</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="pages/about.html">About</a>
-            </li>
-
-            <li class="nav-item">
-              <a class="nav-link" href="pages/ContactUs.html">Contact Us</a>
-            </li>
-
-            <li class="nav-item">
-              <a class="nav-link" href="pages/blog.html">Blog</a>
-            </li>
-
-            <li class="nav-item" onclick="goToWishList()">
-              <a class="nav-link active" href="./pages/cart/wishlist.html"
-                ><i class="fa-regular fa-heart"></i
-              ></a>
-            </li>
-
-            <li class="nav-item" onclick="goToCart()">
-              <a class="nav-link active" href="#">
-                <div class="position-relative d-inline-block">
-                  <i class="fa-solid fa-cart-shopping"></i>
-                  <span
-                    id="cartCount"
-                    class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
-                  >
-                  </span>
-                </div>
-              </a>
-            </li>
-          </ul>
+          <span>|</span>
+          <a href="tel:01111514032"
+            ><i class="fa-solid fa-phone"></i>01111514032</a
+          >
         </div>
-      </div>
-    </nav>
 
-    <nav
-      id="subnav"
-      class="container-fluid d-none d-md-flex justify-content-evenly gap-2"
-      style="padding: 10px 0"
-    >
-      <a
-        href="pages/products/product page.html?category=Phones"
-        style="cursor: pointer; color: white; text-decoration: none"
-        ><i class="fa-solid fa-mobile"></i>Phones</a
+        <div
+          id="navbartop"
+          class="d-flex flex-row-reverse justify-content-center text-uppercase gap-2"
+        >
+          <a href="./pages/auth/Register.html"
+            ><i class="fa-solid fa-user-plus"></i> Register</a
+          >
+          <span>|</span>
+          <a href="./pages/auth/login.html"
+            ><i class="fa-solid fa-arrow-right-to-bracket"></i> Login</a
+          >
+          <span>|</span>
+          <a href="./pages/auth/SellerRegister.html">Be a seller</a>
+        </div>
+      </header>
+
+      <nav
+        class="container-fluid navbar navbar-expand-lg navbar-light bg-light"
       >
-      <span>|</span>
-      <a
-        href="pages/products/product page.html?category=Computers"
-        style="cursor: pointer; color: white; text-decoration: none"
-        ><i class="fa-solid fa-desktop"></i>Computers</a
+        <div class="container gap-2 gap-xl-5">
+          <div class="col-2">
+            <a class="navbar-brand" href="Home.html">
+              <img src="assets/images/logo.svg" alt="Logo" />
+            </a>
+          </div>
+
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div
+            class="collapse navbar-collapse text-center"
+            id="navbarSupportedContent"
+          >
+            <form
+              id="homeSearchForm"
+              class="col-12 col-md-12 col-lg-5 col-xl-6 position-relative"
+            >
+              <i
+                class="fa-solid fa-magnifying-glass position-absolute top-50 start-0 translate-middle-y ms-3 pe-5 text-muted"
+              ></i>
+              <input
+                type="search"
+                id="productSearch"
+                class="form-control ps-5"
+                placeholder="Search"
+                aria-label="Search"
+              />
+            </form>
+
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="pages/products/product page.html"
+                  >All Products</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="pages/about.html">About</a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="pages/ContactUs.html">Contact Us</a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="pages/blog.html">Blog</a>
+              </li>
+
+              <li class="nav-item" onclick="goToWishList()">
+                <a class="nav-link active" href="./pages/cart/wishlist.html"
+                  ><i class="fa-regular fa-heart"></i
+                ></a>
+              </li>
+
+              <li class="nav-item" onclick="goToCart()">
+                <a class="nav-link active" href="#">
+                  <div class="position-relative d-inline-block">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span
+                      id="cartCount"
+                      class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                    >
+                    </span>
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      <nav
+        id="subnav"
+        class="container-fluid d-none d-md-flex justify-content-evenly gap-2"
+        style="padding: 10px 0"
       >
-      <span>|</span>
-      <a
-        href="pages/products/product page.html?category=Smart Watch"
-        style="cursor: pointer; color: white; text-decoration: none"
-        ><i class="fa-solid fa-clock"></i>Smart Watch</a
-      >
-      <span>|</span>
-      <a
-        href="pages/products/product page.html?category=Cameras"
-        style="cursor: pointer; color: white; text-decoration: none"
-        ><i class="fa-solid fa-camera"></i>Cameras</a
-      >
-      <span>|</span>
-      <a
-        href="pages/products/product page.html?category=Headphones"
-        style="cursor: pointer; color: white; text-decoration: none"
-        ><i class="fa-solid fa-headset"></i>Headphones</a
-      >
-      <span>|</span>
-      <a
-        href="pages/products/product page.html?category=Gaming"
-        style="cursor: pointer; color: white; text-decoration: none"
-        ><i class="fa-solid fa-gamepad"></i>Gaming</a
-      >
-    </nav>
+        <a
+          href="pages/products/product page.html?category=Phones"
+          style="cursor: pointer; color: white; text-decoration: none"
+          ><i class="fa-solid fa-mobile"></i>Phones</a
+        >
+        <span>|</span>
+        <a
+          href="pages/products/product page.html?category=Computers"
+          style="cursor: pointer; color: white; text-decoration: none"
+          ><i class="fa-solid fa-desktop"></i>Computers</a
+        >
+        <span>|</span>
+        <a
+          href="pages/products/product page.html?category=Smart Watch"
+          style="cursor: pointer; color: white; text-decoration: none"
+          ><i class="fa-solid fa-clock"></i>Smart Watch</a
+        >
+        <span>|</span>
+        <a
+          href="pages/products/product page.html?category=Cameras"
+          style="cursor: pointer; color: white; text-decoration: none"
+          ><i class="fa-solid fa-camera"></i>Cameras</a
+        >
+        <span>|</span>
+        <a
+          href="pages/products/product page.html?category=Headphones"
+          style="cursor: pointer; color: white; text-decoration: none"
+          ><i class="fa-solid fa-headset"></i>Headphones</a
+        >
+        <span>|</span>
+        <a
+          href="pages/products/product page.html?category=Gaming"
+          style="cursor: pointer; color: white; text-decoration: none"
+          ><i class="fa-solid fa-gamepad"></i>Gaming</a
+        >
+      </nav>
+    </div>
 
     <main>
       <section class="wrapper block block--dark hero overflow--clip">

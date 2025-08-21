@@ -160,7 +160,14 @@ window.addEventListener("load", function () {
     const products = JSON.parse(localStorage.getItem("products")) || [];
 
     const product = products.find((p) => p.id == currentProductId);
-    if (!product?.reviews) return;
+    if (!product?.reviews) {
+      reviewList.innerHTML = `<div class="text-center py-4 text-muted">
+    <i class="bi bi-chat-left-text fs-1 d-block mb-2"></i>
+    <p class="h5 fw-light">No reviews yet</p>
+    <small class="text-secondary">Be the first to share your experience!</small>
+  </div>`;
+      return;
+    }
     renderTotalReviews(product.reviews);
     product.reviews.forEach((review, index) => {
       // check if this review belongs to current user
