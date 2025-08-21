@@ -61,9 +61,10 @@ function renderRecommended() {
     recommendedContainer.innerHTML = "";
     recommended.forEach((el) => {
       recommendedContainer.innerHTML += `
-      <div class="product-card">
-            <div class="product-favorite">
+      <div class="product-card" data-id="${el.id}" onclick="navigateToProductDetails(${el.id})">
+            <div class="product-favorite" onclick="addToFavorite(${el.id})">
               <svg
+              class="fav__icon"
                 width="32"
                 height="32"
                 viewBox="0 0 24 24"
@@ -89,5 +90,23 @@ function renderRecommended() {
           </div>
       `;
     });
+    renderFavorites();
   }
+}
+
+//render faavorite
+function renderFavorites() {
+  const user = getCurrentUser();
+  if (!user) return;
+
+  document.querySelectorAll(".product-favorite").forEach((icon) => {
+    const card = icon.closest("[data-id]");
+    if (!card) return; // لو ملقاش card فيه data-id يخرج
+    const productId = card.dataset.id;
+    if (user.favorites && user.favorites.includes(+productId)) {
+      icon.querySelector(".fav__icon").classList.add("makeFavorite");
+    } else {
+      icon.querySelector(".fav__icon").classList.remove("makeFavorite");
+    }
+  });
 }

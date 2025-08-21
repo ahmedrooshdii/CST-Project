@@ -682,6 +682,10 @@ section{
 .product-favorite:hover {
     color: #ff6b6b;
 }
+.makeFavorite{
+    fill: #ff6b6b;
+    color: #ff6b6b;
+}
 
 .product-img {
     width: 160px;

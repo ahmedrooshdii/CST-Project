@@ -171,7 +171,7 @@ window.addEventListener("load", function () {
     renderTotalReviews(product.reviews);
     product.reviews.forEach((review, index) => {
       // check if this review belongs to current user
-      const isCurrentUserReview = review.userEmail === currentUser.email;
+      const isCurrentUserReview = review.userEmail === currentUser?.email;
 
       const reviewItem = document.createElement("div");
       reviewItem.classList.add("review-item");
@@ -208,11 +208,8 @@ window.addEventListener("load", function () {
         });
 
         const deleteBtn = reviewItem.querySelector(".delete-review-btn");
-        console.log(deleteBtn);
 
         deleteBtn.addEventListener("click", () => {
-          console.log("deleted");
-
           // remove from product reviews
           product.reviews.splice(index, 1);
 
