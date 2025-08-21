@@ -77,8 +77,6 @@ The system is designed to cover **all e-commerce lifecycle processes**:
 ### 📝 Blog
 
 - Users can view blog posts.
-- Sellers/Admin can add, update, or delete blogs.
-- Commenting system with moderation.
 
 ### ✉️ Contact Us
 
