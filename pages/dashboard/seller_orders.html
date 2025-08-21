@@ -153,6 +153,7 @@ window.addEventListener("load", function () {
     return;
   }
 });
+
 // === SEARCH FILTER ===
 document.addEventListener("DOMContentLoaded", () => {
   const searchInput = document.querySelector('input[placeholder="Search by customer or order ID"]');
@@ -203,6 +204,7 @@ document.addEventListener("DOMContentLoaded", () => {
   filterOrders();
   window._filterOrders = filterOrders;
 });
+
 // === ORDERS TABLE ===
 document.addEventListener("DOMContentLoaded", function () {
   const orders = JSON.parse(localStorage.getItem("orders")) || [];
@@ -211,73 +213,94 @@ document.addEventListener("DOMContentLoaded", function () {
   const currentUser = JSON.parse(sessionStorage.getItem("currentUser")) || {};
   const tbody = document.getElementById("ordersTableBody");
   tbody.innerHTML = "";
-  // get seller products if seller
+
   const sellerProducts = currentUser.role === "seller"
     ? products.filter(p => p.sellerEmail === currentUser.email)
     : [];
   const sellerProductIds = sellerProducts.map(p => String(p.id));
-  // filter orders depending on role
+
   const visibleOrders = currentUser.role === "admin"
     ? orders
     : orders.filter(order =>
         order.items?.some(it => sellerProductIds.includes(String(it.productId)))
       );
+
   visibleOrders.forEach((order, index) => {
-  let customer = "Unknown";
-  const userMatch = users.find(u => u.addresses?.some(a => a.id === order.address?.id));
-  if (userMatch) customer = userMatch.name;
-  const date = order.time ? new Date(order.time).toLocaleDateString() : "-";
-  // === Seller/Admin total ===
-  let sellerTotal = 0;
-  const sellerItems = currentUser.role === "admin"
-    ? order.items
-    : order.items.filter(it => sellerProductIds.includes(String(it.productId)));
+    let customer = "Unknown";
+    const userMatch = users.find(u => u.addresses?.some(a => a.id === order.address?.id));
+    if (userMatch) customer = userMatch.name;
 
-  sellerItems.forEach(it => {
-    const product = products.find(p => String(p.id) === String(it.productId));
-    sellerTotal += (product?.price || 0) * it.quantity;
+    const date = order.time ? new Date(order.time).toLocaleDateString() : "-";
+
+    let sellerTotal = 0;
+    const sellerItems = currentUser.role === "admin"
+      ? order.items
+      : order.items.filter(it => sellerProductIds.includes(String(it.productId)));
+
+    sellerItems.forEach(it => {
+      const product = products.find(p => String(p.id) === String(it.productId));
+      sellerTotal += (product?.price || 0) * it.quantity;
+    });
+
+    const displayTotal = "$" + sellerTotal.toFixed(2);
+
+    const status = order.status || "completed";
+
+    // === Product status ===
+    const productStatuses = sellerItems.map(it => {
+      const product = products.find(p => String(p.id) === String(it.productId));
+      return product?.status || "Unknown";
+    });
+    const statusLabels = productStatuses.length
+      ? productStatuses.map(st => {
+          const cls = st === "Active" ? "bg-success" : "bg-danger";
+          return `<span class="badge ${cls}">${st}</span>`;
+        }).join(" ")
+      : `<span class="badge bg-secondary">Unknown</span>`;
+
+    // === Build row ===
+    const tr = document.createElement("tr");
+    tr.innerHTML = `
+      <td>#${order.id || index + 1}</td>
+      <td>${customer}</td>
+      <td>${date}</td>
+      <td>${displayTotal}</td>
+      <td>
+        ${
+          (currentUser.role === "seller" || currentUser.role === "admin")
+          ? `<select class="form-select form-select-sm order-status-select" 
+                     data-order-id="${order.id}">
+                <option value="pending" ${status === "pending" ? "selected" : ""}>Pending</option>
+                <option value="shipped" ${status === "shipped" ? "selected" : ""}>Shipped</option>
+                <option value="completed" ${status === "completed" ? "selected" : ""}>Completed</option>
+                <option value="cancelled" ${status === "cancelled" ? "selected" : ""}>Cancelled</option>
+             </select>`
+          : `<span class="badge bg-secondary">${status}</span>`
+        }
+      </td>
+      <td>${statusLabels}</td>
+      <td>
+        <button class="btn btn-sm btn-info" data-bs-toggle="offcanvas" 
+                data-bs-target="#orderDetails" 
+                onclick="loadOrderDetails('${order.id || index + 1}')">View</button>
+      </td>
+    `;
+    tbody.appendChild(tr);
   });
 
-  const displayTotal = "$" + sellerTotal.toFixed(2);
-
-  // === Order status ===
-  const status = order.status || "completed";
-  let badgeClass = "bg-success";
-  if (status === "pending") badgeClass = "bg-warning";
-  else if (status === "cancelled") badgeClass = "bg-danger";
-  else if (status === "shipped") badgeClass = "bg-primary";
-
-  // === Product status (if multiple, join them) ===
-  const productStatuses = sellerItems.map(it => {
-    const product = products.find(p => String(p.id) === String(it.productId));
-    return product?.status || "Unknown";
+  // === Handle status change ===
+  tbody.addEventListener("change", function (e) {
+    if (e.target.classList.contains("order-status-select")) {
+      const orderId = e.target.getAttribute("data-order-id");
+      const newStatus = e.target.value;
+      const orderIndex = orders.findIndex(o => String(o.id) === String(orderId));
+      if (orderIndex !== -1) {
+        orders[orderIndex].status = newStatus;
+        localStorage.setItem("orders", JSON.stringify(orders));
+      }
+    }
   });
 
-  // For display → if many products, show all statuses separated by commas
-  const statusLabels = productStatuses.length
-    ? productStatuses.map(st => {
-        const cls = st === "Active" ? "bg-success" : "bg-danger";
-        return `<span class="badge ${cls}">${st}</span>`;
-      }).join(" ")
-    : `<span class="badge bg-secondary">Unknown</span>`;
-
-  // === Build row ===
-  const tr = document.createElement("tr");
-  tr.innerHTML = `
-    <td>#${order.id || index + 1}</td>
-    <td>${customer}</td>
-    <td>${date}</td>
-    <td>${displayTotal}</td>
-    <td><span class="badge ${badgeClass} status-badge">${status}</span></td>
-    <td>${statusLabels}</td>
-    <td>
-      <button class="btn btn-sm btn-info" data-bs-toggle="offcanvas" 
-              data-bs-target="#orderDetails" 
-              onclick="loadOrderDetails('${order.id || index + 1}')">View</button>
-    </td>
-  `;
-  tbody.appendChild(tr);
-});
   // === Order details loader ===
   window.loadOrderDetails = function (orderId) {
     const order = orders.find(o => String(o.id) === String(orderId));
@@ -307,6 +330,7 @@ document.addEventListener("DOMContentLoaded", function () {
   };
 });
 </script>
+
 </body>
 </html>
 
