@@ -84,7 +84,7 @@ function renderRecommended() {
             <h3 class="product-name">${el.name}</h3>
             <p class="product-price">$${el.price}</p>
             <div>
-              <button class="btn btn-primary">Buy Now</button>
+              <button class="btn btn-primary" onclick="addToCart(${el.id})">Buy Now</button>
             </div>
           </div>
       `;

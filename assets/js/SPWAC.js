@@ -9,16 +9,6 @@ window.addEventListener("load", () => {
   let whishlistBtn = document.getElementById("wishListBtn"),
     cartBtn = document.getElementById("cartBtn");
 
-  // get user from local storage
-  function getCurrentUser() {
-    return userss.find((u) => u.email === currentUser?.email);
-  }
-
-  //save user
-  function saveUsers() {
-    localStorage.setItem("users", JSON.stringify(userss));
-  }
-
   // event listener
   // event for whislist
   whishlistBtn.addEventListener("click", function () {
@@ -91,6 +81,14 @@ function checkStock(quantity) {
   }
   return false;
 }
+function checkStock(id, quantity) {
+  let product = getProduct(id);
+
+  if (product.stock - quantity >= 0) {
+    return true;
+  }
+  return false;
+}
 
 //get product from all products
 function getProduct(id) {
@@ -98,4 +96,45 @@ function getProduct(id) {
     return el.id == id;
   })[0];
   return product;
+}
+
+// add to cart function
+function addToCart(id) {
+  const user = getCurrentUser();
+
+  user.cart = user.cart || [];
+
+  const existingItem = user.cart.find((item) => item.productId == id);
+  console.log(existingItem);
+
+  if (existingItem) {
+    if (checkStock(id, existingItem.quantity + 1)) {
+      existingItem.quantity += Number(1);
+      showToast(
+        "The Item Already exist in Cart and quantity was incremented by one",
+        "success"
+      );
+    } else {
+      showToast("The Item Is Out Of Stock", "danger");
+    }
+  } else {
+    if (checkStock(id, 1)) {
+      user.cart.push({ productId: `${id}`, quantity: 1 });
+      showToast("The Item has been Added To Cart", "success");
+    } else {
+      showToast("The Item Is Out Of Stock", "danger");
+    }
+  }
+
+  saveUsers();
+}
+
+// get user from local storage
+function getCurrentUser() {
+  return userss.find((u) => u.email === currentUser?.email);
+}
+
+//save user
+function saveUsers() {
+  localStorage.setItem("users", JSON.stringify(userss));
 }
