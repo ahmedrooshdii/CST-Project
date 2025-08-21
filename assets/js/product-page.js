@@ -152,15 +152,27 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("priceTo").addEventListener("input", filterProducts);
   filterProducts();
   // HEAD SEARCH
-  const headSearch = document.getElementById("productSearch");
-  headSearch.addEventListener("input", () => {
-    const searchText = headSearch.value.toLowerCase();
-    document.querySelectorAll(".product-card").forEach(card => {
-      const name = card.dataset.name?.toLowerCase() || "";
-      const cat = card.dataset.category?.toLowerCase() || "";
-      card.style.display = name.includes(searchText) || cat.includes(searchText) ? "" : "none";
-    });
+const headSearch = document.getElementById("productSearch");
+headSearch.addEventListener("input", () => {
+  const searchText = headSearch.value.toLowerCase();
+  applySearchFilter(searchText);
+});
+// Function so we can reuse search filter
+function applySearchFilter(searchText) {
+  document.querySelectorAll(".product-card").forEach(card => {
+    const name = card.dataset.name?.toLowerCase() || "";
+    const cat = card.dataset.category?.toLowerCase() || "";
+    card.style.display = name.includes(searchText) || cat.includes(searchText) ? "" : "none";
   });
+  updateProductCount();
+}
+// ✅ Run search if query param exists
+const urlParamsSearch = new URLSearchParams(window.location.search);
+const searchFromUrl = urlParamsSearch.get("search");
+if (searchFromUrl) {
+  headSearch.value = searchFromUrl;         // fill input box
+  applySearchFilter(searchFromUrl.toLowerCase()); // apply filter immediately
+}
   // PRODUCT COUNT
   function updateProductCount() {
     const count = Array.from(document.querySelectorAll(".product-card"))
