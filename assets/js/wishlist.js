@@ -80,6 +80,7 @@ function renderFavorites() {
     favoriteContainer.style.display = "block";
     favoriteContainer.innerHTML = `<p class="py-2 text-secondary h3 fw-light" >There is No Favorite Items </p>`;
   }
+  updateWishCount();
 }
 
 function checkStock(quantity, id) {

@@ -43,19 +43,19 @@ document.addEventListener("DOMContentLoaded", function () {
   var dashpage = document.getElementById("dash");
   var sellerorder = document.getElementById("sellerord");
 
-  if (user.role !== "admin") {
-    userspage.style.display = "none";
-    contactspage.style.display = "none";
+  if (user?.role !== "admin") {
+    if (userspage) userspage.style.display = "none";
+    if (contactspage) contactspage.style.display = "none";
   }
 
-  if (user.role == "user") {
-    productspage.style.display = "none";
-    catspage.style.display = "none";
-    dashpage.style.display = "none";
+  if (user?.role == "user") {
+    if (productspage) productspage.style.display = "none";
+    if (catspage) catspage.style.display = "none";
+    if (dashpage) dashpage.style.display = "none";
   }
 
-  if (user.role == "user") {
-    sellerorder.style.display = "none";
+  if (user?.role == "user") {
+    if (sellerorder) sellerorder.style.display = "none";
   }
 });
 

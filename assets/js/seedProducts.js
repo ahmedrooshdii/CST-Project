@@ -4,7 +4,6 @@ function seedProducts() {
   let existingProducts = JSON.parse(localStorage.getItem("products")) || [];
   if (existingProducts.length > 0) return;
 
-  console.log(existingProducts);
 
   const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
 
@@ -187,7 +186,7 @@ function seedProducts() {
       status: "Active",
       description: "High-performance wireless mouse",
       category: "Electronics",
-      image: "//assets/images/Iphone 14 pro 1 (4).png",
+      image: "/assets/images/Iphone 14 pro 1 (4).png",
     },
   ];
 
