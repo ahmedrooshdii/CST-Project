@@ -4,6 +4,8 @@ const id = new URLSearchParams(location.search).get("id");
 let products = JSON.parse(localStorage.getItem("products"));
 let recommended = getRandomProducts(products, 4);
 let users = JSON.parse(localStorage.getItem("users"));
+console.log(users);
+
 let currentProduct;
 let seller;
 window.addEventListener("load", () => {

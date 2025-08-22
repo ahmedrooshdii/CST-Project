@@ -193,7 +193,7 @@ function seedProducts() {
 
   const productsWithMeta = sampleProducts.map((p, index) => ({
     id: Date.now() + index,
-    sellerEmail: currentUser?.email || "admin@example.com",
+    sellerEmail: "admin@cyber.com",
     ...p,
   }));
 
@@ -215,8 +215,11 @@ function addAdminUser() {
     role: "admin",
     storename: "Admin Store",
   };
-
-  if (userss.length == 0) {
-    localStorage.setItem("users", JSON.stringify(user));
+  let users = JSON.parse(localStorage.getItem("users")) || [];
+  if (users?.length == 0) {
+    users.push(user);
+    localStorage.setItem("users", JSON.stringify(users));
   }
 }
+
+addAdminUser();

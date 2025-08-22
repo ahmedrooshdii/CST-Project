@@ -16,10 +16,11 @@ function renderProductCards() {
 
   const products = JSON.parse(localStorage.getItem("products")) || [];
 
-  const activeProducts = products.filter((p) => p.status !== "Inactive");
-  const bestProducts = activeProducts.filter((p) =>
-    p.reviews?.some((r) => r.stars >= 4)
-  );
+  let activeProducts = products.filter((p) => p.status !== "Inactive");
+  const bestProducts = activeProducts
+    .filter((p) => p.reviews?.some((r) => r.stars >= 4))
+    .slice(9);
+  activeProducts = activeProducts.slice(0, 8);
 
   activeProducts.forEach((product) => {
     const card = document.createElement("div");

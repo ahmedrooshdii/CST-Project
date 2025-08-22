@@ -89,31 +89,7 @@ window.addEventListener("load", function () {
     localStorage.setItem("products", JSON.stringify(products));
     localStorage.setItem("users", JSON.stringify(users));
 
-    const reviewItem = document.createElement("div");
-    reviewItem.classList.add("review-item");
-
-    reviewItem.innerHTML = `
-      <img
-        src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=56&h=56"
-        alt="${currentUser.name}'s photo"
-        class="reviewer-avatar"
-      />
-      <div class="review-content">
-        <div class="review-header">
-          <span class="reviewer-name">${currentUser.name}</span>
-          <span class="review-date">${formattedDate}</span>
-        </div>
-        <div class="review-stars">
-          ${renderStars(review.stars)}
-        </div>
-        <p class="review-text">${commentText}</p>
-          <div class="text-end">
-          <button class="btn btn-sm btn-outline-primary edit-review-btn me-2">Edit</button>
-      <button class="btn btn-sm btn-outline-danger delete-review-btn">Delete</button>
-    </div>
-        
-      </div>
-    `;
+    renderReviews();
 
     const editBtn = reviewItem.querySelector(".edit-review-btn");
     editBtn.addEventListener("click", () => {
@@ -154,6 +130,7 @@ window.addEventListener("load", function () {
   });
 
   function renderReviews() {
+    reviewList.innerHTML = "";
     const currentProductId = new URLSearchParams(window.location.search).get(
       "id"
     );
