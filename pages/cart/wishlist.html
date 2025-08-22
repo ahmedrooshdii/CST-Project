@@ -69,7 +69,7 @@
           </button>
 
           <div
-            class="collapse navbar-collapse text-center"
+            class="collapse navbar-collapse text-center justify-content-end"
             id="navbarSupportedContent"
           >
             <form
@@ -88,7 +88,7 @@
               />
             </form>
 
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <ul class="navbar-nav mb-2 mb-lg-0">
               <li class="nav-item">
                 <a
                   class="nav-link active"
@@ -120,7 +120,13 @@
 
               <li class="nav-item">
                 <a class="nav-link active" href="../../pages/cart/wishlist.html"
-                  ><i class="fa-regular fa-heart"></i
+                  ><div class="position-relative d-inline-block">
+                    <i class="fa-regular fa-heart"></i>
+                    <span
+                      id="wishCount"
+                      class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                    >
+                    </span></div
                 ></a>
               </li>
 

@@ -43,7 +43,7 @@
     </button>
    
 
-    <div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
+    <div class="collapse navbar-collapse text-center justify-content-end" id="navbarSupportedContent">
        
        <form id="homeSearchForm" class="col-12 col-md-12 col-lg-5 col-xl-6 position-relative">
           <i class="fa-solid fa-magnifying-glass position-absolute top-50 start-0 translate-middle-y ms-3 text-muted"></i>
@@ -51,7 +51,7 @@
       </form>
 
 
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <ul class="navbar-nav  mb-2 mb-lg-0">
 
      <li class="nav-item">
           <a class="nav-link" aria-current="page" href="../../Home.html">Home</a>
@@ -73,7 +73,14 @@
         </li>
 
          <li class="nav-item">
-          <a class="nav-link active"  href="../../pages/cart/wishlist.html"><i class="fa-regular fa-heart"></i></a>
+          <a class="nav-link active"  href="../../pages/cart/wishlist.html"><div class="position-relative d-inline-block">
+                    <i class="fa-regular fa-heart"></i>
+                    <span
+                      id="wishCount"
+                      class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                    >
+                    </span>
+                  </div></a>
         </li>
 
          <li class="nav-item" onclick="goToCart()">

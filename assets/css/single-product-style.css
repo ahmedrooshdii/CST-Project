@@ -13,6 +13,13 @@
 body{
     font-family: 'SF Pro Display', sans-serif;
 }
+a{
+    text-decoration: none;
+    color: grey;
+}
+a:hover{
+    color: #000;
+}
 
 /* header */
 .breadcrumbs span{
