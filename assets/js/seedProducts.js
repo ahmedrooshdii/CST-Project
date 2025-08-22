@@ -186,7 +186,7 @@ function seedProducts() {
       status: "Active",
       description: "High-performance wireless mouse",
       category: "Electronics",
-      image: "//assets/images/Iphone 14 pro 1 (4).png",
+      image: "/assets/images/Iphone 14 pro 1 (4).png",
     },
   ];
 

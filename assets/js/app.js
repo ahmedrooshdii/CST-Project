@@ -93,6 +93,7 @@ window.addEventListener("load", function () {
 
       saveUsers();
       renderFavorites();
+      updateWishCount();
     });
   });
 
