@@ -4,8 +4,6 @@ function seedProducts() {
   let existingCategories = JSON.parse(localStorage.getItem("categories")) || [];
   if (existingCategories.length > 0) return;
 
-  console.log(existingCategories);
-
   const categories = [
     {
       id: Date.now(),

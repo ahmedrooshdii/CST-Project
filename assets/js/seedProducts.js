@@ -4,7 +4,6 @@ function seedProducts() {
   let existingProducts = JSON.parse(localStorage.getItem("products")) || [];
   if (existingProducts.length > 0) return;
 
-  console.log(existingProducts);
 
   const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
 
