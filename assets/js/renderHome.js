@@ -86,7 +86,6 @@ function renderProductCards() {
                 <button class="btn btn--buy">Add To Cart</button>
             </div>
         `;
-    console.log(product);
 
     bestSellerContainer.appendChild(card);
   });

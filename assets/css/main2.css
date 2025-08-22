@@ -442,9 +442,10 @@ p {
 }
 
 /*Content*/
-.new-arrival {
+.new-arrival,
+.bestseller {
   display: flex;
-  justify-content: center;
+  justify-content: left;
   flex-wrap: wrap;
   gap: 1.6rem;
 }
@@ -708,4 +709,3 @@ p {
   flex-wrap: wrap;
   justify-content: center;
 }
-
