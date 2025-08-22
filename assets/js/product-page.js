@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
+  updateWishCount();
   const cartKey = "cartItems"; // localStorage key
   let cart = JSON.parse(localStorage.getItem(cartKey)) || [];
   const productsContainer = document.querySelector(
@@ -93,6 +94,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         localStorage.setItem("users", JSON.stringify(users));
         sessionStorage.setItem("currentUser", JSON.stringify(user));
+        updateWishCount();
       });
 
       // Add to cart logic
@@ -339,4 +341,23 @@ function goToCart() {
     return;
   }
   window.location.href = `/pages/cart/shopping-cart.html`;
+}
+
+//update wish count
+function updateWishCount() {
+  const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
+  const wishCount = document.getElementById("wishCount");
+  if (!currentUser) {
+    wishCount.style.display = "none";
+    return;
+  }
+  let users = JSON.parse(localStorage.getItem("users")) || [];
+  let user = users.find((u) => u.email === currentUser.email);
+  if (user && user.favorites && user.favorites.length > 0) {
+    let count = user?.favorites?.reduce((acc, item) => acc + 1, 0) || 0;
+    wishCount.textContent = count;
+    wishCount.style.display = "inline-block";
+  } else {
+    wishCount.style.display = "none";
+  }
 }

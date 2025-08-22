@@ -88,14 +88,14 @@
     </button>
    
 
-    <div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
+    <div class="collapse navbar-collapse text-center justify-content-end" id="navbarSupportedContent">
        
        <form id="homeSearchForm" class="col-12 col-md-12 col-lg-5 col-xl-6 position-relative">
           <i class="fa-solid fa-magnifying-glass position-absolute top-50 start-0 translate-middle-y ms-3 text-muted"></i>
           <input type="search" id="productSearch" class="form-control ps-5" placeholder="Search" aria-label="Search">
       </form>
 
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <ul class="navbar-nav  mb-2 mb-lg-0">
 
         <li class="nav-item">
           <a class="nav-link " aria-current="page" href="../Home.html">Home</a>
@@ -116,7 +116,14 @@
         </li>
 
          <li class="nav-item">
-          <a class="nav-link active"  href="/pages/cart/wishlist.html"><i class="fa-regular fa-heart"></i></a>
+          <a class="nav-link active"  href="/pages/cart/wishlist.html"><div class="position-relative d-inline-block">
+                    <i class="fa-regular fa-heart"></i>
+                    <span
+                      id="wishCount"
+                      class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                    >
+                    </span>
+                  </div></a>
         </li>
 
          <li class="nav-item" onclick="goToCart()">
@@ -454,7 +461,29 @@ function handleHomeSearch(formId, inputId, targetPage) {
 
   // document.getElementById("cartCount").textContent = count;
 }
-window.addEventListener('load', updateCartCount);
+ //update wish count
+function updateWishCount() {
+  const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
+  const wishCount = document.getElementById("wishCount");
+  if (!currentUser) {
+    wishCount.style.display = "none";
+    return;
+  }
+  let users = JSON.parse(localStorage.getItem("users")) || [];
+  let user = users.find((u) => u.email === currentUser.email);
+  if (user && user.favorites && user.favorites.length > 0) {
+    let count = user?.favorites?.reduce((acc, item) => acc + 1, 0) || 0;
+    wishCount.textContent = count;
+    wishCount.style.display = "inline-block";
+  } else {
+    wishCount.style.display = "none";
+  }
+}
+
+      window.addEventListener("load", ()=>{
+        updateCartCount()
+        updateWishCount()
+      } );
 function goToCart() {
   const user = JSON.parse(sessionStorage.getItem("currentUser"));
   if (!user) {

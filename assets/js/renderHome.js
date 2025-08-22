@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
   attachCardListeners();
   renderCategoryCards();
   updateCartCount();
+  updateWishCount();
 });
 
 function renderProductCards() {
@@ -235,6 +236,7 @@ function addToCart(e) {
   let user = users.find((u) => u.email === currentUser.email);
   sessionStorage.setItem("currentUser", JSON.stringify(user));
   updateCartCount();
+  updateWishCount();
 }
 
 function toIPhone() {
