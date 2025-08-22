@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
   );
   productsContainer.innerHTML = "";
   const products = JSON.parse(localStorage.getItem("products")) || [];
+
   if (products.length === 0) {
     productsContainer.innerHTML = `<p class="text-center w-100">No products available.</p>`;
   } else {
@@ -19,6 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
       col.setAttribute("data-description", product.description);
       col.setAttribute("data-category", product.category);
       col.setAttribute("data-stock", product.stock);
+
       col.innerHTML = `
         <div class="card h-100 text-center position-relative product-link">
           <div class="position-absolute top-0 end-0 p-2">
@@ -32,11 +34,16 @@ document.addEventListener("DOMContentLoaded", () => {
             <p class="card-text fs-4 fw-bold">$${parseFloat(
               product.price
             ).toFixed(2)}</p>
-            <button class="btn btn-dark w-100 add-to-cart">Buy Now</button>
+            ${
+              product.status === "Out of Stock" || product.stock <= 0
+                ? `<div class="out-of-stock text-danger fw-bold">Out of Stock</div>`
+                : `<button class="btn btn-dark w-100 add-to-cart">Add To Cart</button>`
+            }
           </div>
         </div>
       `;
-      // Card click → go to single product page (exclude Buy Now)
+
+      // Card click → go to single product page (exclude Buy/Add to cart/Favorite)
       col.querySelector(".product-link").addEventListener("click", (e) => {
         if (
           e.target.classList.contains("add-to-cart") ||
@@ -45,9 +52,9 @@ document.addEventListener("DOMContentLoaded", () => {
           return;
         window.location.href = `single-product.html?id=${product.id}`;
       });
+
       // Favorite button logic
       const favBtn = col.querySelector(".favorite-btn");
-      // Set initial state if product is already favorited
       const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
       if (currentUser) {
         const users = JSON.parse(localStorage.getItem("users")) || [];
@@ -58,7 +65,6 @@ document.addEventListener("DOMContentLoaded", () => {
           favBtn.classList.replace("far", "fas");
         }
       }
-      // Click handler to toggle favorite
       favBtn.addEventListener("click", (e) => {
         e.stopPropagation(); // prevent card click
         if (!currentUser) {
@@ -85,10 +91,85 @@ document.addEventListener("DOMContentLoaded", () => {
           favBtn.classList.add("text-danger");
           favBtn.classList.replace("far", "fas");
         }
-        // Save updates
         localStorage.setItem("users", JSON.stringify(users));
         sessionStorage.setItem("currentUser", JSON.stringify(user));
       });
+
+      // Add to cart logic
+      // Add to cart logic
+      const addBtn = col.querySelector(".add-to-cart");
+      if (addBtn) {
+        addBtn.addEventListener("click", (e) => {
+          e.stopPropagation();
+          const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
+          if (!currentUser) {
+            window.location.href = "../../pages/auth/login.html";
+            return;
+          }
+
+          let users = JSON.parse(localStorage.getItem("users")) || [];
+          const productId = product.id;
+          const productName = product.name;
+          const quantity = 1;
+
+          // Find product from products list
+          let prodIndex = products.findIndex(
+            (p) => p.id === productId || p.id === +productId
+          );
+          let prod = products[prodIndex];
+
+          if (!prod) {
+            showToast("This product may have been deleted!", "danger");
+            return;
+          }
+
+          if (prod.stock <= 0) {
+            showToast("No more in the stock!", "warning");
+            return;
+          }
+
+          // Decrease stock by 1
+          prod.stock -= 1;
+          if (prod.stock <= 0) {
+            prod.status = "Out of Stock";
+            // Update UI → replace button with Out of Stock label
+            addBtn.outerHTML = `<div class="out-of-stock text-danger fw-bold">Out of Stock</div>`;
+          }
+
+          // Save updated products back
+          products[prodIndex] = prod;
+          localStorage.setItem("products", JSON.stringify(products));
+
+          // Add to user's cart
+          users.forEach((u) => {
+            if (u.email === currentUser.email) {
+              if (!u.cart) u.cart = [];
+              const existingItem = u.cart.find(
+                (item) => item.productId === productId
+              );
+              if (existingItem) {
+                existingItem.quantity += 1;
+                showToast(
+                  `Product ${productName} added to your cart!`,
+                  "success"
+                );
+              } else {
+                u.cart.push({ productId, quantity });
+                showToast(
+                  `Product ${productName} added to your cart!`,
+                  "success"
+                );
+              }
+            }
+          });
+
+          localStorage.setItem("users", JSON.stringify(users));
+          let updatedUser = users.find((u) => u.email === currentUser.email);
+          sessionStorage.setItem("currentUser", JSON.stringify(updatedUser));
+          updateCartCount();
+        });
+      }
+
       productsContainer.appendChild(col);
     });
     updateProductCount();
