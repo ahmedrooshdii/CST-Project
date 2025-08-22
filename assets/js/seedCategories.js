@@ -47,7 +47,7 @@ function seedProducts() {
       name: "Gaming",
       description: "Gaming consoles, controllers, and accessories.",
       status: "active",
-      imageUrl: "assets/icons/gaming.svg",
+      imageUrl: "/assets/icons/gaming.svg",
     },
   ];
 

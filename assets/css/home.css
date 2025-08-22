@@ -38,3 +38,10 @@ footer h5 {
   color: white;
   font-size: larger;
 }
+
+.header{
+  position: sticky;
+  top:0;
+  background-color: white;
+  z-index: 90000000000000000000;
+}

@@ -8,7 +8,8 @@ window.addEventListener("load", () => {
   // query elenents
   let whishlistBtn = document.getElementById("wishListBtn"),
     cartBtn = document.getElementById("cartBtn");
-
+  updateCartCount();
+  updateWishCount();
   // event listener
   // event for whislist
   whishlistBtn.addEventListener("click", function () {
@@ -138,6 +139,8 @@ function getCurrentUser() {
 //save user
 function saveUsers() {
   localStorage.setItem("users", JSON.stringify(userss));
+  updateCartCount();
+  updateWishCount();
 }
 
 //naviagte to product
@@ -155,7 +158,7 @@ function addToFavorite(id) {
   }
 
   user.favorites = user.favorites || [];
-
+  id = `${id}`;
   if (user.favorites.includes(id)) {
     user.favorites = user.favorites.filter((productId) => productId != id);
     showToast("Removed from wishlist", "success");
@@ -179,7 +182,7 @@ function renderFavorites() {
     if (!card) return; // لو ملقاش card فيه data-id يخرج
     const productId = card.dataset.id;
 
-    if (user.favorites.includes(+productId)) {
+    if (user.favorites.includes(productId)) {
       console.log("true");
 
       icon.querySelector(".fav__icon").classList.add("makeFavorite");

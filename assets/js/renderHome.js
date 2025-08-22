@@ -174,8 +174,6 @@ function updateCartCount() {
   let user = users.find((u) => u.email === currentUser);
 
   if (user && user.cart && user.cart.length > 0) {
-    console.log();
-
     let count = user?.cart?.reduce((acc, item) => acc + item.quantity, 0) || 0;
 
     cartCount.textContent = count;

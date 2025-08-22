@@ -35,72 +35,75 @@
     </style>
   </head>
   <body>
-    <header class="container-fluid d-md-flex justify-content-md-between mt-1">
-      <div class="d-none d-md-flex gap-2">
-        <a href="mailto:Mohamedbasiouny111@gmail.com"
-          ><i class="fa-solid fa-envelope"></i>Mohamedbasiouny111@gmail.com</a
-        >
-        <span>|</span>
-        <a href="tel:01111514032"
-          ><i class="fa-solid fa-phone"></i>01111514032</a
-        >
-      </div>
-
-      <div
-        id="navbartop"
-        class="d-flex flex-row-reverse justify-content-center text-uppercase gap-2"
-      >
-        <a href="./pages/auth/Register.html"
-          ><i class="fa-solid fa-user-plus"></i> Register</a
-        >
-        <span>|</span>
-        <a href="./pages/auth/login.html"
-          ><i class="fa-solid fa-arrow-right-to-bracket"></i> Login</a
-        >
-        <span>|</span>
-        <a href="./pages/auth/SellerRegister.html">Be a seller</a>
-      </div>
-    </header>
-
-    <nav class="container-fluid navbar navbar-expand-lg navbar-light bg-light">
-      <div class="container gap-2 gap-xl-5">
-        <div class="col-2">
-          <a class="navbar-brand" href="Home.html">
-            <img src="assets/images/logo.svg" alt="Logo" />
-          </a>
+    <div class="header">
+      <header class="container-fluid d-md-flex justify-content-md-between mt-1">
+        <div class="d-none d-md-flex gap-2">
+          <a href="mailto:Mohamedbasiouny111@gmail.com"
+            ><i class="fa-solid fa-envelope"></i>Mohamedbasiouny111@gmail.com</a
+          >
+          <span>|</span>
+          <a href="tel:01111514032"
+            ><i class="fa-solid fa-phone"></i>01111514032</a
+          >
         </div>
 
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-
         <div
-          class="collapse navbar-collapse text-center"
-          id="navbarSupportedContent"
+          id="navbartop"
+          class="d-flex flex-row-reverse justify-content-center text-uppercase gap-2"
         >
-          <form
-            id="homeSearchForm"
-            class="col-12 col-md-12 col-lg-5 col-xl-6 position-relative"
+          <a href="./pages/auth/Register.html"
+            ><i class="fa-solid fa-user-plus"></i> Register</a
           >
-            <i
-              class="fa-solid fa-magnifying-glass position-absolute top-50 start-0 translate-middle-y ms-3 pe-5 text-muted"
-            ></i>
-            <input
-              type="search"
-              id="productSearch"
-              class="form-control ps-5"
-              placeholder="Search"
-              aria-label="Search"
-            />
-          </form>
+          <span>|</span>
+          <a href="./pages/auth/login.html"
+            ><i class="fa-solid fa-arrow-right-to-bracket"></i> Login</a
+          >
+          <span>|</span>
+          <a href="./pages/auth/SellerRegister.html">Be a seller</a>
+        </div>
+      </header>
+
+      <nav
+        class="container-fluid navbar navbar-expand-lg navbar-light bg-light"
+      >
+        <div class="container gap-2 gap-xl-5">
+          <div class="col-2">
+            <a class="navbar-brand" href="Home.html">
+              <img src="assets/images/logo.svg" alt="Logo" />
+            </a>
+          </div>
+
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div
+            class="collapse navbar-collapse text-center"
+            id="navbarSupportedContent"
+          >
+            <form
+              id="homeSearchForm"
+              class="col-12 col-md-12 col-lg-5 col-xl-6 position-relative"
+            >
+              <i
+                class="fa-solid fa-magnifying-glass position-absolute top-50 start-0 translate-middle-y ms-3 pe-5 text-muted"
+              ></i>
+              <input
+                type="search"
+                id="productSearch"
+                class="form-control ps-5"
+                placeholder="Search"
+                aria-label="Search"
+              />
+            </form>
 
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
@@ -124,13 +127,16 @@
               </li>
 
               <li class="nav-item" onclick="goToWishList()">
-                <a class="nav-link active" href="./pages/cart/wishlist.html"
+                <a class="nav-link active" href="/pages/cart/wishlist.html"
                   ><i class="fa-regular fa-heart"></i
                 ></a>
               </li>
 
               <li class="nav-item" onclick="goToCart()">
-                <a class="nav-link active" href="#">
+                <a
+                  class="nav-link active"
+                  href="/pages/cart/shopping-cart.html"
+                >
                   <div class="position-relative d-inline-block">
                     <i class="fa-solid fa-cart-shopping"></i>
                     <span

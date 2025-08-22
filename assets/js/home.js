@@ -58,3 +58,40 @@ document.addEventListener("DOMContentLoaded", function () {
     sellerorder.style.display = "none";
   }
 });
+
+//update cart count
+function updateCartCount() {
+  const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
+  const cartCount = document.getElementById("cartCount");
+  if (!currentUser) {
+    cartCount.style.display = "none";
+    return;
+  }
+  let users = JSON.parse(localStorage.getItem("users")) || [];
+  let user = users.find((u) => u.email === currentUser.email);
+  if (user && user.cart && user.cart.length > 0) {
+    let count = user?.cart?.reduce((acc, item) => acc + item.quantity, 0) || 0;
+    cartCount.textContent = count;
+    cartCount.style.display = "inline-block";
+  } else {
+    cartCount.style.display = "none";
+  }
+}
+//update wish count
+function updateWishCount() {
+  const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
+  const wishCount = document.getElementById("wishCount");
+  if (!currentUser) {
+    wishCount.style.display = "none";
+    return;
+  }
+  let users = JSON.parse(localStorage.getItem("users")) || [];
+  let user = users.find((u) => u.email === currentUser.email);
+  if (user && user.favorites && user.favorites.length > 0) {
+    let count = user?.favorites?.reduce((acc, item) => acc + 1, 0) || 0;
+    wishCount.textContent = count;
+    wishCount.style.display = "inline-block";
+  } else {
+    wishCount.style.display = "none";
+  }
+}

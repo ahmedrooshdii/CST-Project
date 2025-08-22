@@ -16,7 +16,7 @@ function seedProducts() {
       status: "Active",
       description: "Apple flagship smartphone with A16 chip",
       category: "Electronics",
-      image: "assets/images/Iphone 14 pro 1 (4).png",
+      image: "/assets/images/Iphone 14 pro 1 (4).png",
     },
     {
       name: "Samsung Galaxy S23 Ultra",
@@ -25,7 +25,7 @@ function seedProducts() {
       status: "Active",
       description: "Samsung's top-tier smartphone with Snapdragon 8 Gen 2",
       category: "Electronics",
-      image: "assets/images/Iphone 14 pro 1 (4).png",
+      image: "/assets/images/Iphone 14 pro 1 (2).png",
     },
     {
       name: "MacBook Air M2",
@@ -34,7 +34,7 @@ function seedProducts() {
       status: "Active",
       description: "Apple's lightweight laptop with M2 chip",
       category: "Electronics",
-      image: "assets/images/Iphone 14 pro 1 (4).png",
+      image: "/assets/images/Macbook 1.png",
     },
     {
       name: "PlayStation 5",
@@ -43,7 +43,7 @@ function seedProducts() {
       status: "Out of Stock",
       description: "Next-gen gaming console from Sony",
       category: "Electronics",
-      image: "assets/images/Iphone 14 pro 1 (4).png",
+      image: "/assets/images/PlayStation.png",
     },
     {
       name: "Nike Air Force 1",
@@ -52,7 +52,7 @@ function seedProducts() {
       status: "Active",
       description: "Classic Nike sneakers",
       category: "Clothing",
-      image: "assets/images/Iphone 14 pro 1 (4).png",
+      image: "/assets/images/3.png",
     },
     {
       name: "Adidas Ultraboost 22",
@@ -61,7 +61,7 @@ function seedProducts() {
       status: "Active",
       description: "High performance running shoes",
       category: "Clothing",
-      image: "assets/images/Iphone 14 pro 1 (4).png",
+      image: "/assets/images/6.png",
     },
     {
       name: "Levi's 501 Jeans",
@@ -70,7 +70,7 @@ function seedProducts() {
       status: "Active",
       description: "Iconic straight-leg jeans",
       category: "Clothing",
-      image: "assets/images/Iphone 14 pro 1 (4).png",
+      image: "/assets/images/Iphone 14 pro 1 (4).png",
     },
     {
       name: "The Lean Startup",
@@ -79,7 +79,7 @@ function seedProducts() {
       status: "Active",
       description: "Book on entrepreneurship by Eric Ries",
       category: "Books",
-      image: "assets/images/Iphone 14 pro 1 (4).png",
+      image: "/assets/images/Iphone 14 pro 1 (4).png",
     },
     {
       name: "Atomic Habits",
@@ -88,7 +88,7 @@ function seedProducts() {
       status: "Active",
       description: "Book on habit building by James Clear",
       category: "Books",
-      image: "assets/images/Iphone 14 pro 1 (4).png",
+      image: "/assets/images/Iphone 14 pro 1 (4).png",
     },
     {
       name: "Rich Dad Poor Dad",
@@ -97,7 +97,7 @@ function seedProducts() {
       status: "Active",
       description: "Financial literacy book by Robert Kiyosaki",
       category: "Books",
-      image: "assets/images/Iphone 14 pro 1 (4).png",
+      image: "/assets/images/Iphone 14 pro 1 (4).png",
     },
     {
       name: "Philips Air Fryer XXL",
@@ -106,7 +106,7 @@ function seedProducts() {
       status: "Active",
       description: "Large capacity air fryer",
       category: "Home & Garden",
-      image: "assets/images/Iphone 14 pro 1 (4).png",
+      image: "/assets/images/Iphone 14 pro 1 (4).png",
     },
     {
       name: "Dyson V15 Detect Vacuum",
@@ -115,7 +115,7 @@ function seedProducts() {
       status: "Inactive",
       description: "High-end cordless vacuum cleaner",
       category: "Home & Garden",
-      image: "assets/images/Iphone 14 pro 1 (4).png",
+      image: "/assets/images/Iphone 14 pro 1 (4).png",
     },
     {
       name: "Tefal Non-Stick Cookware Set",
@@ -124,7 +124,7 @@ function seedProducts() {
       status: "Active",
       description: "Durable non-stick cookware set",
       category: "Home & Garden",
-      image: "assets/images/Iphone 14 pro 1 (4).png",
+      image: "/assets/images/Iphone 14 pro 1 (4).png",
     },
     {
       name: "Wilson Pro Staff RF97 Tennis Racket",
@@ -133,7 +133,7 @@ function seedProducts() {
       status: "Active",
       description: "Professional tennis racket endorsed by Roger Federer",
       category: "Sports",
-      image: "assets/images/Iphone 14 pro 1 (4).png",
+      image: "/assets/images/Iphone 14 pro 1 (4).png",
     },
     {
       name: "Adidas FIFA World Cup Ball",
@@ -142,7 +142,7 @@ function seedProducts() {
       status: "Active",
       description: "Official match ball for FIFA World Cup",
       category: "Sports",
-      image: "assets/images/Iphone 14 pro 1 (4).png",
+      image: "/assets/images/Iphone 14 pro 1 (4).png",
     },
     {
       name: "Yonex Astrox 99 Badminton Racket",
@@ -151,7 +151,7 @@ function seedProducts() {
       status: "Inactive",
       description: "Advanced badminton racket",
       category: "Sports",
-      image: "assets/images/Iphone 14 pro 1 (4).png",
+      image: "/assets/images/Iphone 14 pro 1 (4).png",
     },
     {
       name: "Kindle Paperwhite",
@@ -160,7 +160,7 @@ function seedProducts() {
       status: "Active",
       description: "E-reader with high-resolution display",
       category: "Electronics",
-      image: "assets/images/Iphone 14 pro 1 (4).png",
+      image: "/assets/images/Iphone 14 pro 1 (4).png",
     },
     {
       name: "GoPro HERO11 Black",
@@ -169,7 +169,7 @@ function seedProducts() {
       status: "Active",
       description: "Action camera for adventure filming",
       category: "Electronics",
-      image: "assets/images/Iphone 14 pro 1 (4).png",
+      image: "/assets/images/Iphone 14 pro 1 (4).png",
     },
     {
       name: "Apple Watch Series 8",
@@ -178,7 +178,7 @@ function seedProducts() {
       status: "Active",
       description: "Latest Apple smartwatch",
       category: "Electronics",
-      image: "assets/images/Iphone 14 pro 1 (4).png",
+      image: "/assets/images/Iphone 14 pro 1 (4).png",
     },
     {
       name: "Logitech MX Master 3S",
@@ -187,7 +187,7 @@ function seedProducts() {
       status: "Active",
       description: "High-performance wireless mouse",
       category: "Electronics",
-      image: "/assets/images/Iphone 14 pro 1 (4).png",
+      image: "//assets/images/Iphone 14 pro 1 (4).png",
     },
   ];
 
@@ -202,3 +202,21 @@ function seedProducts() {
 }
 
 window.addEventListener("load", seedProducts);
+
+function addAdminUser() {
+  let user = {
+    addresses: [],
+    cart: [],
+    email: "admin@cyber.com",
+    favorites: [],
+    name: "Admin",
+    password: "123456",
+    reviews: [],
+    role: "admin",
+    storename: "Admin Store",
+  };
+
+  if (userss.length == 0) {
+    localStorage.setItem("users", JSON.stringify(user));
+  }
+}
