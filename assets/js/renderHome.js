@@ -19,7 +19,7 @@ function renderProductCards() {
   let activeProducts = products.filter((p) => p.status !== "Inactive");
   const bestProducts = activeProducts
     .filter((p) => p.reviews?.some((r) => r.stars >= 4))
-    .slice(9);
+    .slice(0, 9);
   activeProducts = activeProducts.slice(0, 8);
 
   activeProducts.forEach((product) => {
