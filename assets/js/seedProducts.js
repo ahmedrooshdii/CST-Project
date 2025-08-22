@@ -11,7 +11,7 @@ function seedProducts() {
     {
       name: "iPhone 14 Pro",
       price: 42000,
-      stock: 5,
+      stock: 0,
       status: "Active",
       description: "Apple flagship smartphone with A16 chip",
       category: "Phones",
