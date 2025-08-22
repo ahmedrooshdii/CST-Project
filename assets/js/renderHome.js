@@ -21,7 +21,7 @@ function renderProductCards() {
     .filter((p) => p.reviews?.some((r) => r.stars >= 4))
     .slice(0, 9);
   activeProducts = activeProducts.slice(0, 8);
-
+  document.getElementById("shopNow").setAttribute("data-id", products[0].id);
   activeProducts.forEach((product) => {
     const card = document.createElement("div");
     card.classList.add("product-card");
@@ -103,6 +103,10 @@ function attachCardListeners() {
       const user = JSON.parse(sessionStorage.getItem("currentUser"))?.email;
       window.location.href = `/pages/products/single-product.html?id=${productId}`;
     });
+  });
+  document.getElementById("shopNow").addEventListener("click", function () {
+    const productId = this.getAttribute("data-id");
+    window.location.href = `/pages/products/single-product.html?id=${productId}`;
   });
 }
 
@@ -238,7 +242,9 @@ function addToCart(e) {
 }
 
 function toIPhone() {
-  window.location.href = `/pages/products/single-product.html?id=1755345267287`;
+  window.location.href = `/pages/products/single-product.html?id=${
+    localStorage.getItem("products")[0].id
+  }`;
 }
 
 function showToast(message, type = "danger") {
