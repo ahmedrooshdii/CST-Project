@@ -215,7 +215,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let customer = "Unknown";
     const userMatch = users.find(u => u.addresses?.some(a => a.id === order.address?.id));
     if (userMatch) customer = userMatch.name;
-    const date = order.time ? new Date(order.time).toLocaleDateString() : "-";
+    const date = order.time ? new Date(order.id).toLocaleDateString() : "-";
     const total = order.totalPrice || "$0.00";
     let status = order.status || "completed";
     let badgeClass = "bg-success";

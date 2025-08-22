@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   updateWishCount();
-  const cartKey = "cartItems"; // localStorage key
-  let cart = JSON.parse(localStorage.getItem(cartKey)) || [];
+  updateCartCount();
+
   const productsContainer = document.querySelector(
     ".row.row-cols-1.row-cols-md-3.g-4"
   );
@@ -28,15 +28,11 @@ document.addEventListener("DOMContentLoaded", () => {
             <i class="far fa-heart text-muted favorite-btn" style="cursor:pointer;"></i>
           </div>
           <div class="card-body">
-            <img src="${product.image}" class="card-img-top mb-3" alt="${
-        product.name
-      }">
+            <img src="${product.image}" class="card-img-top mb-3" alt="${product.name}">
             <h5 class="card-title">${product.name}</h5>
-            <p class="card-text fs-4 fw-bold">$${parseFloat(
-              product.price
-            ).toFixed(2)}</p>
+            <p class="card-text fs-4 fw-bold">$${parseFloat(product.price).toFixed(2)}</p>
             ${
-              product.status === "Out of Stock" || product.stock <= 0
+              product.status === "Out of Stock"
                 ? `<div class="out-of-stock text-danger fw-bold">Out of Stock</div>`
                 : `<button class="btn btn-dark w-100 add-to-cart">Add To Cart</button>`
             }
@@ -60,12 +56,13 @@ document.addEventListener("DOMContentLoaded", () => {
       if (currentUser) {
         const users = JSON.parse(localStorage.getItem("users")) || [];
         const user = users.find((u) => u.email === currentUser.email);
-        if (user?.favorites?.includes(product.id)) {
+        if (user?.favorites?.includes(String(product.id))) {
           favBtn.classList.remove("text-muted");
           favBtn.classList.add("text-danger");
           favBtn.classList.replace("far", "fas");
         }
       }
+
       favBtn.addEventListener("click", (e) => {
         e.stopPropagation(); // prevent card click
         if (!currentUser) {
@@ -75,13 +72,11 @@ document.addEventListener("DOMContentLoaded", () => {
         let users = JSON.parse(localStorage.getItem("users")) || [];
         let user = users.find((u) => u.email === currentUser.email);
         if (!user.favorites) user.favorites = [];
-        const id = `${product.id}`;
-        const index = user.favorites.includes(id);
+        const id = String(product.id);
+
         if (user.favorites.includes(id)) {
           // remove from favorites
-          user.favorites = user.favorites.filter(
-            (productId) => productId != id
-          );
+          user.favorites = user.favorites.filter((productId) => productId !== id);
           favBtn.classList.remove("text-danger");
           favBtn.classList.add("text-muted");
           favBtn.classList.replace("fas", "far");
@@ -109,57 +104,21 @@ document.addEventListener("DOMContentLoaded", () => {
           }
 
           let users = JSON.parse(localStorage.getItem("users")) || [];
-          const productId = product.id;
+          const productId = String(product.id);
           const productName = product.name;
           const quantity = 1;
-
-          // Find product from products list
-          let prodIndex = products.findIndex(
-            (p) => p.id === productId || p.id === +productId
-          );
-          let prod = products[prodIndex];
-
-          if (!prod) {
-            showToast("This product may have been deleted!", "danger");
-            return;
-          }
-
-          if (prod.stock <= 0) {
-            showToast("No more in the stock!", "warning");
-            return;
-          }
-
-          // Decrease stock by 1
-          prod.stock -= 1;
-          if (prod.stock <= 0) {
-            prod.status = "Out of Stock";
-            // Update UI → replace button with Out of Stock label
-            addBtn.outerHTML = `<div class="out-of-stock text-danger fw-bold">Out of Stock</div>`;
-          }
-
-          // Save updated products back
-          products[prodIndex] = prod;
-          localStorage.setItem("products", JSON.stringify(products));
 
           // Add to user's cart
           users.forEach((u) => {
             if (u.email === currentUser.email) {
               if (!u.cart) u.cart = [];
-              const existingItem = u.cart.find(
-                (item) => item.productId === productId
-              );
+              const existingItem = u.cart.find((item) => item.productId === productId);
               if (existingItem) {
                 existingItem.quantity += 1;
-                showToast(
-                  `Product ${productName} added to your cart!`,
-                  "success"
-                );
+                showToast(`Product ${productName} added to your cart!`, "success");
               } else {
                 u.cart.push({ productId, quantity });
-                showToast(
-                  `Product ${productName} added to your cart!`,
-                  "success"
-                );
+                showToast(`Product ${productName} added to your cart!`, "success");
               }
             }
           });
@@ -175,37 +134,12 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     updateProductCount();
   }
-  // Attach Buy Now buttons
-  // document.querySelectorAll(".add-to-cart").forEach((button) => {
-  //   button.addEventListener("click", (e) => {
-  //     const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
-  //     if (!currentUser) {
-  //       window.location.href = "../../pages/auth/login.html";
-  //       return;
-  //     }
-  //     let users = JSON.parse(localStorage.getItem("users")) || [];
-  //     const card = e.target.closest(".product-card");
-  //     const productId = card.dataset.id;
-  //     const productName = card.dataset.name;
-  //     const quantity = 1;
-  //     users.forEach((user) => {
-  //       if (user.email === currentUser.email) {
-  //         if (!user.cart) user.cart = [];
-  //         const existingItem = user.cart.find(
-  //           (item) => item.productId === productId
-  //         );
-  //         if (existingItem) existingItem.quantity += 1;
-  //         else user.cart.push({ productId, quantity });
-  //       }
-  //     });
-  //     localStorage.setItem("users", JSON.stringify(users));
-  //     showToast(`Product ${productName} added to your cart!`);
-  //   });
-  // });
+
   // CATEGORY FILTER
   const filterContainer = document.getElementById("categoryFilters");
   const searchInput = document.getElementById("searchCategoryFilter");
   const categories = JSON.parse(localStorage.getItem("categories")) || [];
+
   function renderCategories(list) {
     filterContainer.innerHTML = "";
     list.forEach((cat) => {
@@ -226,6 +160,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
   }
   renderCategories(categories);
+
   searchInput.addEventListener("keyup", function () {
     const searchText = this.value.toLowerCase();
     const filtered = categories.filter((cat) =>
@@ -233,6 +168,7 @@ document.addEventListener("DOMContentLoaded", () => {
     );
     renderCategories(filtered);
   });
+
   // COMBINED FILTER
   function filterProducts() {
     const priceFrom =
@@ -255,18 +191,20 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     updateProductCount();
   }
+
   document
     .getElementById("priceFrom")
     .addEventListener("input", filterProducts);
   document.getElementById("priceTo").addEventListener("input", filterProducts);
   filterProducts();
+
   // HEAD SEARCH
   const headSearch = document.getElementById("productSearch");
   headSearch.addEventListener("input", () => {
     const searchText = headSearch.value.toLowerCase();
     applySearchFilter(searchText);
   });
-  // Function so we can reuse search filter
+
   function applySearchFilter(searchText) {
     document.querySelectorAll(".product-card").forEach((card) => {
       const name = card.dataset.name?.toLowerCase() || "";
@@ -276,13 +214,15 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     updateProductCount();
   }
+
   // ✅ Run search if query param exists
   const urlParamsSearch = new URLSearchParams(window.location.search);
   const searchFromUrl = urlParamsSearch.get("search");
   if (searchFromUrl) {
-    headSearch.value = searchFromUrl; // fill input box
-    applySearchFilter(searchFromUrl.toLowerCase()); // apply filter immediately
+    headSearch.value = searchFromUrl;
+    applySearchFilter(searchFromUrl.toLowerCase());
   }
+
   // PRODUCT COUNT
   function updateProductCount() {
     const count = Array.from(document.querySelectorAll(".product-card")).filter(
@@ -290,8 +230,8 @@ document.addEventListener("DOMContentLoaded", () => {
     ).length;
     document.getElementById("productCount").textContent = count;
   }
+
   // NAVBAR CLICK → CATEGORY FILTER
-  // Auto-select category from URL
   const urlParams = new URLSearchParams(window.location.search);
   const categoryFromUrl = urlParams.get("category");
   if (categoryFromUrl) {
@@ -304,18 +244,15 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 });
+
 function showToast(message, type = "success") {
   const toastEl = document.getElementById("toastMessage");
-  // Apply Bootstrap contextual background
   toastEl.className = `toast align-items-center text-bg-${type} border-0`;
-  // Update body message
   toastEl.querySelector(".toast-body").textContent = message;
-  // Create Bootstrap toast instance
-  const toast = new bootstrap.Toast(toastEl, {
-    delay: 3000, // auto hide after 3s
-  });
+  const toast = new bootstrap.Toast(toastEl, { delay: 3000 });
   toast.show();
 }
+
 function updateCartCount() {
   const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
   const cartCount = document.getElementById("cartCount");
@@ -326,14 +263,16 @@ function updateCartCount() {
   let users = JSON.parse(localStorage.getItem("users")) || [];
   let user = users.find((u) => u.email === currentUser.email);
   if (user && user.cart && user.cart.length > 0) {
-    let count = user?.cart?.reduce((acc, item) => acc + item.quantity, 0) || 0;
+    let count = user.cart.reduce((acc, item) => acc + item.quantity, 0) || 0;
     cartCount.textContent = count;
     cartCount.style.display = "inline-block";
   } else {
     cartCount.style.display = "none";
   }
 }
+
 window.addEventListener("load", updateCartCount);
+
 function goToCart() {
   const user = JSON.parse(sessionStorage.getItem("currentUser"));
   if (!user) {
@@ -354,8 +293,7 @@ function updateWishCount() {
   let users = JSON.parse(localStorage.getItem("users")) || [];
   let user = users.find((u) => u.email === currentUser.email);
   if (user && user.favorites && user.favorites.length > 0) {
-    let count = user?.favorites?.reduce((acc, item) => acc + 1, 0) || 0;
-    wishCount.textContent = count;
+    wishCount.textContent = user.favorites.length;
     wishCount.style.display = "inline-block";
   } else {
     wishCount.style.display = "none";
