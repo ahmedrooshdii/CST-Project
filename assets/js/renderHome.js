@@ -62,8 +62,6 @@ function renderProductCards() {
     newArrivalContainer.appendChild(card);
   });
 
-  console.log(bestProducts);
-
   bestProducts.forEach((product) => {
     const card = document.createElement("div");
     card.classList.add("product-card");
