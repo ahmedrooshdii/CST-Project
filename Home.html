@@ -16,6 +16,12 @@
     <link rel="stylesheet" href="./assets/css/home.css" />
 
     <style>
+      .header {
+        position: sticky;
+        top: 0;
+        background-color: white;
+        z-index: 10000000000;
+      }
       #productSearch {
         height: 35px;
         font-size: large !important;
@@ -96,91 +102,92 @@
             />
           </form>
 
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="pages/products/product page.html"
-                >All Products</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="pages/about.html">About</a>
-            </li>
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="pages/products/product page.html"
+                  >All Products</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="pages/about.html">About</a>
+              </li>
 
-            <li class="nav-item">
-              <a class="nav-link" href="pages/ContactUs.html">Contact Us</a>
-            </li>
+              <li class="nav-item">
+                <a class="nav-link" href="pages/ContactUs.html">Contact Us</a>
+              </li>
 
-            <li class="nav-item">
-              <a class="nav-link" href="pages/blog.html">Blog</a>
-            </li>
+              <li class="nav-item">
+                <a class="nav-link" href="pages/blog.html">Blog</a>
+              </li>
 
-            <li class="nav-item" onclick="goToWishList()">
-              <a class="nav-link active" href="./pages/cart/wishlist.html"
-                ><i class="fa-regular fa-heart"></i
-              ></a>
-            </li>
+              <li class="nav-item" onclick="goToWishList()">
+                <a class="nav-link active" href="./pages/cart/wishlist.html"
+                  ><i class="fa-regular fa-heart"></i
+                ></a>
+              </li>
 
-            <li class="nav-item" onclick="goToCart()">
-              <a class="nav-link active" href="#">
-                <div class="position-relative d-inline-block">
-                  <i class="fa-solid fa-cart-shopping"></i>
-                  <span
-                    id="cartCount"
-                    class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
-                  >
-                  </span>
-                </div>
-              </a>
-            </li>
-          </ul>
+              <li class="nav-item" onclick="goToCart()">
+                <a class="nav-link active" href="#">
+                  <div class="position-relative d-inline-block">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span
+                      id="cartCount"
+                      class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                    >
+                    </span>
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
-      </div>
-    </nav>
+      </nav>
 
-    <nav
-      id="subnav"
-      class="container-fluid d-none d-md-flex justify-content-evenly gap-2"
-      style="padding: 10px 0"
-    >
-      <a
-        href="pages/products/product page.html?category=Phones"
-        style="cursor: pointer; color: white; text-decoration: none"
-        ><i class="fa-solid fa-mobile"></i>Phones</a
+      <nav
+        id="subnav"
+        class="container-fluid d-none d-md-flex justify-content-evenly gap-2"
+        style="padding: 10px 0"
       >
-      <span>|</span>
-      <a
-        href="pages/products/product page.html?category=Computers"
-        style="cursor: pointer; color: white; text-decoration: none"
-        ><i class="fa-solid fa-desktop"></i>Computers</a
-      >
-      <span>|</span>
-      <a
-        href="pages/products/product page.html?category=Smart Watch"
-        style="cursor: pointer; color: white; text-decoration: none"
-        ><i class="fa-solid fa-clock"></i>Smart Watch</a
-      >
-      <span>|</span>
-      <a
-        href="pages/products/product page.html?category=Cameras"
-        style="cursor: pointer; color: white; text-decoration: none"
-        ><i class="fa-solid fa-camera"></i>Cameras</a
-      >
-      <span>|</span>
-      <a
-        href="pages/products/product page.html?category=Headphones"
-        style="cursor: pointer; color: white; text-decoration: none"
-        ><i class="fa-solid fa-headset"></i>Headphones</a
-      >
-      <span>|</span>
-      <a
-        href="pages/products/product page.html?category=Gaming"
-        style="cursor: pointer; color: white; text-decoration: none"
-        ><i class="fa-solid fa-gamepad"></i>Gaming</a
-      >
-    </nav>
+        <a
+          href="pages/products/product page.html?category=Phones"
+          style="cursor: pointer; color: white; text-decoration: none"
+          ><i class="fa-solid fa-mobile"></i>Phones</a
+        >
+        <span>|</span>
+        <a
+          href="pages/products/product page.html?category=Computers"
+          style="cursor: pointer; color: white; text-decoration: none"
+          ><i class="fa-solid fa-desktop"></i>Computers</a
+        >
+        <span>|</span>
+        <a
+          href="pages/products/product page.html?category=Smart Watch"
+          style="cursor: pointer; color: white; text-decoration: none"
+          ><i class="fa-solid fa-clock"></i>Smart Watch</a
+        >
+        <span>|</span>
+        <a
+          href="pages/products/product page.html?category=Cameras"
+          style="cursor: pointer; color: white; text-decoration: none"
+          ><i class="fa-solid fa-camera"></i>Cameras</a
+        >
+        <span>|</span>
+        <a
+          href="pages/products/product page.html?category=Headphones"
+          style="cursor: pointer; color: white; text-decoration: none"
+          ><i class="fa-solid fa-headset"></i>Headphones</a
+        >
+        <span>|</span>
+        <a
+          href="pages/products/product page.html?category=Gaming"
+          style="cursor: pointer; color: white; text-decoration: none"
+          ><i class="fa-solid fa-gamepad"></i>Gaming</a
+        >
+      </nav>
+    </div>
 
     <main>
       <section class="wrapper block block--dark hero overflow--clip">
@@ -771,7 +778,7 @@
       </div>
     </footer>
     <!-- toast code -->
-    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+    <div class="position-fixed top-0 end-0 p-3" style="z-index: 11">
       <div
         id="toastMessage"
         class="toast align-items-center text-bg-danger border-0"
