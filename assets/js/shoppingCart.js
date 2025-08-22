@@ -22,6 +22,7 @@ window.addEventListener("load", () => {
   taxPrice = document.getElementById("taxPrice");
   totalPrice = document.getElementById("totalPrice");
   renderCart();
+  updateWishCount();
 });
 
 // get user from local storage
@@ -105,6 +106,7 @@ function renderCart() {
     taxPrice.innerHTML = `$0`;
     totalPrice.innerHTML = `$0`;
   }
+  updateCartCount();
 }
 //get product from all products
 function getProduct(id) {
