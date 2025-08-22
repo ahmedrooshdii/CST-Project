@@ -19,7 +19,7 @@ function renderProductCards() {
   let activeProducts = products.filter((p) => p.status !== "Inactive");
   const bestProducts = activeProducts
     .filter((p) => p.reviews?.some((r) => r.stars >= 4))
-    .slice(9);
+    .slice(0, 9);
   activeProducts = activeProducts.slice(0, 8);
 
   activeProducts.forEach((product) => {
@@ -40,7 +40,7 @@ function renderProductCards() {
            </div>
            <div>
                 ${
-                  product.status === "Out of Stock"
+                  product.stock === 0
                     ? `<div class="out-of-stock" style="text-align: center; color: red">Out of Stock</div>`
                     : ""
                 }
@@ -51,7 +51,7 @@ function renderProductCards() {
                   2
                 )}</div>
                 ${
-                  product.status === "Out of Stock"
+                  product.stock === 0
                     ? ``
                     : `<button class="btn btn--buy" 
                 >Add To Cart</button>`
