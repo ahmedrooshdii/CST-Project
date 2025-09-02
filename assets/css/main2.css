@@ -349,6 +349,7 @@ p {
 
 .categories__carousel {
   display: flex;
+  flex-wrap: wrap;
   overflow-x: auto;
   scroll-behavior: smooth;
   scrollbar-width: none;
@@ -535,7 +536,6 @@ p {
 
 .popular-product__card {
   overflow: hidden;
-  min-width: 375px;
   height: 640px;
   display: flex;
   flex-direction: column;
