@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
             <h5 class="card-title">${product.name}</h5>
             <p class="card-text fs-4 fw-bold">$${parseFloat(product.price).toFixed(2)}</p>
             ${
-              product.status === "Out of Stock"
+              product.stock == 0
                 ? `<div class="out-of-stock text-danger fw-bold">Out of Stock</div>`
                 : `<button class="btn btn-dark w-100 add-to-cart">Add To Cart</button>`
             }
