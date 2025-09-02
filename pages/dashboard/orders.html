@@ -217,7 +217,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (userMatch) customer = userMatch.name;
     const date = order.time ? new Date(order.id).toLocaleDateString() : "-";
     const total = order.totalPrice || "$0.00";
-    let status = order.status || "completed";
+    let status = order.status || "pending";
     let badgeClass = "bg-success";
     if (status === "pending") badgeClass = "bg-warning";
     else if (status === "cancelled") badgeClass = "bg-danger";
