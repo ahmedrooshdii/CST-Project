@@ -290,7 +290,7 @@ function saveProductChanges() {
       product.description = document
         .getElementById("editProductDescription")
         .value.trim();
-      product.image = imageUrl;
+      product.image = imageUrl || product.image;
     }
     return product;
   });

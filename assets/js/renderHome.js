@@ -40,7 +40,7 @@ function renderProductCards() {
            </div>
            <div>
                 ${
-                  product.stock === 0
+                  product.stock == 0
                     ? `<div class="out-of-stock" style="text-align: center; color: red">Out of Stock</div>`
                     : ""
                 }
@@ -51,7 +51,7 @@ function renderProductCards() {
                   2
                 )}</div>
                 ${
-                  product.stock === 0
+                  product.stock == 0
                     ? ``
                     : `<button class="btn btn--buy" 
                 >Add To Cart</button>`
