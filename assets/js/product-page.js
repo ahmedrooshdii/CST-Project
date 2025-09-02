@@ -7,11 +7,11 @@ document.addEventListener("DOMContentLoaded", () => {
   );
   productsContainer.innerHTML = "";
   const products = JSON.parse(localStorage.getItem("products")) || [];
-
+  let activeProducts = products.filter((p) => p.status !== "Inactive");
   if (products.length === 0) {
     productsContainer.innerHTML = `<p class="text-center w-100">No products available.</p>`;
   } else {
-    products.forEach((product) => {
+    activeProducts.forEach((product) => {
       const col = document.createElement("div");
       col.className = "col product-card";
       col.setAttribute("data-id", product.id);
@@ -28,15 +28,11 @@ document.addEventListener("DOMContentLoaded", () => {
             <i class="far fa-heart text-muted favorite-btn" style="cursor:pointer;"></i>
           </div>
           <div class="card-body">
-            <img src="${product.image}" class="card-img-top mb-3" alt="${
-        product.name
-      }">
+            <img src="${product.image}" class="card-img-top mb-3" alt="${product.name}">
             <h5 class="card-title">${product.name}</h5>
-            <p class="card-text fs-4 fw-bold">$${parseFloat(
-              product.price
-            ).toFixed(2)}</p>
+            <p class="card-text fs-4 fw-bold">$${parseFloat(product.price).toFixed(2)}</p>
             ${
-              product.stock == 0
+              product.status === "Out of Stock"
                 ? `<div class="out-of-stock text-danger fw-bold">Out of Stock</div>`
                 : `<button class="btn btn-dark w-100 add-to-cart">Add To Cart</button>`
             }
@@ -80,9 +76,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (user.favorites.includes(id)) {
           // remove from favorites
-          user.favorites = user.favorites.filter(
-            (productId) => productId !== id
-          );
+          user.favorites = user.favorites.filter((productId) => productId !== id);
           favBtn.classList.remove("text-danger");
           favBtn.classList.add("text-muted");
           favBtn.classList.replace("fas", "far");
@@ -118,21 +112,13 @@ document.addEventListener("DOMContentLoaded", () => {
           users.forEach((u) => {
             if (u.email === currentUser.email) {
               if (!u.cart) u.cart = [];
-              const existingItem = u.cart.find(
-                (item) => item.productId === productId
-              );
+              const existingItem = u.cart.find((item) => item.productId === productId);
               if (existingItem) {
                 existingItem.quantity += 1;
-                showToast(
-                  `Product ${productName} added to your cart!`,
-                  "success"
-                );
+                showToast(`Product ${productName} added to your cart!`, "success");
               } else {
                 u.cart.push({ productId, quantity });
-                showToast(
-                  `Product ${productName} added to your cart!`,
-                  "success"
-                );
+                showToast(`Product ${productName} added to your cart!`, "success");
               }
             }
           });
