@@ -349,7 +349,6 @@ p {
 
 .categories__carousel {
   display: flex;
-  flex-wrap: wrap;
   overflow-x: auto;
   scroll-behavior: smooth;
   scrollbar-width: none;
