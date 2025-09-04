@@ -254,7 +254,7 @@ document.addEventListener("DOMContentLoaded", function () {
     order.items.forEach(it => {
       const product = products.find(p => String(p.id) === String(it.productId));
       const li = document.createElement("li");
-      li.textContent = `${product ? product.name : "Unknown Product"} - Qty: ${it.quantity} - Price: $${product ? product.price : "0"} - Status: ${product ? product.status : "N/A"}`;
+      li.textContent = `${product ? product.name : "Unknown Product"} - Qty: ${it.quantity} - Price: $${product ? product.price : "0"} - Status: ${product ? product.status : "N/A"} - seller: ${product ? product.sellerEmail : "N/A"} `;
       itemsUl.appendChild(li);
     });
   };

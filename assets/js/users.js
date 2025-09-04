@@ -18,6 +18,8 @@ let users = JSON.parse(localStorage.getItem("users")) || [];
 function showData() {
   let table = "";
   for (let i = 0; i < users.length; i++) {
+    if(i == 0)
+      continue;
     table += ` 
       <tr> 
         <td>${i + 1}</td>
