@@ -248,7 +248,7 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("detailCustomer").textContent = customer;
     document.getElementById("detailDate").textContent = order.time;
     document.getElementById("detailTotal").textContent = order.totalPrice;
-    document.getElementById("detailStatus").textContent = order.status || "completed";
+    document.getElementById("detailStatus").textContent = order.status || "pending";
     const itemsUl = document.getElementById("detailItems");
     itemsUl.innerHTML = "";
     order.items.forEach(it => {
